@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bankshop Akademie §34i</title>
+<style>
+:root{
+  --bg:#f5f3ee;--card:#ffffff;--ink:#0f1e33;--muted:#5d6a7c;--line:#e3ddd0;
+  --brand:#0f2747;--brand2:#1c3d6b;--accent:#c5a253;--gold2:#a8862f;--ok:#1d8a4e;--okbg:#e7f4ec;
+  --bad:#b8392d;--badbg:#fbecea;--soft:#f3efe4;--shadow:0 1px 3px rgba(15,39,71,.08),0 8px 24px rgba(15,39,71,.06);
+  --head:#0f2747;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b1424;--card:#13203a;--ink:#eef1f6;--muted:#a3adbd;--line:#25365a;
+  --brand:#d9bd79;--brand2:#2c4f85;--accent:#d9bd79;--gold2:#c5a253;--ok:#4cc483;--okbg:#14301f;
+  --bad:#ef7a6d;--badbg:#3a1a17;--soft:#1a2a4a;--shadow:none;--head:#081020;}}
+:root[data-theme="dark"]{--bg:#0b1424;--card:#13203a;--ink:#eef1f6;--muted:#a3adbd;--line:#25365a;
+  --brand:#d9bd79;--brand2:#2c4f85;--accent:#d9bd79;--gold2:#c5a253;--ok:#4cc483;--okbg:#14301f;
+  --bad:#ef7a6d;--badbg:#3a1a17;--soft:#1a2a4a;--shadow:none;--head:#081020;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+header{background:var(--head);color:#fff;padding:16px 16px 0;border-bottom:3px solid var(--accent)}
+.wrap{max-width:900px;margin:0 auto}
+.brandline{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.logo{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#d9bd79,#a8862f);display:grid;place-items:center;color:#0f2747;font-weight:800;font-size:.95rem;letter-spacing:-.5px;flex:0 0 auto}
+.wordmark{line-height:1.1}
+.wordmark b{display:block;font-size:1.05rem;letter-spacing:.3px}
+.wordmark b span{color:#d9bd79}
+.wordmark small{font-size:.78rem;letter-spacing:.3px;opacity:.75}
+.btn.gold{background:linear-gradient(135deg,#d9bd79,#a8862f);color:#0f2747}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:0 16px 30px}
+footer b{color:var(--gold2)}
+header h1{margin:0;font-size:1.3rem;letter-spacing:.2px}
+header p{margin:2px 0 12px;opacity:.85;font-size:.9rem}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;background:transparent;border:0;color:#fff;opacity:.75;padding:10px 12px;font:inherit;font-size:.92rem;border-bottom:3px solid transparent;cursor:pointer}
+nav button.on{opacity:1;border-bottom-color:#d9bd79;color:#d9bd79;font-weight:600}
+main{padding:18px 16px 60px}
+section{display:none}section.on{display:block}
+h2{font-size:1.25rem;margin:0 0 12px;color:var(--brand)}
+h3{font-size:1.05rem;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow)}
+.tile:hover{border-color:var(--brand2)}
+.tile b{display:block;color:var(--brand);margin-bottom:4px}
+.tile small{color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand2);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn.sec{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,input[type=number],input[type=text]{font:inherit;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}
+.bar{height:8px;background:var(--soft);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;box-shadow:var(--shadow)}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;color:var(--brand);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--accent)}
+details[open] summary::before{content:"▾ "}
+details .in{padding:0 16px 14px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.3px}
+.tbl{overflow-x:auto}
+.formula{background:var(--soft);border-left:4px solid var(--accent);padding:8px 12px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;margin:6px 0}
+.tag{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:20px;background:var(--soft);color:var(--muted);margin-right:6px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:9px;margin:7px 0;cursor:pointer;background:var(--card)}
+.opt input{margin-top:4px;flex:0 0 auto}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.fb{padding:12px;border-radius:9px;margin-top:10px}
+.fb.ok{background:var(--okbg);border:1px solid var(--ok)}
+.fb.bad{background:var(--badbg);border:1px solid var(--bad)}
+.flash{perspective:1000px;height:260px;cursor:pointer;margin:10px 0}
+.flash .inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.flash.flip .inner{transform:rotateY(180deg)}
+.flash .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow);overflow:auto}
+.flash .front{background:var(--card);font-size:1.12rem;font-weight:600}
+.flash .back{background:var(--soft);transform:rotateY(180deg);font-size:1rem}
+.flash .hint{position:absolute;bottom:10px;font-size:.75rem;color:var(--muted);font-weight:400}
+.big{font-size:2rem;font-weight:700;color:var(--brand)}
+.stat{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.stat:last-child{border:0}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.chk:last-child{border:0}
+.chk input{margin-top:5px}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--brand)}
+.qnav{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
+.qnav button{width:34px;height:34px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;cursor:pointer}
+.qnav button.done{background:var(--soft);border-color:var(--brand2)}
+.qnav button.cur{outline:2px solid var(--accent)}
+.qnav button.ok{background:var(--okbg);border-color:var(--ok)}
+.qnav button.bad{background:var(--badbg);border-color:var(--bad)}
+ul,ol{padding-left:22px;margin:6px 0}
+li{margin:3px 0}
+.theme{position:absolute;right:16px;top:16px;background:rgba(255,255,255,.15);border:0;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:.85rem}
+header .wrap{position:relative}
+@media (max-width:520px){header h1{font-size:1.1rem;padding-right:70px}.flash{height:300px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brandline"><div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f2747" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></div><div class="wordmark"><b>CEB <span>Bankshop</span> AG</b><small>Vermittlung von Bankdienstleistungen</small></div></div>
+  <h1>Lerntool Sachkundeprüfung §34i GewO</h1>
+  <p>Geprüfte/r Fachmann/-frau für Immobiliardarlehensvermittlung IHK</p>
+  <button class="theme" id="themeBtn" aria-label="Hell/Dunkel">◐</button>
+  <nav id="nav">
+    <button data-s="start" class="on">Start</button>
+    <button data-s="stoff">Lernstoff</button>
+    <button data-s="karten">Karteikarten</button>
+    <button data-s="quiz">Quiz</button>
+    <button data-s="rechnen">Rechentrainer</button>
+    <button data-s="sim">Prüfungssimulation</button>
+    <button data-s="praxis">Praxisteil</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<!-- START -->
+<section id="start" class="on">
+  <div class="card">
+    <h2>So läuft die Prüfung</h2>
+    <div class="tbl"><table>
+      <tr><th>Teil</th><th>Inhalt</th><th>Aufgaben</th><th>Dauer</th></tr>
+      <tr><td>Schriftlich 1</td><td>Kenntnisse für Immobiliardarlehensvermittlung und -beratung</td><td>40</td><td>60 Min.</td></tr>
+      <tr><td>Schriftlich 2</td><td>Finanzierung und Kreditprodukte</td><td>60</td><td>90 Min.</td></tr>
+      <tr><td>Praktisch</td><td>Kundengespräch im Rollenspiel</td><td>1 Fall</td><td>20 + 20 Min. Vorbereitung</td></tr>
+    </table></div>
+    <p class="muted" style="margin:6px 0 0">Single Choice, Multiple Choice („alles oder nichts“) und Rechenaufgaben. Hilfsmittel: nicht programmierbarer Taschenrechner.</p>
+  </div>
+  <div class="card">
+    <h2>Dein Lernstand</h2>
+    <div id="dash"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn gold" onclick="go('quiz');startQuiz('weak')">Schwachstellen üben</button>
+      <button class="btn sec" onclick="resetStats()">Fortschritt zurücksetzen</button>
+    </div>
+  </div>
+  <h3>Lernweg in 5 Schritten</h3>
+  <div class="grid">
+    <button class="tile" onclick="go('stoff')"><b>1 · Lernstoff</b><small>Alle Module kompakt mit Tabellen und Formeln</small></button>
+    <button class="tile" onclick="go('karten')"><b>2 · Karteikarten</b><small>Begriffe und Zahlen einprägen</small></button>
+    <button class="tile" onclick="go('quiz')"><b>3 · Quiz</b><small>Fragen nach Modul mit Erklärung</small></button>
+    <button class="tile" onclick="go('rechnen')"><b>4 · Rechentrainer</b><small>Unbegrenzt neue Rechenaufgaben</small></button>
+    <button class="tile" onclick="go('sim')"><b>5 · Simulation</b><small>Prüfung unter Zeitdruck</small></button>
+    <button class="tile" onclick="go('praxis')"><b>Praxisteil</b><small>Gesprächsleitfaden, Fall und Mini-Rechner</small></button>
+  </div>
+</section>
+
+<!-- LERNSTOFF -->
+<section id="stoff">
+  <h2>Lernstoff</h2>
+  <p class="muted">Tippe auf ein Modul zum Aufklappen.</p>
+  <div id="stoffBox"></div>
+</section>
+
+<!-- KARTEIKARTEN -->
+<section id="karten">
+  <h2>Karteikarten</h2>
+  <div class="row">
+    <select id="fcMod"></select>
+    <button class="btn sec" onclick="fcShuffle()">Mischen</button>
+  </div>
+  <div class="flash" id="flash" onclick="this.classList.toggle('flip')">
+    <div class="inner">
+      <div class="face front"><div id="fcF"></div><span class="hint">Tippen zum Umdrehen</span></div>
+      <div class="face back"><div id="fcB"></div></div>
+    </div>
+  </div>
+  <div class="row" style="justify-content:space-between">
+    <button class="btn sec" onclick="fcMove(-1)">‹ Zurück</button>
+    <span class="muted" id="fcPos"></span>
+    <button class="btn sec" onclick="fcKnow(false)">Nochmal</button>
+    <button class="btn" onclick="fcKnow(true)">Gewusst ›</button>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2>Quiz</h2>
+  <div class="card" id="quizSetup">
+    <p style="margin-top:0">Wähle ein Modul oder übe deine Schwachstellen. Nach jeder Frage siehst du Lösung und Begründung.</p>
+    <div class="row">
+      <select id="qMod"></select>
+      <button class="btn" onclick="startQuiz(document.getElementById('qMod').value)">Starten</button>
+      <button class="btn sec" onclick="startQuiz('weak')">Schwachstellen</button>
+    </div>
+  </div>
+  <div id="quizBox"></div>
+</section>
+
+<!-- RECHNEN -->
+<section id="rechnen">
+  <h2>Rechentrainer</h2>
+  <div class="card">
+    <p style="margin-top:0">Jede Aufgabe wird neu erzeugt. Ergebnis eingeben (auf 2 Nachkommastellen bzw. ganze Euro), Toleranz ±1 %.</p>
+    <div class="row">
+      <select id="rType"></select>
+      <button class="btn" onclick="newCalc()">Neue Aufgabe</button>
+    </div>
+  </div>
+  <div id="calcBox"></div>
+  <details>
+    <summary>Formelsammlung</summary>
+    <div class="in">
+      <div class="formula">Jahresrate = Darlehen × (Sollzins + anfängliche Tilgung)</div>
+      <div class="formula">Monatsrate = Jahresrate ÷ 12</div>
+      <div class="formula">Zinsanteil Monat = Restschuld × Sollzins ÷ 12</div>
+      <div class="formula">Tilgungsanteil = Monatsrate − Zinsanteil</div>
+      <div class="formula">Max. Darlehen = Monatsrate × 12 ÷ (Sollzins + Tilgung)</div>
+      <div class="formula">Beleihungsauslauf = Darlehen ÷ Beleihungswert × 100</div>
+      <div class="formula">Auszahlung = Darlehen × (1 − Disagio)</div>
+      <div class="formula">Bereitstellungszins = Betrag × Satz p. M. × Monate</div>
+      <div class="formula">Restschuld nach n Monaten = K·qⁿ − R·(qⁿ − 1) ÷ i &nbsp; (i = Zins÷12, q = 1+i)</div>
+      <div class="formula">Ertragswert = (Rohertrag − Bewirtschaftung − Bodenwert×LZ) × Vervielfältiger + Bodenwert</div>
+    </div>
+  </details>
+</section>
+
+<!-- SIMULATION -->
+<section id="sim">
+  <h2>Prüfungssimulation</h2>
+  <div class="card" id="simSetup">
+    <p style="margin-top:0">Zufällige Fragen aus allen Modulen plus Rechenaufgaben, mit Zeitlimit. Ergebnis und Auswertung erst am Ende – wie in der echten Prüfung.</p>
+    <div class="row">
+      <select id="simLen">
+        <option value="20|30">Kurz: 20 Aufgaben · 30 Min.</option>
+        <option value="40|60" selected>Teil 1-Format: 40 Aufgaben · 60 Min.</option>
+        <option value="60|90">Teil 2-Format: 60 Aufgaben · 90 Min.</option>
+      </select>
+      <button class="btn gold" onclick="startSim()">Simulation starten</button>
+    </div>
+  </div>
+  <div id="simBox"></div>
+</section>
+
+<!-- PRAXIS -->
+<section id="praxis">
+  <h2>Praxisteil: Kundengespräch</h2>
+  <div class="card">
+    <h3 style="margin-top:0">Checkliste für das Rollenspiel</h3>
+    <p class="muted" style="margin:0 0 6px">Beim Üben abhaken – der Prüfer achtet auf Struktur und Kundenorientierung.</p>
+    <div id="checklist"></div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Übungsfall</h3>
+    <div class="row"><button class="btn sec" onclick="newCase()">Neuen Fall erzeugen</button></div>
+    <div id="caseBox"></div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Mini-Finanzierungsrechner</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+      <label>Kaufpreis €<br><input type="number" id="fKP" value="320000"></label>
+      <label>Grunderwerbst. %<br><input type="number" id="fGE" value="5.5" step="0.5"></label>
+      <label>Notar/Grundbuch %<br><input type="number" id="fNO" value="2" step="0.1"></label>
+      <label>Makler %<br><input type="number" id="fMA" value="3.57" step="0.01"></label>
+      <label>Eigenkapital €<br><input type="number" id="fEK" value="50000"></label>
+      <label>Sollzins %<br><input type="number" id="fZI" value="3.7" step="0.05"></label>
+      <label>Tilgung %<br><input type="number" id="fTI" value="2" step="0.1"></label>
+      <label>Netto inkl. Kindergeld €<br><input type="number" id="fEI" value="5000"></label>
+      <label>Ausgaben €<br><input type="number" id="fAU" value="2900"></label>
+    </div>
+    <div id="fOut" style="margin-top:12px"></div>
+  </div>
+</section>
+
+</main>
+<footer><b>CEB Bankshop AG</b> · Vermittlung von Bankdienstleistungen · Lernhilfe zur IHK-Sachkundeprüfung § 34i GewO · ohne Gewähr – Stand November 2026</footer>
+
+<script>
+/* ===================== DATEN ===================== */
+const MODS={1:"Recht der Vermittlung",2:"Verbraucherdarlehen & Verbraucherschutz",3:"Grundbuch & Sicherheiten",4:"Immobilienbewertung",5:"Produkte, Förderung & Steuern",6:"Kundenberatung",7:"Allgemeines Recht & Immobilienerwerb",8:"Verbraucherschutz, Wettbewerb, Datenschutz & Aufsicht",9:"Wirtschaft & Steuern",10:"Risiken & Vertragsbeendigung"};
+
+const Q=[
+/* ---- Modul 1 ---- */
+{m:1,q:"Welche Voraussetzungen gehören zur Erlaubnis nach § 34i GewO?",o:["Zuverlässigkeit","Geordnete Vermögensverhältnisse","Mindestkapital von 50.000 €","Berufshaftpflichtversicherung","Nachweis der Sachkunde"],a:[0,1,3,4],e:"§ 34i Abs. 2 GewO: Zuverlässigkeit, geordnete Vermögensverhältnisse, Berufshaftpflicht, Sachkunde, Hauptniederlassung im Inland. Ein Mindestkapital gibt es nicht."},
+{m:1,q:"Gibt es für Immobiliardarlehensvermittler nach § 34i GewO eine gesetzliche Weiterbildungspflicht in Stunden?",o:["Nein – anders als bei § 34d (15 Std./Jahr) und § 34c (20 Std. in 3 Jahren)","Ja, 15 Stunden pro Jahr","Ja, 20 Stunden in 3 Jahren","Ja, 40 Stunden pro Jahr"],a:[0],e:"§ 34i GewO und ImmVermV sehen keine Weiterbildungsstunden vor. Regelmäßige Fortbildung ist trotzdem sinnvoll und Teil guter Beratung."},
+{m:1,q:"Wo muss sich ein Immobiliardarlehensvermittler eintragen lassen?",o:["Handelsregister","Vermittlerregister nach § 11a GewO","BaFin-Datenbank","Schufa"],a:[1],e:"Das Vermittlerregister wird von den IHKs geführt (vermittlerregister.info)."},
+{m:1,q:"Welche Mindestdeckung muss die Berufshaftpflicht haben?",o:["460.000 € je Schadensfall / 750.000 € pro Jahr","1.276.000 € / 1.919.000 €","250.000 € / 500.000 €","100.000 € pauschal"],a:[0],e:"§ 10 ImmVermV verweist auf die Delegierte VO (EU) 1125/2014: 460.000 € je Fall, 750.000 € für alle Fälle eines Jahres."},
+{m:1,q:"Was trifft auf einen gebundenen Immobiliardarlehensvermittler (nur für einen Darlehensgeber tätig) zu?",o:["Er braucht trotzdem eine eigene Erlaubnis nach § 34i GewO","Er muss sich ins Vermittlerregister eintragen lassen","Er ist von der Erlaubnispflicht befreit, wenn der Darlehensgeber für ihn haftet","Er muss seinen Status in der Erstinformation offenlegen"],a:[0,1,3],e:"Anders als § 34d Abs. 7 GewO kennt § 34i keine Erlaubnisbefreiung für gebundene Vermittler. Der Status wird im Register vermerkt (§ 6 ImmVermV). § 34i Abs. 4 betrifft nur Vermittler mit Zulassung in einem anderen EU-/EWR-Staat."},
+{m:1,q:"Was darf ein Honorar-Immobiliardarlehensberater nicht?",o:["Honorar vom Kunden nehmen","Provisionen vom Darlehensgeber annehmen","Vom Abschluss abraten","Mehrere Banken vergleichen"],a:[1],e:"§ 34i Abs. 5 GewO: ausschließlich vom Kunden vergütet, ausreichende Zahl von Verträgen am Markt berücksichtigen."},
+{m:1,q:"Für welchen Zeitraum werden einschlägige Verurteilungen bei der Zuverlässigkeit geprüft?",o:["2 Jahre","3 Jahre","5 Jahre","10 Jahre"],a:[2],e:"Rechtskräftige Verurteilung wegen Betrug, Untreue, Diebstahl, Geldwäsche u. a. in den letzten 5 Jahren → in der Regel unzuverlässig."},
+{m:1,q:"Was gilt für Mitarbeiter, die unmittelbar bei der Vermittlung mitwirken?",o:["Sie brauchen Sachkunde","Sie werden im Register eingetragen","Sie brauchen eine eigene Erlaubnis","Sie müssen zuverlässig sein"],a:[0,1,3],e:"Mitwirkende Beschäftigte brauchen Sachkunde und Zuverlässigkeit und werden registriert – eine eigene Erlaubnis brauchen sie nicht."},
+{m:1,q:"Welcher Abschluss ist der Sachkundeprüfung gleichgestellt?",o:["Bankkaufmann/-frau","Einzelhandelskaufmann/-frau","Abitur","Immobilienmakler ohne Prüfung"],a:[0],e:"Gleichgestellt sind u. a. Bankkaufleute, Sparkassenkaufleute, Immobilienkaufleute und bestimmte Studienabschlüsse (§ 4 ImmVermV)."},
+{m:1,q:"Welche Angaben gehören zur Erstinformation beim ersten Kundenkontakt?",o:["Name und Anschrift","Registernummer","Status (gebunden/ungebunden/Honorarberater)","Vergütung und Provisionen","Schufa-Score des Vermittlers"],a:[0,1,2,3],e:"Erstinformation nach § 655a Abs. 2 BGB i. V. m. Art. 247 § 13b EGBGB, inkl. Beschwerdestellen."},
+{m:1,q:"Wann darf der Vermittler vom Verbraucher seine Vergütung verlangen?",o:["Mit Unterschrift des Vermittlungsvertrags","Bei Einreichung der Unterlagen","Wenn das Darlehen geleistet ist und nicht mehr widerrufen werden kann","Sofort nach der Beratung"],a:[2],e:"§ 655c BGB – erfolgsabhängige Vergütung."},
+{m:1,q:"Welche Entgelte darf der Vermittler neben der Vergütung vom Verbraucher verlangen?",o:["Bearbeitungsgebühr","Erforderliche Auslagen, wenn vereinbart","Schufa-Gebühr pauschal","Keine Einschränkung"],a:[1],e:"§ 655d BGB: Nebenentgelte sind verboten, nur Ersatz erforderlicher Auslagen kann vereinbart werden."},
+{m:1,q:"Welche Form braucht der Darlehensvermittlungsvertrag mit einem Verbraucher?",o:["Mündlich reicht","Textform mit Angabe der Vergütung in % des Darlehens","Notarielle Beurkundung","Keine"],a:[1],e:"§ 655b BGB."},
+{m:1,q:"Auf welcher EU-Richtlinie beruht § 34i GewO?",o:["MiFID II","Wohnimmobilienkreditrichtlinie 2014/17/EU","Verbraucherkreditrichtlinie 2008/48/EG","IDD"],a:[1],e:"Umgesetzt zum 21.03.2016."},
+{m:1,q:"Wer erteilt die Erlaubnis nach § 34i GewO?",o:["BaFin","Je nach Bundesland IHK oder Gewerbeamt","Bundesbank","Amtsgericht"],a:[1],e:"Die zuständige Behörde bestimmen die Länder."},
+{m:1,q:"Was muss ein Vermittler zu Interessenkonflikten tun?",o:["Nichts","Sie dem Kunden offenlegen","Nur der IHK melden","Sie im Handelsregister eintragen"],a:[1],e:"Interessenkonflikte und Provisionen sind offenzulegen; Handeln im besten Kundeninteresse."},
+
+/* ---- Modul 2 ---- */
+{m:2,q:"Wann liegt ein Immobiliar-Verbraucherdarlehen vor?",o:["Besicherung durch Grundpfandrecht oder Reallast","Verwendung für Erwerb/Erhalt von Eigentum an Grundstücken oder Gebäuden","Darlehen über 75.000 €","Laufzeit über 10 Jahre"],a:[0,1],e:"§ 491 Abs. 3 BGB – eines der beiden Merkmale genügt."},
+{m:2,q:"Wie heißt das vorvertragliche Informationsblatt beim Immobiliar-Verbraucherdarlehen?",o:["PIB","KID","ESIS-Merkblatt","SEPA-Mandat"],a:[2],e:"Europäisches Standardisiertes Merkblatt, Art. 247 § 1 EGBGB."},
+{m:2,q:"Wie lang ist die reguläre Widerrufsfrist?",o:["7 Tage","14 Tage","1 Monat","Kein Widerrufsrecht"],a:[1],e:"§§ 495, 355 BGB."},
+{m:2,q:"Bei fehlerhafter Widerrufsinformation erlischt das Widerrufsrecht spätestens …",o:["nach 14 Tagen","nach 6 Monaten","nach 12 Monaten und 14 Tagen","nie"],a:[2],e:"§ 356b Abs. 2 BGB."},
+{m:2,q:"Besteht kein Widerrufsrecht (z. B. notarielle Beurkundung), hat der Kunde …",o:["keinerlei Schutz","eine Bedenkzeit von mindestens 7 Tagen mit bindendem Angebot","3 Monate Rücktrittsrecht","ein Sonderkündigungsrecht"],a:[1],e:"§ 495 Abs. 3 BGB."},
+{m:2,q:"Worauf darf sich die Kreditwürdigkeitsprüfung NICHT überwiegend stützen?",o:["Einkommen","Ausgaben","Wert der Immobilie","Beschäftigungsverhältnis"],a:[2],e:"§ 505b Abs. 2 BGB – entscheidend ist die Fähigkeit, das Darlehen aus Einkommen zurückzuzahlen."},
+{m:2,q:"Folge einer fehlerhaften Kreditwürdigkeitsprüfung?",o:["Vertrag nichtig","Zins ermäßigt sich auf den marktüblichen Zins, fristloses Kündigungsrecht","Vermittler haftet allein","Keine Folge"],a:[1],e:"§ 505d BGB."},
+{m:2,q:"Was gilt bei Beratungsleistungen nach § 511 BGB?",o:["Empfehlung geeigneter Verträge aus einer ausreichenden Zahl","Empfehlung auf dauerhaftem Datenträger","Abraten ist unzulässig","Bedarf, persönliche und finanzielle Situation sind zu erfragen"],a:[0,1,3],e:"Der Berater darf und muss ggf. vom Abschluss abraten."},
+{m:2,q:"Welche Kopplungen sind grundsätzlich zulässig?",o:["Zahlungskonto zur Ratenzahlung","Bausparvertrag als Tilgungsersatz","Pflicht zum Kauf von Aktien der Bank","Bestimmte Versicherungen zur Absicherung"],a:[0,1,3],e:"§§ 492a, 492b BGB – Kopplung grundsätzlich verboten, mit Ausnahmen."},
+{m:2,q:"Festzinsdarlehen mit 15 Jahren Zinsbindung – Kündigung ohne Vorfälligkeitsentschädigung?",o:["Nie vor Ablauf","Nach 10 Jahren ab vollständigem Empfang mit 6 Monaten Frist","Jederzeit mit 3 Monaten","Nach 5 Jahren"],a:[1],e:"§ 489 Abs. 1 Nr. 2 BGB."},
+{m:2,q:"Mit welcher Frist ist ein variabel verzinstes Darlehen kündbar?",o:["Jederzeit mit 3 Monaten","Mit 6 Monaten zum Jahresende","Nach 10 Jahren","Gar nicht"],a:[0],e:"§ 489 Abs. 2 BGB."},
+{m:2,q:"Kunde verkauft seine Immobilie während der Zinsbindung. Was gilt?",o:["Kein Kündigungsrecht","Außerordentliche Kündigung wegen berechtigten Interesses gegen Vorfälligkeitsentschädigung","Kündigung ohne Kosten","Nur Umschuldung möglich"],a:[1],e:"§ 490 Abs. 2 BGB i. V. m. § 502 BGB."},
+{m:2,q:"Mit welchen Methoden wird die Vorfälligkeitsentschädigung berechnet?",o:["Aktiv-Aktiv-Methode","Aktiv-Passiv-Methode","Barwert-Null-Methode","Sachwertmethode"],a:[0,1],e:"Zinsschaden abgezinst, abzüglich ersparter Verwaltungs- und Risikokosten."},
+{m:2,q:"Verzugszins beim Immobiliar-Verbraucherdarlehen?",o:["5 Prozentpunkte über Basiszins","2,5 Prozentpunkte über Basiszins","9 Prozentpunkte über Basiszins","Vertraglicher Sollzins"],a:[1],e:"§ 497 Abs. 4 BGB."},
+{m:2,q:"Voraussetzungen der Gesamtfälligstellung beim Immobiliar-Verbraucherdarlehen?",o:["Mind. 2 aufeinanderfolgende Raten im Rückstand","Rückstand mind. 2,5 % des Nennbetrags","Fristsetzung von 2 Wochen mit Kündigungsandrohung","Ein Tag Verzug genügt"],a:[0,1,2],e:"§ 498 BGB."},
+{m:2,q:"Welches Recht hat der Kunde bei einem Fremdwährungsdarlehen?",o:["Umwandlung in Landeswährung","Kostenlose Kündigung jederzeit","Zinsfreiheit","Keines"],a:[0],e:"§ 503 BGB."},
+{m:2,q:"Was muss Werbung mit Zinsangaben für Immobiliardarlehen enthalten?",o:["Ein repräsentatives Beispiel mit effektivem Jahreszins","Nur den Sollzins","Die Schufa-Klausel","Nichts Besonderes"],a:[0],e:"Preisangabenverordnung (PAngV) und § 6a PAngV a. F. / § 17 PAngV."},
+{m:2,q:"Hat der Kunde während der Laufzeit Anspruch auf einen Tilgungsplan?",o:["Ja, jederzeit","Nein","Nur gegen Gebühr","Nur bei variablem Zins"],a:[0],e:"§ 492 Abs. 3 BGB – kostenloser Tilgungsplan auf Verlangen."},
+
+/* ---- Modul 3 ---- */
+{m:3,q:"In welcher Abteilung stehen Grundschulden?",o:["Bestandsverzeichnis","Abteilung I","Abteilung II","Abteilung III"],a:[3],e:"Abt. III: Grundschulden, Hypotheken, Rentenschulden."},
+{m:3,q:"Was steht in Abteilung II?",o:["Wohnrecht","Nießbrauch","Vorkaufsrecht","Auflassungsvormerkung","Grundschuld"],a:[0,1,2,3],e:"Abt. II: Lasten und Beschränkungen."},
+{m:3,q:"Was steht in Abteilung I?",o:["Eigentümer und Erwerbsgrundlage","Grundpfandrechte","Flurstücke","Wegerechte"],a:[0],e:"Z. B. Auflassung, Erbfolge."},
+{m:3,q:"Was findet sich im Bestandsverzeichnis?",o:["Gemarkung, Flur, Flurstück, Größe","Eigentümer","Grundschulden","Zwangsversteigerungsvermerk"],a:[0],e:"Beschreibung des Grundstücks."},
+{m:3,q:"Wer führt das Grundbuch?",o:["Notar","Grundbuchamt beim Amtsgericht","Katasteramt","Gemeinde"],a:[1],e:"In den meisten Ländern das Grundbuchamt als Abteilung des Amtsgerichts."},
+{m:3,q:"Wer darf ins Grundbuch einsehen?",o:["Jeder","Nur der Eigentümer","Wer ein berechtigtes Interesse darlegt","Nur Notare"],a:[2],e:"§ 12 GBO."},
+{m:3,q:"Was bedeutet der öffentliche Glaube des Grundbuchs?",o:["Der Inhalt gilt zugunsten eines gutgläubigen Erwerbers als richtig","Jeder darf einsehen","Eintragungen sind kostenlos","Das Grundbuch ist öffentlich im Internet"],a:[0],e:"§ 892 BGB."},
+{m:3,q:"Wie bestimmt sich der Rang innerhalb derselben Abteilung?",o:["Nach der Reihenfolge der Eintragung (Locusprinzip)","Nach Betrag","Nach Datum des Antrags beim Notar","Nach Wahl der Bank"],a:[0],e:"Zwischen verschiedenen Abteilungen entscheidet das Eintragungsdatum (Tempusprinzip)."},
+{m:3,q:"Was unterscheidet die Grundschuld von der Hypothek?",o:["Grundschuld ist nicht akzessorisch","Grundschuld kann nach Tilgung erneut genutzt werden","Hypothek ist von der Forderung unabhängig","Verknüpfung der Grundschuld über die Sicherungszweckerklärung"],a:[0,1,3],e:"Die Hypothek ist akzessorisch – sie hängt an der Forderung."},
+{m:3,q:"Was bewirkt die Unterwerfung unter die sofortige Zwangsvollstreckung?",o:["Bank kann ohne Klage vollstrecken","Kunde darf nicht verkaufen","Zins sinkt","Grundschuld erlischt"],a:[0],e:"Vollstreckbare Grundschuld, notariell beurkundet."},
+{m:3,q:"Wozu dienen Grundschuldzinsen von 12–18 % p. a.?",o:["Als Sicherheitspuffer für Kosten und Zinsen im Verwertungsfall","Sie werden tatsächlich gezahlt","Zur Steuerersparnis","Sie ersetzen die Tilgung"],a:[0],e:"Dingliche Zinsen, nicht der Darlehenszins."},
+{m:3,q:"Was sichert die Auflassungsvormerkung?",o:["Kaufpreis des Verkäufers","Anspruch des Käufers auf Eigentumsübertragung","Grundschuld der Bank","Vorkaufsrecht der Gemeinde"],a:[1],e:"Schutz zwischen Kaufvertrag und Eigentumsumschreibung."},
+{m:3,q:"Wodurch geht Eigentum an einem Grundstück über?",o:["Kaufvertrag allein","Einigung (Auflassung) und Eintragung im Grundbuch","Zahlung des Kaufpreises","Schlüsselübergabe"],a:[1],e:"§§ 873, 925 BGB."},
+{m:3,q:"Welche Wertgrenzen gelten im ersten Zwangsversteigerungstermin?",o:["Zuschlag nicht unter 50 % des Verkehrswerts","Auf Antrag Versagung unter 70 %","Mindestgebot 90 %","Keine Grenzen"],a:[0,1],e:"5/10- und 7/10-Grenze nach ZVG."},
+{m:3,q:"Was ist ein Rangrücktritt?",o:["Ein vorrangiger Berechtigter tritt hinter die Grundschuld der Bank zurück","Löschung einer Grundschuld","Eigentumswechsel","Kündigung des Darlehens"],a:[0],e:"Damit die Bank die gewünschte (meist erste) Rangstelle erhält."},
+{m:3,q:"Welche Grundschuldform ist in der Praxis Standard?",o:["Buchgrundschuld","Briefgrundschuld","Rentenschuld","Sicherungshypothek"],a:[0],e:"Bei der Briefgrundschuld wird zusätzlich ein Grundschuldbrief ausgestellt."},
+{m:3,q:"Welche weiteren Sicherheiten sind bei Baufinanzierungen üblich?",o:["Abtretung von Lebens-/Rentenversicherungen","Abtretung von Bausparguthaben","Bürgschaft","Verpfändung von Depots"],a:[0,1,2,3],e:"Alle genannten kommen vor."},
+
+/* ---- Modul 4 ---- */
+{m:4,q:"Wo ist der Verkehrswert (Marktwert) definiert?",o:["§ 194 BauGB","§ 34i GewO","§ 491 BGB","§ 12 GBO"],a:[0],e:"Ermittlung nach der ImmoWertV."},
+{m:4,q:"Welches Verfahren eignet sich typischerweise für Eigentumswohnungen?",o:["Vergleichswertverfahren","Sachwertverfahren","Ertragswertverfahren","Residualwert"],a:[0],e:"Viele vergleichbare Verkäufe vorhanden."},
+{m:4,q:"Welches Verfahren nutzt man für ein vermietetes Mehrfamilienhaus?",o:["Vergleichswert","Sachwert","Ertragswert","Liquidationswert"],a:[2],e:"Der Ertrag bestimmt den Wert."},
+{m:4,q:"Welches Verfahren ist für ein selbst genutztes Einfamilienhaus typisch?",o:["Ertragswert","Sachwert","Discounted Cashflow","Residualwert"],a:[1],e:"Bodenwert + Gebäudesachwert, Marktanpassung."},
+{m:4,q:"Was ist der Beleihungswert?",o:["Der vorsichtig ermittelte, dauerhaft erzielbare Wert","Der aktuelle Kaufpreis","Der Wert inkl. Nebenkosten","Der Versicherungswert"],a:[0],e:"Meist 80–90 % des Marktwerts; Pfandbriefbanken nach BelWertV."},
+{m:4,q:"Bis zu welcher Grenze des Beleihungswerts spricht man vom erstrangigen Realkredit (Pfandbrief)?",o:["50 %","60 %","80 %","100 %"],a:[1],e:"Beleihungsgrenze 60 %."},
+{m:4,q:"Wie berechnet sich der Beleihungsauslauf?",o:["Darlehen ÷ Beleihungswert × 100","Beleihungswert ÷ Kaufpreis","Eigenkapital ÷ Darlehen","Zins ÷ Tilgung"],a:[0],e:"Je höher der Auslauf, desto höher meist der Zinsaufschlag."},
+{m:4,q:"Woher stammen Bodenrichtwerte?",o:["Gutachterausschuss","Grundbuchamt","Notar","Finanzamt allein"],a:[0],e:"Die Gutachterausschüsse führen Kaufpreissammlungen und Bodenrichtwerte."},
+{m:4,q:"Erhöhen Kaufnebenkosten den Beleihungswert?",o:["Ja, voll","Nein","Zur Hälfte","Nur die Maklerkosten"],a:[1],e:"Nebenkosten schaffen keinen Wert – deshalb sollten sie aus Eigenkapital kommen."},
+{m:4,q:"Was zieht man beim Ertragswertverfahren vom Jahresrohertrag ab, um den Reinertrag zu erhalten?",o:["Bewirtschaftungskosten","Bodenwert","Tilgung","Grunderwerbsteuer"],a:[0],e:"Verwaltung, Instandhaltung, Mietausfallwagnis."},
+{m:4,q:"Was ist der Sachwertfaktor?",o:["Marktanpassungsfaktor im Sachwertverfahren","Vervielfältiger im Ertragswertverfahren","Zinssatz der Bank","Abschreibungssatz"],a:[0],e:"Passt den rechnerischen Sachwert an das Marktniveau an."},
+
+/* ---- Modul 5 ---- */
+{m:5,q:"Bei welcher Darlehensart bleibt die Rate gleich und der Tilgungsanteil steigt?",o:["Tilgungsdarlehen","Annuitätendarlehen","Festdarlehen","Variables Darlehen"],a:[1],e:"Standard der Baufinanzierung."},
+{m:5,q:"Was ist typisch für ein Tilgungsdarlehen (Abzahlungsdarlehen)?",o:["Konstante Tilgung, fallende Rate","Konstante Rate","Tilgung am Ende","Zins variabel"],a:[0],e:"Der Zinsanteil sinkt mit der Restschuld."},
+{m:5,q:"Was ist typisch für ein endfälliges Darlehen?",o:["Während der Laufzeit nur Zinsen","Tilgung am Ende über Tilgungsersatz","Restschuld sinkt laufend","Häufig bei Kapitalanlegern"],a:[0,1,3],e:"Tilgungsersatz z. B. Lebensversicherung, Bausparvertrag, Fonds."},
+{m:5,q:"Wofür nutzt man ein Forward-Darlehen?",o:["Zwischenfinanzierung","Zinssicherung für eine künftige Anschlussfinanzierung","Tilgungsfreie Finanzierung","Nebenkostenfinanzierung"],a:[1],e:"Bis ca. 5 Jahre im Voraus, gegen Zinsaufschlag."},
+{m:5,q:"Was fließt in den effektiven Jahreszins ein?",o:["Sollzins","Bearbeitungsentgelt der Bank","Notar- und Grundbuchkosten","Vom Kunden zu zahlende Vermittlungsprovision","Disagio"],a:[0,1,3,4],e:"§ 16 PAngV – Notar und Grundbuch zählen nicht."},
+{m:5,q:"Was bewirkt ein Disagio?",o:["Geringere Auszahlung","Niedrigerer Sollzins","Höherer Sollzins","Bei Vermietung als Werbungskosten absetzbar"],a:[0,1,3],e:"Zinsvorauszahlung in Form eines Auszahlungsabschlags."},
+{m:5,q:"Was sind Bereitstellungszinsen?",o:["Zinsen auf noch nicht abgerufene Darlehensbeträge nach der bereitstellungsfreien Zeit","Zinsen auf die Restschuld","Verzugszinsen","Vermittlerprovision"],a:[0],e:"Häufig 0,25 % pro Monat."},
+{m:5,q:"Wann muss ein KfW-Förderkredit beantragt werden?",o:["Nach Fertigstellung","Vor Beginn des Vorhabens","Innerhalb von 12 Monaten","Jederzeit"],a:[1],e:"Antrag in der Regel über die Hausbank bzw. den Finanzierungspartner."},
+{m:5,q:"Wie hoch ist die Wohnungsbauprämie?",o:["10 % auf max. 700 € (Ledige) bzw. 1.400 € (Verheiratete)","9 % auf max. 470 €","20 % auf max. 2.100 €","5 % ohne Grenze"],a:[0],e:"Einkommensgrenzen 35.000 € / 70.000 € zu versteuerndes Einkommen."},
+{m:5,q:"Wie wird Wohn-Riester im Alter besteuert?",o:["Über das Wohnförderkonto","Gar nicht","Mit Abgeltungsteuer","Über die Grunderwerbsteuer"],a:[0],e:"Nachgelagerte Besteuerung (Eigenheimrente)."},
+{m:5,q:"Welche Kosten kann ein Vermieter als Werbungskosten absetzen?",o:["Schuldzinsen","Tilgung","Gebäude-AfA","Disagio"],a:[0,2,3],e:"Tilgung ist Vermögensumschichtung."},
+{m:5,q:"Wann ist der Verkauf einer privaten Immobilie steuerfrei?",o:["Nach Ablauf von 10 Jahren","Bei Selbstnutzung im Verkaufsjahr und den zwei Vorjahren","Immer","Nach 5 Jahren"],a:[0,1],e:"Private Veräußerungsgeschäfte, § 23 EStG."},
+{m:5,q:"Wie hoch ist die Grunderwerbsteuer in Sachsen?",o:["3,5 %","5,0 %","5,5 %","6,5 %"],a:[2],e:"Seit 2023 5,5 %. Spanne bundesweit 3,5 % (Bayern) bis 6,5 %."},
+{m:5,q:"Was ist ein Merkmal des Bauspardarlehens?",o:["Fester, bei Abschluss bekannter Darlehenszins","Variabler Zins","Keine Tilgung","Nur für Gewerbe"],a:[0],e:"Zinssicherheit, hohe Tilgung, oft nachrangige Besicherung."},
+{m:5,q:"An welchem Referenzzins orientieren sich variable Darlehen häufig?",o:["3-Monats-Euribor","Basiszins der Bundesbank","Leitzins der Fed","DAX"],a:[0],e:"Zuzüglich Marge der Bank."},
+{m:5,q:"Was passiert typischerweise, wenn der Beleihungsauslauf steigt?",o:["Zins sinkt","Zinsaufschlag steigt","Keine Änderung","KfW-Förderung automatisch"],a:[1],e:"Mehr Risiko → höherer Zins."},
+{m:5,q:"Regulärer linearer AfA-Satz für ab 2023 fertiggestellte Wohngebäude?",o:["2 %","2,5 %","3 %","5 %"],a:[2],e:"Ältere Gebäude 2 %, vor 1925 fertiggestellt 2,5 %."},
+
+/* ---- Modul 6 ---- */
+{m:6,q:"Was gehört an den Anfang des Beratungsgesprächs?",o:["Erstinformation (Status, Registernummer, Vergütung)","Produktvorschlag","Unterschrift","Schufa-Abfrage"],a:[0],e:"Erst informieren, dann Bedarf ermitteln."},
+{m:6,q:"Welche Einnahmen setzt man in der Haushaltsrechnung vorsichtig oder gar nicht an?",o:["Überstunden und Boni","Befristete Einkünfte","Festes Nettogehalt","Mieteinnahmen voll"],a:[0,1,3],e:"Mieten meist nur mit 70–80 % der Kaltmiete."},
+{m:6,q:"Welche Eigenkapitalregel gilt als Mindeststandard?",o:["Mindestens die Kaufnebenkosten","Gar kein Eigenkapital nötig","50 % des Kaufpreises","Nur die Maklerkosten"],a:[0],e:"Ideal sind 20–30 % Eigenkapital."},
+{m:6,q:"Welche Absicherung sollte bei einer Familienfinanzierung angesprochen werden?",o:["Risikolebensversicherung","Berufsunfähigkeitsversicherung","Reisegepäckversicherung","Wohngebäudeversicherung"],a:[0,1,3],e:"Tod, Einkommensausfall und das Objekt selbst absichern."},
+{m:6,q:"Welche Unterlagen braucht man typischerweise bei Selbstständigen?",o:["BWA","Bilanzen bzw. EÜR der letzten 2–3 Jahre","Einkommensteuerbescheide","Gehaltsabrechnungen"],a:[0,1,2],e:"Gehaltsabrechnungen gibt es bei Selbstständigen nicht."},
+{m:6,q:"Welche Unterlagen sind beim Kauf einer Eigentumswohnung zusätzlich wichtig?",o:["Teilungserklärung","Protokolle der Eigentümerversammlung","Wirtschaftsplan / Hausgeld","Baugenehmigung des Nachbarn"],a:[0,1,2],e:"Zeigen Sondereigentum, Instandhaltungsstau, Rücklagen."},
+{m:6,q:"Welche Risiken muss der Berater ansprechen?",o:["Zinsänderungsrisiko nach Ende der Zinsbindung","Restschuld nach Zinsbindung","Einkommensausfall","Keine – das macht die Bank"],a:[0,1,2],e:"Teil einer bedarfsgerechten Beratung."},
+{m:6,q:"Faustregel für die maximale Belastung durch die Rate?",o:["ca. 35–40 % des Nettoeinkommens","70 %","10 %","100 % des freien Betrags"],a:[0],e:"Und immer mit Puffer unter dem freien Betrag der Haushaltsrechnung."},
+{m:6,q:"Was ist bei geplanter Elternzeit zu tun?",o:["Rate mit reduziertem Einkommen prüfen","Tilgungssatzwechsel oder niedrigere Tilgung erwägen","Ignorieren","Längere Zinsbindung kann Planungssicherheit geben"],a:[0,1,3],e:"Künftige Lebensereignisse gehören in die Bedarfsanalyse."},
+/* ---- Modul 1 – Ergänzung ---- */
+{m:1,q:"Wer braucht KEINE Erlaubnis nach § 34i GewO?",o:["Kreditinstitute mit Erlaubnis nach KWG","Gebundene Immobiliardarlehensvermittler","Selbstständige ungebundene Vermittler","Honorar-Immobiliardarlehensberater"],a:[0],e:"Kreditinstitute sind nach § 34i Abs. 3 GewO befreit. Gebundene Vermittler, ungebundene Vermittler und Honorarberater brauchen die Erlaubnis."},
+{m:1,q:"Was umfasst die Erlaubnis nach § 34i GewO?",o:["Vermittlung von Immobiliar-Verbraucherdarlehen","Nachweis von Gelegenheiten zum Abschluss","Beratung zu Immobiliar-Verbraucherdarlehen","Vermittlung von Wertpapieren"],a:[0,1,2],e:"Wertpapiere fallen unter § 34f GewO."},
+{m:1,q:"Wann muss die Erstinformation erteilt werden?",o:["Beim ersten Geschäftskontakt, vor Beginn der Vermittlung","Nach Abschluss des Darlehensvertrags","Nur auf Nachfrage","Mit der Provisionsabrechnung"],a:[0],e:"Der Kunde soll vor der Tätigkeit wissen, mit wem er es zu tun hat."},
+{m:1,q:"Wo muss die Registernummer zusätzlich angegeben werden?",o:["Im Impressum der Webseite","Auf der Erstinformation","Im Grundbuch","Im Handelsregister"],a:[0,1],e:"Impressumspflicht nach DDG/§ 5 TMG a. F. und Erstinformation."},
+{m:1,q:"Was passiert, wenn die Berufshaftpflichtversicherung endet?",o:["Der Versicherer muss die Erlaubnisbehörde informieren","Die Erlaubnis kann widerrufen werden","Nichts, die Erlaubnis bleibt bestehen","Der Vermittler wird automatisch gebunden"],a:[0,1],e:"§ 11 ImmVermV – ohne Versicherung fehlt eine Erlaubnisvoraussetzung."},
+{m:1,q:"Was gilt bei eröffnetem Insolvenzverfahren über das Vermögen des Antragstellers?",o:["Vermögensverhältnisse gelten in der Regel als ungeordnet","Kein Einfluss auf die Erlaubnis","Erlaubnis nur mit Bürgschaft","Nur Haftpflicht muss erhöht werden"],a:[0],e:"Regelvermutung ungeordneter Vermögensverhältnisse."},
+{m:1,q:"Welche Schlichtungsstelle ist bei Streit über Darlehensvermittlung u. a. zuständig?",o:["Schlichtungsstelle bei der Deutschen Bundesbank","Bundesgerichtshof","Grundbuchamt","Finanzamt"],a:[0],e:"§ 14 UKlaG; teilweise auch Ombudsleute der Bankenverbände."},
+{m:1,q:"Die Vergütung ist bei Erstinformation noch nicht bekannt. Was ist anzugeben?",o:["Die Art der Berechnung","Nichts","Ein geschätzter Pauschalbetrag ohne Hinweis","Nur der Hinweis „marktüblich“"],a:[0],e:"Höhe oder – falls unbekannt – die Berechnungsweise."},
+{m:1,q:"Wer ist dafür verantwortlich, dass mitwirkende Mitarbeiter sachkundig sind?",o:["Der Gewerbetreibende","Die IHK","Der Darlehensgeber","Der Kunde"],a:[0],e:"Er darf nur sachkundige und zuverlässige Beschäftigte einsetzen."},
+{m:1,q:"Was muss ein Honorar-Immobiliardarlehensberater bei seiner Empfehlung berücksichtigen?",o:["Eine ausreichende Zahl am Markt verfügbarer Darlehensverträge","Nur Produkte einer Bank","Nur Produkte mit Provision","Nur KfW-Produkte"],a:[0],e:"§ 34i Abs. 5 GewO."},
+{m:1,q:"Darf ein Vermittler mit Zulassung in einem anderen EU-Staat in Deutschland tätig werden?",o:["Ja, über den Europäischen Pass nach Anzeige","Nein, nie","Nur mit deutscher IHK-Prüfung","Nur als Angestellter"],a:[0],e:"Die Wohnimmobilienkreditrichtlinie sieht eine grenzüberschreitende Tätigkeit vor."},
+{m:1,q:"Was ist ein typischer Interessenkonflikt beim Vermittler?",o:["Unterschiedlich hohe Provisionen verschiedener Banken","Der Kunde wohnt weit weg","Der Kunde hat Eigenkapital","Die Zinsbindung ist lang"],a:[0],e:"Deshalb Offenlegung und Handeln im besten Kundeninteresse."},
+{m:1,q:"Was droht bei Vermittlung ohne erforderliche Erlaubnis?",o:["Bußgeld (Ordnungswidrigkeit)","Untersagung der Tätigkeit","Nichts","Automatische Erlaubniserteilung"],a:[0,1],e:"§ 144 GewO; die Behörde kann die Fortsetzung verhindern."},
+
+/* ---- Modul 2 – Ergänzung ---- */
+{m:2,q:"In welcher Form ist ein Verbraucherdarlehensvertrag abzuschließen?",o:["Schriftform (elektronische Form zulässig)","Mündlich","Notariell","Formfrei"],a:[0],e:"§ 492 Abs. 1 BGB."},
+{m:2,q:"Welche Angaben muss der Immobiliar-Verbraucherdarlehensvertrag u. a. enthalten?",o:["Sollzins","Effektiver Jahreszins","Nettodarlehensbetrag","Laufzeit bzw. Bedingungen der Kündigung","Name des Grundbuchbeamten"],a:[0,1,2,3],e:"Art. 247 EGBGB – Pflichtangaben."},
+{m:2,q:"Wann muss der Darlehensgeber über das Ende der Sollzinsbindung informieren?",o:["Spätestens 3 Monate vorher","1 Woche vorher","Gar nicht","Erst nach Ablauf"],a:[0],e:"§ 493 Abs. 1 BGB – mit Angabe, ob er eine Anschlussvereinbarung anbietet."},
+{m:2,q:"Was muss bei einem Fremdwährungsdarlehen geschehen, wenn der Wechselkurs stark schwankt?",o:["Information des Kunden bei Wertveränderung von mehr als 20 %","Automatische Kündigung","Nichts","Neue Grundschuld"],a:[0],e:"§ 493 Abs. 4 BGB."},
+{m:2,q:"Darf der Darlehensgeber ein Immobiliar-Verbraucherdarlehen trotz negativer Kreditwürdigkeitsprüfung abschließen?",o:["Nein","Ja, wenn die Immobilie werthaltig ist","Ja, mit höherem Zins","Ja, mit Bürgschaft immer"],a:[0],e:"§ 505a Abs. 1 BGB – nur wenn wahrscheinlich ist, dass der Verbraucher seinen Pflichten nachkommt."},
+{m:2,q:"Anschlussfinanzierung beim selben Darlehensgeber ohne Erhöhung des Betrags – erneute KWP nötig?",o:["Nein, grundsätzlich nicht","Ja, immer vollständig","Nur bei Selbstständigen","Nur bei Fremdwährung"],a:[0],e:"§ 505a Abs. 3 i. V. m. Abs. 2 BGB – nur bei deutlicher Erhöhung des Nettodarlehensbetrags."},
+{m:2,q:"Wann entfällt beim Immobiliar-Verbraucherdarlehen das Widerrufsrecht?",o:["Bei notarieller Beurkundung, wenn der Notar die Wahrung der Verbraucherrechte bestätigt","Nie","Bei Beträgen über 100.000 €","Bei Online-Abschluss"],a:[0],e:"§ 495 Abs. 2 BGB – dann gilt die Bedenkzeit von 7 Tagen."},
+{m:2,q:"Welche Folge hat ein wirksamer Widerruf?",o:["Rückzahlung des ausgezahlten Darlehens","Zinsen für die Zeit der Nutzung","Verbundene Verträge (z. B. Restschuldversicherung) entfallen ebenfalls","Bank zahlt Schadensersatz"],a:[0,1,2],e:"§§ 357b, 358 BGB."},
+{m:2,q:"Wer erstellt das ESIS-Merkblatt?",o:["Der Darlehensgeber","Der Notar","Die IHK","Der Kunde"],a:[0],e:"Der Vermittler kann es übergeben; inhaltlich verantwortlich ist der Darlehensgeber."},
+{m:2,q:"Was gilt für den effektiven Jahreszins nach PAngV?",o:["Er drückt die Gesamtkosten als jährlichen Prozentsatz aus","Er enthält Notarkosten","Er ist immer gleich dem Sollzins","Er ist nur bei variablen Darlehen anzugeben"],a:[0],e:"§ 16 PAngV (bis 27.05.2022: § 6 PAngV a. F.)."},
+{m:2,q:"Muss bei einem Zinsanpassungsdarlehen über Zinsänderungen informiert werden?",o:["Ja, bevor die Änderung wirksam wird","Nein","Nur einmal jährlich","Nur bei Zinssenkung"],a:[0],e:"§ 493 Abs. 3 BGB."},
+{m:2,q:"Hat der Kunde bei Kündigung nach § 489 Abs. 1 Nr. 2 BGB eine Vorfälligkeitsentschädigung zu zahlen?",o:["Nein","Ja, immer","Nur bei Verkauf","Nur bei Fremdwährung"],a:[0],e:"Das 10-Jahres-Kündigungsrecht ist entschädigungsfrei."},
+{m:2,q:"Wie wird die Vorfälligkeitsentschädigung u. a. gemindert?",o:["Ersparte Verwaltungskosten","Ersparte Risikokosten","Sondertilgungsrechte, die noch hätten genutzt werden können","Grunderwerbsteuer"],a:[0,1,2],e:"Nicht genutzte Sondertilgungsrechte mindern den Zinsschaden."},
+{m:2,q:"Bis wann muss das ESIS spätestens übergeben werden?",o:["Rechtzeitig, bevor der Verbraucher seine Vertragserklärung abgibt","Nach der Unterschrift","Mit der ersten Rate","Gar nicht bei Vermittlern"],a:[0],e:"Art. 247 § 1 EGBGB."},
+
+/* ---- Modul 3 – Ergänzung ---- */
+{m:3,q:"Was ist ein Erbbaurecht?",o:["Recht, auf fremdem Grund ein Gebäude zu haben","Hat ein eigenes Erbbaugrundbuch","Wird gegen Erbbauzins gewährt","Ist immer unbefristet"],a:[0,1,2],e:"Häufig 99 Jahre; Beleihung oft nur mit Zustimmung des Grundstückseigentümers."},
+{m:3,q:"Woraus besteht Wohnungseigentum?",o:["Sondereigentum an der Wohnung","Miteigentumsanteil am Gemeinschaftseigentum","Alleineigentum am ganzen Grundstück","Nur ein Mietrecht"],a:[0,1],e:"Eigenes Wohnungsgrundbuch; Grundlage ist die Teilungserklärung."},
+{m:3,q:"Wo stehen Baulasten?",o:["Im Baulastenverzeichnis der Bauaufsichtsbehörde","Abteilung II des Grundbuchs","Abteilung III","Im Handelsregister"],a:[0],e:"Nicht im Grundbuch – nur Bayern kennt kein Baulastenverzeichnis."},
+{m:3,q:"Was braucht man zur Löschung einer Grundschuld nach Rückzahlung?",o:["Löschungsbewilligung des Gläubigers","Zustimmung des Eigentümers","Antrag beim Grundbuchamt","Einwilligung der IHK"],a:[0,1,2],e:"Alternativ kann die Grundschuld als Eigentümergrundschuld stehen bleiben."},
+{m:3,q:"Was ist eine Gesamtgrundschuld?",o:["Eine Grundschuld auf mehreren Grundstücken","Die Summe aller Grundschulden","Eine Grundschuld ohne Zinsen","Eine Grundschuld der Gemeinde"],a:[0],e:"Jedes belastete Grundstück haftet für den ganzen Betrag."},
+{m:3,q:"Was unterscheidet den Nießbrauch vom Wohnrecht?",o:["Der Nießbraucher darf die Immobilie auch vermieten","Das Wohnrecht erlaubt nur das eigene Wohnen","Beide stehen in Abteilung III","Beide mindern den Beleihungswert"],a:[0,1,3],e:"Beide stehen in Abteilung II und belasten das Objekt."},
+{m:3,q:"Was ist bei der Zwangsverwaltung typisch?",o:["Mieteinnahmen fließen an den Gläubiger","Das Objekt wird sofort versteigert","Der Eigentümer verliert das Eigentum","Die Grundschuld wird gelöscht"],a:[0],e:"Ein Zwangsverwalter zieht die Erträge ein."},
+{m:3,q:"Wozu dient die Finanzierungsvollmacht im Kaufvertrag?",o:["Der Käufer darf die Grundschuld schon vor Eigentumsumschreibung eintragen lassen","Der Verkäufer darf das Darlehen kündigen","Der Notar zahlt die Raten","Die Bank wird Eigentümer"],a:[0],e:"Sonst könnte die Bank nicht vor Kaufpreiszahlung besichert werden."},
+{m:3,q:"Wann wird der Kaufpreis üblicherweise fällig?",o:["Nach Eintragung der Auflassungsvormerkung und Vorliegen der Genehmigungen","Bei Unterschrift","Nach Eigentumsumschreibung","Nach Einzug"],a:[0],e:"Der Notar teilt die Fälligkeit mit."},
+{m:3,q:"Was regelt die Sicherungszweckerklärung?",o:["Welche Forderungen die Grundschuld sichert","Den Kaufpreis","Den Liegenschaftszins","Die Grundsteuer"],a:[0],e:"Enge oder weite Zweckerklärung – wichtig bei mehreren Darlehen."},
+{m:3,q:"Was ist ein Rangvorbehalt?",o:["Der Eigentümer behält sich vor, ein Recht mit Vorrang eintragen zu lassen","Ein Rücktritt vom Kaufvertrag","Ein Verzicht auf die Grundschuld","Ein Vorkaufsrecht"],a:[0],e:"Wird bei der Eintragung des zurücktretenden Rechts vermerkt."},
+{m:3,q:"Wer bestellt die Grundschuld in der Praxis?",o:["Der Eigentümer vor dem Notar zugunsten der Bank","Die Bank allein","Das Grundbuchamt von Amts wegen","Der Makler"],a:[0],e:"Notarielle Grundschuldbestellungsurkunde, dann Eintragung."},
+
+/* ---- Modul 4 – Ergänzung ---- */
+{m:4,q:"Was ist der Liegenschaftszins?",o:["Der Zinssatz, mit dem sich der Verkehrswert marktüblich verzinst","Der Darlehenszins","Der Grundschuldzins","Die Grunderwerbsteuer"],a:[0],e:"Kapitalisierungszins im Ertragswertverfahren, vom Gutachterausschuss abgeleitet."},
+{m:4,q:"Was gehört zu den Bewirtschaftungskosten?",o:["Verwaltungskosten","Instandhaltungskosten","Mietausfallwagnis","Nicht umlegbare Betriebskosten","Darlehenszinsen"],a:[0,1,2,3],e:"Finanzierungskosten gehören nicht dazu."},
+{m:4,q:"Wie berechnet man die Bruttomietrendite?",o:["Jahresnettokaltmiete ÷ Kaufpreis × 100","Kaufpreis ÷ Monatsmiete","Miete ÷ Darlehen","Kaufpreis × Zins"],a:[0],e:"Kehrwert ist der Kaufpreisfaktor (z. B. Faktor 25 = 4 %)."},
+{m:4,q:"Was ist die Restnutzungsdauer?",o:["Die Zahl der Jahre, die ein Gebäude bei ordnungsgemäßer Bewirtschaftung noch genutzt werden kann","Die Restlaufzeit des Darlehens","Die Zinsbindung","Die Mietvertragsdauer"],a:[0],e:"Bestimmt den Vervielfältiger und die Alterswertminderung."},
+{m:4,q:"Wie werden Balkone nach Wohnflächenverordnung in der Regel angerechnet?",o:["Zu einem Viertel, höchstens zur Hälfte","Voll","Gar nicht","Doppelt"],a:[0],e:"WoFlV § 4."},
+{m:4,q:"Wie zählen Raumteile mit 1 bis 2 m lichter Höhe nach WoFlV?",o:["Zur Hälfte","Voll","Gar nicht","Zu einem Viertel"],a:[0],e:"Unter 1 m zählen sie gar nicht."},
+{m:4,q:"Was blendet der Beleihungswert bewusst aus?",o:["Spekulative und kurzfristige Marktschwankungen","Den Bodenwert","Die Lage","Die Wohnfläche"],a:[0],e:"Er soll über die gesamte Laufzeit Bestand haben."},
+{m:4,q:"Welche Unterlagen braucht die Bank typischerweise zur Objektbewertung?",o:["Grundrisse und Wohnflächenberechnung","Fotos innen und außen","Flurkarte","Baubeschreibung bzw. Modernisierungsliste","Gehaltsabrechnung"],a:[0,1,2,3],e:"Die Gehaltsabrechnung betrifft die Bonität, nicht das Objekt."},
+{m:4,q:"Was ist ein Kaufpreisfaktor von 20?",o:["Kaufpreis = 20 Jahresnettokaltmieten","Kaufpreis = 20 Monatsmieten","20 % Rendite","20 Jahre Zinsbindung"],a:[0],e:"Bruttomietrendite 5 %."},
+{m:4,q:"Was mindert den Verkehrswert typischerweise?",o:["Instandhaltungsstau","Belastungen in Abt. II wie Wohnrecht","Schlechte Lage","Moderne Heizung"],a:[0,1,2],e:"Wertmindernde Umstände werden als besondere objektspezifische Merkmale berücksichtigt."},
+
+/* ---- Modul 5 – Ergänzung ---- */
+{m:5,q:"Was ist ein Volltilgerdarlehen?",o:["Das Darlehen ist am Ende der Zinsbindung vollständig getilgt","Ein Darlehen ohne Tilgung","Ein variables Darlehen","Ein Bausparvertrag"],a:[0],e:"Keine Restschuld, kein Zinsänderungsrisiko – oft mit Zinsvorteil."},
+{m:5,q:"Was bewirkt eine höhere anfängliche Tilgung?",o:["Kürzere Gesamtlaufzeit","Geringere Gesamtzinskosten","Höhere Monatsrate","Höhere Restschuld"],a:[0,1,2],e:"Die Restschuld sinkt schneller."},
+{m:5,q:"Was ist ein Tilgungssatzwechsel?",o:["Vertragliche Option, die Tilgung während der Zinsbindung zu ändern","Wechsel der Bank","Zinsänderung","Kündigung"],a:[0],e:"Hilfreich bei Elternzeit oder Einkommensänderung."},
+{m:5,q:"Welche Phasen hat ein Bausparvertrag?",o:["Ansparphase","Zuteilung","Darlehensphase","Spekulationsphase"],a:[0,1,2],e:"Zuteilung nach Mindestsparguthaben und Bewertungszahl."},
+{m:5,q:"Wie hoch ist die Abschlussgebühr beim Bausparvertrag üblicherweise?",o:["ca. 1–1,6 % der Bausparsumme","10 %","keine","5 % des Darlehens"],a:[0],e:"Fällt bei Abschluss an."},
+{m:5,q:"Was ist eine Bausparsofortfinanzierung (Konstantdarlehen)?",o:["Tilgungsfreies Vorausdarlehen plus Bausparvertrag, der es später ablöst","Ein variables Darlehen","Ein KfW-Kredit","Ein Ratenkredit"],a:[0],e:"Lange Zinssicherheit, aber Vergleich mit Annuitätendarlehen nötig."},
+{m:5,q:"Was ist ein Cap-Darlehen?",o:["Variables Darlehen mit Zinsobergrenze","Festzinsdarlehen","Fremdwährungsdarlehen","Bauspardarlehen"],a:[0],e:"Die Obergrenze kostet eine Prämie."},
+{m:5,q:"Was kann als Eigenkapital(ersatz) dienen?",o:["Bausparguthaben","Eigenleistung (Muskelhypothek)","Bereits bezahltes Grundstück","Ein zweites Darlehen ohne Rückzahlungspflicht"],a:[0,1,2],e:"Eigenleistung wird von Banken meist nur begrenzt anerkannt."},
+{m:5,q:"Was ist der Unterschied zwischen Prolongation und Umschuldung?",o:["Prolongation: Anschluss bei der bisherigen Bank","Umschuldung: Wechsel zu einer anderen Bank","Bei Umschuldung kann die Grundschuld abgetreten werden","Prolongation erfordert immer eine neue Grundschuld"],a:[0,1,2],e:"Abtretung spart Notar- und Grundbuchkosten für eine neue Grundschuld."},
+{m:5,q:"Wie verhält sich der Zins in der Regel bei längerer Zinsbindung?",o:["Er ist höher","Er ist niedriger","Er ist gleich","Er ist variabel"],a:[0],e:"Die Bank lässt sich die längere Sicherheit bezahlen (normale Zinsstruktur)."},
+{m:5,q:"Wie kann Riester-Kapital für Wohneigentum genutzt werden?",o:["Entnahme für Kauf/Bau selbst genutzten Wohneigentums","Für Tilgung eines Darlehens","Für Urlaub","Für vermietete Immobilien"],a:[0,1],e:"Nur selbst genutztes Wohneigentum ist begünstigt."},
+{m:5,q:"Welche laufenden Kosten fallen beim Eigentum an?",o:["Grundsteuer","Gebäudeversicherung","Instandhaltungsrücklage","Grunderwerbsteuer jährlich"],a:[0,1,2],e:"Die Grunderwerbsteuer fällt nur einmal beim Kauf an."},
+{m:5,q:"Warum liegt der Effektivzins bei monatlicher Zahlung über dem Sollzins, auch ohne Gebühren?",o:["Wegen des unterjährigen Zinseszinseffekts","Wegen der Notarkosten","Wegen der Grundsteuer","Das stimmt nicht"],a:[0],e:"Der Effektivzins rechnet auf das Jahr hoch."},
+{m:5,q:"Wofür eignen sich unbesicherte Modernisierungskredite (ohne Grundschuld)?",o:["Kleinere Modernisierungen, ohne Notar- und Grundbuchkosten","Kauf eines Hauses","Grundstückserwerb ab 500.000 €","Anschlussfinanzierung"],a:[0],e:"Höherer Zins, dafür schnell und ohne Eintragung."},
+{m:5,q:"Was ist eine Restschuldversicherung?",o:["Absicherung der Rate bei Tod, Arbeitsunfähigkeit oder Arbeitslosigkeit","Pflicht bei jeder Finanzierung","Eine Gebäudeversicherung","Eine Bauherrenhaftpflicht"],a:[0],e:"Freiwillig; bei Kopplung als Pflicht gelten die Regeln zu Kopplungsgeschäften."},
+{m:5,q:"Was zahlt ein Bauherr typischerweise während der Bauphase?",o:["Bereitstellungszinsen","Zinsen auf abgerufene Teilbeträge","Volle Rate ab Tag 1 immer","Keine Kosten"],a:[0,1],e:"Auszahlung nach Baufortschritt."},
+
+/* ---- Modul 6 – Ergänzung ---- */
+{m:6,q:"Wie wird das Einkommen Selbstständiger meist angesetzt?",o:["Durchschnitt der letzten 2–3 Jahre","Bestes Jahr","Prognose für nächstes Jahr","Umsatz statt Gewinn"],a:[0],e:"Banken wollen nachhaltige Gewinne sehen."},
+{m:6,q:"Was müssen Sie vor Weitergabe der Kundendaten an Banken einholen?",o:["Einwilligung bzw. Auftrag des Kunden nach Datenschutzrecht","Nichts","Zustimmung der IHK","Zustimmung des Notars"],a:[0],e:"DSGVO – Zweck und Empfänger transparent machen."},
+{m:6,q:"Kunde möchte 110 % finanzieren (inkl. Nebenkosten). Was sagen Sie?",o:["Möglich bei sehr guter Bonität, aber mit Zinsaufschlag","Kein Problem, gleicher Zins","Gesetzlich verboten","Nur mit KfW"],a:[0],e:"Höheres Risiko für die Bank und den Kunden."},
+{m:6,q:"Welche Lebensphase muss in der Finanzierungsplanung besonders berücksichtigt werden?",o:["Renteneintritt","Elternzeit","Ausbildung der Kinder","Alle genannten"],a:[3],e:"Ideal ist die Finanzierung bis zur Rente getilgt."},
+{m:6,q:"Wie reagieren Sie auf den Einwand „Die Zinsen sind mir zu hoch“?",o:["Rate mit aktueller Miete vergleichen","Zinsbindung und Planungssicherheit erklären","Kunden unter Druck setzen","Thema ignorieren"],a:[0,1],e:"Kundenorientierte Einwandbehandlung statt Druck."},
+{m:6,q:"Was gehört in die Beratungsdokumentation?",o:["Wünsche und Bedürfnisse des Kunden","Empfehlung mit Begründung","Hinweise auf Risiken","Persönliche Meinung über den Kunden"],a:[0,1,2],e:"Schützt Kunde und Berater."},
+{m:6,q:"Was ist bei negativen Schufa-Einträgen zu tun?",o:["Offen ansprechen und Ursache klären","Verschweigen gegenüber der Bank","Daten anpassen","Sofort abbrechen ohne Erklärung"],a:[0],e:"Falsche Angaben gegenüber der Bank sind unzulässig."},
+{m:6,q:"Was sollten Sie einem Kapitalanleger zusätzlich erklären?",o:["Mietausfallrisiko","Steuerliche Effekte (AfA, Werbungskosten)","Instandhaltungskosten","Dass Mieten immer steigen"],a:[0,1,2],e:"Keine Garantieversprechen zu Mietsteigerungen."},
+{m:6,q:"Wie hoch ist das Elterngeld grob?",o:["65–67 % des Nettoeinkommens, gedeckelt","100 %","Pauschal 300 €","Gar nichts"],a:[0],e:"Wichtig für die Haushaltsrechnung bei geplanter Elternzeit."},
+{m:6,q:"Wie gehen Banken oft mit Arbeitnehmern in der Probezeit um?",o:["Zurückhaltend – oft erst nach Ende der Probezeit","Bevorzugt","Ohne Unterschied","Nur mit KfW"],a:[0],e:"Das Einkommen gilt noch nicht als nachhaltig gesichert."},
+{m:6,q:"Was ist ein gutes Ende des Beratungsgesprächs?",o:["Zusammenfassung","Unterlagenliste","Nächsten Termin vereinbaren","Abschlussdruck aufbauen"],a:[0,1,2],e:"Struktur und Verbindlichkeit ohne Druck."},
+/* ---- Modul 7: Allgemeines Recht & Immobilienerwerb ---- */
+{m:7,q:"Wann beginnt die Rechtsfähigkeit eines Menschen?",o:["Mit Vollendung der Geburt","Mit 7 Jahren","Mit 18 Jahren","Mit Eintragung ins Melderegister"],a:[0],e:"§ 1 BGB."},
+{m:7,q:"Wer ist geschäftsunfähig?",o:["Kinder vor Vollendung des 7. Lebensjahres","Jugendliche zwischen 7 und 17","Personen in einem dauerhaften, krankhaften Zustand, der die freie Willensbildung ausschließt","Volljährige Studenten"],a:[0,2],e:"§ 104 BGB."},
+{m:7,q:"Was gilt für Minderjährige zwischen 7 und 17 Jahren?",o:["Sie sind beschränkt geschäftsfähig","Verträge brauchen grundsätzlich die Zustimmung der gesetzlichen Vertreter","Sie sind voll geschäftsfähig","Rechtlich lediglich vorteilhafte Geschäfte sind ohne Zustimmung wirksam"],a:[0,1,3],e:"§§ 106–108 BGB. Ein Darlehensvertrag ist nie lediglich rechtlich vorteilhaft."},
+{m:7,q:"Was beschreibt die Kreditfähigkeit?",o:["Die rechtliche Fähigkeit, einen Kreditvertrag wirksam abzuschließen (Rechts- und Geschäftsfähigkeit)","Die wirtschaftliche Fähigkeit, die Raten zu zahlen","Den Schufa-Score","Den Beleihungswert"],a:[0],e:"Die wirtschaftliche Seite ist die Kreditwürdigkeit."},
+{m:7,q:"Wie kommt ein Vertrag zustande?",o:["Durch zwei übereinstimmende Willenserklärungen: Angebot und Annahme","Durch einseitige Erklärung","Nur durch notarielle Beurkundung","Durch Zahlung"],a:[0],e:"§§ 145 ff. BGB."},
+{m:7,q:"Was besagt das Abstraktionsprinzip?",o:["Verpflichtungsgeschäft (z. B. Kaufvertrag) und Verfügungsgeschäft (z. B. Auflassung) sind rechtlich getrennt","Kaufvertrag und Eigentumsübergang sind dasselbe","Ein Vertrag ist immer formfrei","Nur das Schuldrecht gilt"],a:[0],e:"Der Kaufvertrag verpflichtet, erst die Verfügung überträgt das Eigentum."},
+{m:7,q:"Was regelt das Sachenrecht?",o:["Rechte an Sachen wie Eigentum, Besitz und Grundpfandrechte","Kaufverträge","Arbeitsverträge","Erbschaftsteuer"],a:[0],e:"Drittes Buch des BGB; das Schuldrecht regelt Verträge."},
+{m:7,q:"Was gilt für die Anfechtung wegen Irrtums?",o:["Sie muss unverzüglich nach Kenntnis erklärt werden","Sie ist an keine Frist gebunden","Sie macht das Geschäft von Anfang an nichtig","Sie ist bei Immobilien ausgeschlossen"],a:[0,2],e:"§§ 119, 121, 142 BGB; Höchstfrist 10 Jahre ab Erklärung; ggf. Ersatz des Vertrauensschadens (§ 122)."},
+{m:7,q:"Innerhalb welcher Frist kann wegen arglistiger Täuschung angefochten werden?",o:["Ein Jahr ab Entdeckung","Unverzüglich","14 Tage","30 Jahre"],a:[0],e:"§ 124 BGB."},
+{m:7,q:"Was ist der Unterschied zwischen Widerruf und Rücktritt?",o:["Widerruf: gesetzliches Verbraucherrecht ohne Begründung innerhalb einer Frist","Rücktritt: setzt ein vertragliches oder gesetzliches Rücktrittsrecht voraus (z. B. Pflichtverletzung)","Beide sind identisch","Rücktritt ist nur mündlich möglich"],a:[0,1],e:"Beide wandeln den Vertrag in ein Rückabwicklungsverhältnis um."},
+{m:7,q:"Welcher Vertragstyp schuldet einen Erfolg?",o:["Werkvertrag","Dienstvertrag","Darlehensvertrag","Mietvertrag"],a:[0],e:"§ 631 BGB – z. B. Bauvertrag; der Dienstvertrag schuldet nur die Tätigkeit."},
+{m:7,q:"Welcher Vertragstyp schuldet nur eine Tätigkeit, keinen Erfolg?",o:["Dienstvertrag","Werkvertrag","Kaufvertrag","Schenkung"],a:[0],e:"§ 611 BGB."},
+{m:7,q:"Was ist ein Geschäftsbesorgungsvertrag?",o:["Ein Dienst- oder Werkvertrag, der eine selbstständige wirtschaftliche Tätigkeit für einen anderen zum Inhalt hat","Ein Kaufvertrag","Ein Darlehensvertrag","Ein Mietvertrag"],a:[0],e:"§ 675 BGB – z. B. Treuhand, Baubetreuung."},
+{m:7,q:"Welche Pflichten hat der Darlehensnehmer nach § 488 BGB?",o:["Vereinbarte Zinsen zahlen","Darlehen bei Fälligkeit zurückzahlen","Grundschuld bestellen (immer)","Konto beim Darlehensgeber führen"],a:[0,1],e:"Der Darlehensgeber muss den Betrag zur Verfügung stellen."},
+{m:7,q:"Was ist Bauerwartungsland?",o:["Flächen, die nach Planung der Gemeinde künftig bebaut werden dürfen","Sofort bebaubares Land","Landwirtschaftliche Fläche ohne Aussicht auf Bebauung","Fertiges Wohngebiet"],a:[0],e:"Noch kein Baurecht – Beleihung nur sehr eingeschränkt."},
+{m:7,q:"Was ist Bauland (baureifes Land)?",o:["Nach öffentlichem Recht bebaubare und erschlossene Fläche","Jede Wiese","Waldfläche","Fläche im Außenbereich ohne Baurecht"],a:[0],e:"Rohbauland ist bereits beplant, aber noch nicht erschlossen."},
+{m:7,q:"Was ist ein wesentlicher Bestandteil eines Grundstücks?",o:["Das fest verbundene Gebäude","Die lose Gartenbank","Das Auto in der Garage","Das Sofa"],a:[0],e:"§§ 93, 94 BGB – kann nicht Gegenstand besonderer Rechte sein."},
+{m:7,q:"Was ist Zubehör?",o:["Bewegliche Sachen, die dem wirtschaftlichen Zweck der Hauptsache dienen, ohne Bestandteil zu sein","Das Gebäude","Der Grund und Boden","Grundschulden"],a:[0],e:"§ 97 BGB – geht im Zweifel beim Verkauf mit über."},
+{m:7,q:"Was ist Teileigentum?",o:["Sondereigentum an nicht zu Wohnzwecken dienenden Räumen (z. B. Laden, Büro)","Eine halbe Wohnung","Erbbaurecht","Mitbesitz"],a:[0],e:"WEG – Gegenstück zum Wohnungseigentum."},
+{m:7,q:"Welche Erwerbsarten von Immobilien gibt es?",o:["Kauf","Erbschaft","Schenkung","Zuschlag in der Zwangsversteigerung"],a:[0,1,2,3],e:"Jede Erwerbsart hat eigene Nachweise und steuerliche Folgen."},
+{m:7,q:"Wann wird der Ersteher in der Zwangsversteigerung Eigentümer?",o:["Mit dem Zuschlag","Mit Grundbucheintragung","Mit Zahlung","Mit Einzug"],a:[0],e:"§ 90 ZVG – die Grundbucheintragung wird nur berichtigt."},
+{m:7,q:"Welche Sicherheitsleistung kann im Versteigerungstermin verlangt werden?",o:["10 % des Verkehrswerts","50 %","Der volle Kaufpreis","Keine"],a:[0],e:"§ 68 ZVG – unbar, z. B. per Bundesbankscheck."},
+{m:7,q:"Was kennzeichnet den Bauträgerkauf?",o:["Kauf von Grundstück und noch zu errichtendem Gebäude aus einer Hand","Zahlung in Raten nach Baufortschritt (MaBV)","Käufer schließt mit jedem Handwerker selbst Verträge","Gebäude ist fertig und bewohnt"],a:[0,1],e:"Der Bauherr schließt dagegen selbst Werkverträge mit Architekt und Handwerkern."},
+{m:7,q:"In wie viele Teilbeträge darf ein Bauträger die Vergütung nach MaBV höchstens aufteilen?",o:["Bis zu 7","2","12","Beliebig viele"],a:[0],e:"§ 3 Abs. 2 MaBV – aus festgelegten Bauabschnitten zusammengesetzt."},
+{m:7,q:"Was ist die Rolle des Bauherrn?",o:["Er baut auf eigenem Grundstück auf eigene Rechnung und trägt das Baurisiko","Er verkauft fertige Wohnungen","Er vermittelt Darlehen","Er ist der Notar"],a:[0],e:"Er beauftragt Architekt und Unternehmen per Werkvertrag."},
+{m:7,q:"Welche Form braucht ein Grundstückskaufvertrag?",o:["Notarielle Beurkundung","Textform","Mündlich","Schriftform ohne Notar"],a:[0],e:"§ 311b Abs. 1 BGB."},
+{m:7,q:"Was heilt einen formnichtigen Grundstückskaufvertrag?",o:["Auflassung und Eintragung im Grundbuch","Zahlung des Kaufpreises","Einzug","Nichts"],a:[0],e:"§ 311b Abs. 1 Satz 2 BGB."},
+{m:7,q:"Wie lange vorher soll ein Verbraucher den Entwurf eines Grundstückskaufvertrags in der Regel erhalten?",o:["2 Wochen vor der Beurkundung","1 Tag","Gar nicht","3 Monate"],a:[0],e:"§ 17 Abs. 2a BeurkG – Schutz vor übereilten Entscheidungen."},
+{m:7,q:"Welche Aufgaben hat der Notar beim Immobilienkauf?",o:["Vertrag beurkunden und vorlesen","Neutral belehren","Vormerkung und Eigentumsumschreibung beantragen","Den Kaufpreis festlegen"],a:[0,1,2],e:"Er ist unparteiisch und für beide Seiten tätig."},
+{m:7,q:"Wann gehen Besitz, Nutzen und Lasten typischerweise auf den Käufer über?",o:["Wie im Vertrag vereinbart, meist mit vollständiger Kaufpreiszahlung","Mit Beurkundung","Mit Grundbucheintragung","Mit Zahlung der Grunderwerbsteuer"],a:[0],e:"Ab diesem Tag trägt der Käufer z. B. Grundsteuer und Versicherung."},
+{m:7,q:"Wann geht die Gefahr des zufälligen Untergangs auf den Käufer über?",o:["Mit der Übergabe","Mit Vertragsschluss","Mit Eintragung","Nie"],a:[0],e:"§ 446 BGB – vertraglich meist an den Besitzübergang gekoppelt."},
+{m:7,q:"Was braucht das Grundbuchamt vor der Eigentumsumschreibung vom Finanzamt?",o:["Die Unbedenklichkeitsbescheinigung (Grunderwerbsteuer bezahlt)","Den Einkommensteuerbescheid","Die Schufa-Auskunft","Nichts"],a:[0],e:"§ 22 GrEStG."},
+{m:7,q:"Was bestätigt das Negativattest der Gemeinde?",o:["Dass sie ihr gesetzliches Vorkaufsrecht nicht ausübt","Dass keine Grundschuld besteht","Dass der Käufer kreditwürdig ist","Dass das Haus schadstofffrei ist"],a:[0],e:"Gesetzliches Vorkaufsrecht nach BauGB – steht nicht im Grundbuch."},
+{m:7,q:"Wie wird der Kaufpreis heute meist abgewickelt?",o:["Direktzahlung an den Verkäufer nach Fälligkeitsmitteilung des Notars","Barzahlung beim Notar","Immer über Notaranderkonto","Zahlung vor Beurkundung"],a:[0],e:"Ein Notaranderkonto nur bei besonderem Sicherungsbedürfnis."},
+{m:7,q:"Was ist der gesetzliche Güterstand bei Ehegatten ohne Ehevertrag?",o:["Zugewinngemeinschaft","Gütertrennung","Gütergemeinschaft","Keiner"],a:[0],e:"Jeder bleibt Eigentümer seines Vermögens; bei Scheidung Zugewinnausgleich."},
+{m:7,q:"Was braucht man in der Regel zur Grundbuchberichtigung nach einem Erbfall?",o:["Erbschein oder notarielles Testament mit Eröffnungsprotokoll","Kaufvertrag","Schufa","Mietvertrag"],a:[0],e:"Innerhalb von 2 Jahren nach dem Erbfall ist die Berichtigung gebührenfrei."},
+{m:7,q:"Was gilt bei einer Erbengemeinschaft?",o:["Die Erben verfügen grundsätzlich nur gemeinsam über den Nachlass","Jeder Erbe kann allein verkaufen","Es gibt keine Erbengemeinschaft bei Immobilien","Die Bank wird Miterbe"],a:[0],e:"§ 2040 BGB – wichtig für Beleihung und Verkauf."},
+{m:7,q:"Welcher Schenkungsteuer-Freibetrag gilt für ein Kind je Elternteil?",o:["400.000 €","20.000 €","500.000 €","100.000 €"],a:[0],e:"Alle 10 Jahre neu; Ehegatten 500.000 €."},
+{m:7,q:"Was bedeutet „Besitz“ im rechtlichen Sinn?",o:["Die tatsächliche Herrschaft über eine Sache","Das rechtliche Eigentum","Der Grundbucheintrag","Der Kaufvertrag"],a:[0],e:"Ein Mieter ist Besitzer, nicht Eigentümer."},
+{m:7,q:"Welche Grundbucharten gibt es?",o:["Grundbuch","Erbbaugrundbuch","Wohnungs- bzw. Teileigentumsgrundbuch","Mietgrundbuch"],a:[0,1,2],e:"Die Grundakte enthält die Urkunden zu den Eintragungen."},
+{m:7,q:"Was ist für eine Eintragung im Grundbuch grundsätzlich nötig?",o:["Antrag","Bewilligung des Betroffenen","Eintragung durch das Grundbuchamt","Zustimmung der Gemeinde"],a:[0,1,2],e:"Antrags- und Bewilligungsgrundsatz (§§ 13, 19 GBO)."},
+{m:7,q:"Welche Lasten sind nicht im Grundbuch eingetragen?",o:["Baulasten","Gesetzliche Vorkaufsrechte","Öffentliche Lasten wie Erschließungsbeiträge","Grundschulden"],a:[0,1,2],e:"Deshalb Baulastenverzeichnis und Gemeindeauskünfte prüfen."},
+{m:7,q:"Was ist ein Widerspruch im Grundbuch?",o:["Ein Vermerk, der den öffentlichen Glauben gegen eine möglicherweise unrichtige Eintragung ausschließt","Ein Kündigungsschreiben","Ein Rangrücktritt","Eine Grundschuld"],a:[0],e:"§ 899 BGB – steht in Abt. II bzw. bei der betroffenen Eintragung."},
+{m:7,q:"Was ist eine Reallast?",o:["Belastung, die zu wiederkehrenden Leistungen aus dem Grundstück verpflichtet (z. B. Rente)","Eine Grundschuld","Ein Wohnrecht","Eine Baulast"],a:[0],e:"Steht in Abt. II, mindert den Beleihungswert."},
+{m:7,q:"Was sind Dienstbarkeiten?",o:["Wegerecht, Leitungsrecht","Nießbrauch","Wohnrecht (beschränkte persönliche Dienstbarkeit)","Grundschuld"],a:[0,1,2],e:"Alle in Abt. II."},
+
+/* ---- Modul 8: Verbraucherschutz, Wettbewerb, Datenschutz, Aufsicht ---- */
+{m:8,q:"Welche Gesetze schützen Verbraucher direkt?",o:["AGB-Recht im BGB","UWG","Widerrufsrecht","Preisangabenverordnung","Grundbuchordnung"],a:[0,1,2,3],e:"Indirekter Schutz entsteht durch Aufsicht (BaFin, Gewerbeaufsicht)."},
+{m:8,q:"Was gilt nach AGB-Recht für überraschende Klauseln?",o:["Sie werden nicht Vertragsbestandteil","Sie gelten immer","Sie gelten doppelt","Sie müssen notariell sein"],a:[0],e:"§ 305c Abs. 1 BGB."},
+{m:8,q:"Was hat Vorrang vor AGB?",o:["Individuelle Vertragsabreden","Nichts","Werbeprospekte","Die Meinung des Vermittlers"],a:[0],e:"§ 305b BGB."},
+{m:8,q:"Wann ist eine AGB-Klausel unwirksam?",o:["Wenn sie den Vertragspartner entgegen Treu und Glauben unangemessen benachteiligt","Wenn sie kurz ist","Wenn sie fett gedruckt ist","Nie"],a:[0],e:"Inhaltskontrolle nach § 307 BGB."},
+{m:8,q:"Was entschied der BGH 2014 zu Bearbeitungsentgelten bei Verbraucherdarlehen in AGB?",o:["Sie sind unwirksam","Sie sind immer zulässig","Sie sind nur bei Immobiliendarlehen erlaubt","Sie müssen 1 % betragen"],a:[0],e:"Urteile vom 13.05.2014 – Bearbeitung ist Eigeninteresse der Bank."},
+{m:8,q:"Welche Ansprüche kennt das UWG bei Verstößen?",o:["Beseitigung und Unterlassung","Schadensersatz bei Vorsatz oder Fahrlässigkeit","Gewinnabschöpfung","Erlaubnisentzug durch die IHK direkt"],a:[0,1,2],e:"§§ 8–10 UWG; in der Praxis oft per Abmahnung."},
+{m:8,q:"Was ist irreführende Werbung?",o:["Werbung mit unwahren oder täuschenden Angaben, z. B. zu Zinsen oder Kosten","Werbung mit korrektem repräsentativem Beispiel","Werbung im Radio","Werbung mit Logo"],a:[0],e:"§ 5 UWG."},
+{m:8,q:"Wann ist Telefonwerbung gegenüber Verbrauchern zulässig?",o:["Nur mit vorheriger ausdrücklicher Einwilligung","Immer zu Geschäftszeiten","Bei Bestandskunden immer","Nie"],a:[0],e:"§ 7 Abs. 2 UWG – sonst unzumutbare Belästigung."},
+{m:8,q:"Was gilt für Werbe-E-Mails an Verbraucher?",o:["Grundsätzlich nur mit vorheriger ausdrücklicher Einwilligung","Immer erlaubt","Nur mit Betreff in Großbuchstaben","Nur am Wochenende"],a:[0],e:"Ausnahme: eng begrenzte Bestandskundenwerbung nach § 7 Abs. 3 UWG."},
+{m:8,q:"Was verlangt der Grundsatz der Firmenwahrheit und -klarheit?",o:["Der Firmenname darf nicht über Art und Umfang des Geschäfts täuschen","Jede Firma braucht ein Logo","Der Name muss lateinisch sein","Es gibt keinen solchen Grundsatz"],a:[0],e:"§ 18 HGB."},
+{m:8,q:"Darf ein Vermittler sich „Bank“ nennen?",o:["Nein, die Bezeichnung „Bank“ ist Kreditinstituten mit Erlaubnis vorbehalten","Ja, immer","Nur mit Zusatz „GmbH“","Nur im Internet"],a:[0],e:"§ 39 KWG – Bezeichnungsschutz."},
+{m:8,q:"Was darf ein Immobiliardarlehensvermittler NICHT?",o:["Individuelle Steuerberatung erbringen","Rechtsberatung im Einzelfall leisten","Allgemein auf steuerliche Aspekte hinweisen","Den Steuerberater empfehlen"],a:[0,1],e:"Steuerberatungsgesetz und Rechtsdienstleistungsgesetz."},
+{m:8,q:"Was ist bei Werbung mit Zinsangaben für Verbraucherdarlehen Pflicht?",o:["Sollzins","Nettodarlehensbetrag","Effektiver Jahreszins","Ein repräsentatives Beispiel","Name des Notars"],a:[0,1,2,3],e:"§ 17 PAngV."},
+{m:8,q:"Welche Werbeaussage ist nach UWG problematisch?",o:["„Garantiert die günstigste Finanzierung Deutschlands“ ohne Nachweis","„Vergleich von über 400 Banken“, wenn das zutrifft","„Kostenlose Erstberatung“, wenn sie kostenlos ist","Angabe der Registernummer"],a:[0],e:"Spitzenstellungs- und Alleinstellungsbehauptungen müssen belegbar sein."},
+{m:8,q:"Was ist unzulässig nach UWG?",o:["Ausnutzung fremden Ansehens (Rufausbeutung)","Versprechen unangemessener Geschenke, die die Entscheidung unsachlich beeinflussen","Sachliche Information","Angabe von Preisen"],a:[0,1],e:"Gute kaufmännische Sitten – keine unlauteren Handlungen."},
+{m:8,q:"Wer beaufsichtigt Banken und Versicherer?",o:["BaFin, zusammen mit der Deutschen Bundesbank","IHK","Gewerbeamt","Grundbuchamt"],a:[0],e:"Bei großen Banken zusätzlich die EZB."},
+{m:8,q:"Wer beaufsichtigt Immobiliardarlehensvermittler nach § 34i GewO?",o:["Die Gewerbeaufsicht (je nach Land IHK oder Gewerbeamt)","Die BaFin","Die EZB","Das Finanzamt"],a:[0],e:"Indirekter Verbraucherschutz durch Gewerbeaufsicht."},
+{m:8,q:"Was bietet ein Schlichtungsverfahren dem Verbraucher?",o:["Außergerichtliche Streitbeilegung","In der Regel kostenlos für Verbraucher","Hemmung der Verjährung","Verpflichtende Teilnahme des Verbrauchers"],a:[0,1,2],e:"Der Verbraucher kann danach trotzdem klagen."},
+{m:8,q:"Welche Schlichtungsstellen gibt es im Bankbereich?",o:["Ombudsmann der privaten Banken","Schlichtungsstellen der Sparkassen- und Genossenschaftsverbände","Schlichtungsstelle bei der Deutschen Bundesbank","Schlichtungsstelle beim Grundbuchamt"],a:[0,1,2],e:"Die Bundesbank ist auffangzuständig."},
+{m:8,q:"Was regelt § 18a KWG?",o:["Kreditwürdigkeitsprüfung der Banken bei Verbraucherdarlehen","Einlagensicherung","Bankgeheimnis","Mindestreserve"],a:[0],e:"Das Gegenstück im BGB ist § 505a ff."},
+{m:8,q:"Welche Grundsätze gelten nach DSGVO?",o:["Zweckbindung","Datenminimierung","Rechtmäßigkeit, Transparenz","Unbegrenzte Speicherung"],a:[0,1,2],e:"Art. 5 DSGVO – Speicherbegrenzung statt unbegrenzter Speicherung."},
+{m:8,q:"Welche Rechte haben Kunden nach DSGVO?",o:["Auskunft","Berichtigung","Löschung","Widerruf einer Einwilligung","Recht auf Zinssenkung"],a:[0,1,2,3],e:"Art. 15 ff. DSGVO."},
+{m:8,q:"Wie hoch können Bußgelder nach DSGVO sein?",o:["Bis 20 Mio. € oder 4 % des weltweiten Jahresumsatzes","Höchstens 500 €","Höchstens 5.000 €","Keine Bußgelder"],a:[0],e:"Art. 83 DSGVO – je nachdem, welcher Betrag höher ist."},
+{m:8,q:"Wie gehen Sie mit Kundendaten richtig um?",o:["Verschwiegenheit, keine Weitergabe ohne Rechtsgrundlage","Verschlüsselte Übertragung und Speicherung","Regelmäßige Datensicherung","Unterlagen im Auto liegen lassen"],a:[0,1,2],e:"Technische und organisatorische Maßnahmen (TOM)."},
+{m:8,q:"Was ist die SCHUFA?",o:["Eine private Auskunftei","Eine Behörde","Eine Bank","Ein Gericht"],a:[0],e:"Kunden haben nach Art. 15 DSGVO Anspruch auf eine kostenlose Datenkopie."},
+{m:8,q:"Welche Pflichten haben Verpflichtete nach dem Geldwäschegesetz?",o:["Identifizierung des Vertragspartners","Feststellung des wirtschaftlich Berechtigten","Abklärung, ob eine politisch exponierte Person vorliegt","Verdachtsmeldung bei Anhaltspunkten"],a:[0,1,2,3],e:"Allgemeine Sorgfaltspflichten nach §§ 10 ff. GwG."},
+{m:8,q:"Wohin wird eine Geldwäsche-Verdachtsmeldung abgegeben?",o:["An die Financial Intelligence Unit (FIU)","An die IHK","An den Kunden","An die Schufa"],a:[0],e:"Zentralstelle für Finanztransaktionsuntersuchungen."},
+{m:8,q:"Darf man den Kunden über eine Verdachtsmeldung informieren?",o:["Nein (Verbot des „Tipping-off“)","Ja, immer","Nur schriftlich","Nur nach 14 Tagen"],a:[0],e:"§ 47 GwG."},
+{m:8,q:"Wie identifiziert man eine natürliche Person nach GwG?",o:["Anhand eines gültigen amtlichen Lichtbildausweises","Anhand der Visitenkarte","Per Zuruf","Anhand der Schufa"],a:[0],e:"Personalausweis oder Reisepass; Kopie bzw. Aufzeichnung aufbewahren."},
+{m:8,q:"Wie lange sind GwG-Aufzeichnungen aufzubewahren?",o:["5 Jahre","1 Jahr","30 Tage","Gar nicht"],a:[0],e:"§ 8 Abs. 4 GwG."},
+{m:8,q:"Was ermöglichen Dienstleistungs- und Niederlassungsfreiheit?",o:["Vorübergehende Tätigkeit in anderen EU-Staaten","Dauerhafte Niederlassung in anderen EU-Staaten","Tätigkeit ohne jede Erlaubnis weltweit","Nichts"],a:[0,1],e:"Für § 34i-Vermittler über Mitteilung an die Behörde (Europäischer Pass)."},
+{m:8,q:"Welche Aufgaben haben Berufsverbände für Vermittler?",o:["Interessenvertretung gegenüber Politik","Information und Weiterbildung der Mitglieder","Erteilung der § 34i-Erlaubnis","Rechtliche Unterstützung"],a:[0,1,3],e:"Die Erlaubnis erteilt nur die Behörde."},
+{m:8,q:"Welche Aufgabe haben Gewerkschaften?",o:["Vertretung der Interessen von Arbeitnehmern, z. B. bei Tarifverhandlungen","Erteilung von Gewerbeerlaubnissen","Bankenaufsicht","Kreditvergabe"],a:[0],e:"Für angestellte Bankmitarbeiter z. B. ver.di oder DBV."},
+{m:8,q:"Was ist bei Bedenkzeit und Widerruf für die Beratung wichtig?",o:["Kunden über ihre Rechte informieren","Keinen Druck zur sofortigen Unterschrift ausüben","Widerrufsrecht verschweigen","Bedenkzeit verkürzen"],a:[0,1],e:"Verbraucherschutz als Qualitätsmerkmal."},
+{m:8,q:"Wann ist eine Werbeaussage „0 % Zinsen“ zulässig?",o:["Nur wenn sie zutrifft und alle Pflichtangaben gemacht werden","Immer","Nie","Nur mit Sternchen ohne Erläuterung"],a:[0],e:"Sonst irreführend (UWG) bzw. Verstoß gegen PAngV."},
+{m:8,q:"Was ist bei Kundendaten in sozialen Netzwerken zu beachten?",o:["Keine personenbezogenen Kundendaten ohne Einwilligung veröffentlichen","Kundenfotos sind immer erlaubt","Erfolgsgeschichten mit Namen dürfen frei gepostet werden","Nichts"],a:[0],e:"DSGVO und Verschwiegenheit."},
+{m:8,q:"Welche Pflicht ergibt sich aus der Datensicherung?",o:["Regelmäßige Backups","Schutz vor unbefugtem Zugriff (Passwörter, Verschlüsselung)","Daten nur auf USB-Sticks","Daten unverschlüsselt per E-Mail versenden"],a:[0,1],e:"Geschäfts- und Kundendaten schützen."},
+/* ---- Modul 9: Wirtschaft & Steuern ---- */
+{m:9,q:"Wie bilden sich Immobilienpreise grundsätzlich?",o:["Durch Angebot und Nachfrage","Durch staatliche Festsetzung","Durch den Notar","Durch die Grundsteuer"],a:[0],e:"Knappes Angebot bei hoher Nachfrage → steigende Preise."},
+{m:9,q:"Welche Faktoren beeinflussen Immobilien- und Mietpreise?",o:["Zinsniveau","Bevölkerungsentwicklung und Zuzug","Einkommen der Haushalte","Bau- und Grundstückskosten","Farbe der Haustür"],a:[0,1,2,3],e:"Dazu Lage, Infrastruktur, Bauland und Regulierung."},
+{m:9,q:"Wie wirken steigende Bauzinsen typischerweise auf die Immobilienpreise?",o:["Dämpfend – die Nachfrage sinkt, weil Finanzierungen teurer werden","Preise steigen sofort stark","Kein Zusammenhang","Mieten fallen automatisch"],a:[0],e:"Weniger Kaufkraft bei gleicher Rate."},
+{m:9,q:"Wer bestimmt die Geldpolitik im Euroraum?",o:["Die Europäische Zentralbank (EZB)","Die Bundesregierung","Die BaFin","Die IHK"],a:[0],e:"Vorrangiges Ziel: Preisstabilität, mittelfristig 2 % Inflation."},
+{m:9,q:"Was ist Fiskalpolitik?",o:["Steuerung der Wirtschaft über staatliche Einnahmen und Ausgaben","Zinspolitik der Notenbank","Bankenaufsicht","Wettbewerbsrecht"],a:[0],e:"Z. B. Förderprogramme, Steuersenkungen, Investitionen."},
+{m:9,q:"Was beschreibt die Ordnungspolitik?",o:["Den rechtlichen Rahmen der Wirtschaft (z. B. Wettbewerbsrecht, Eigentum)","Kurzfristige Konjunktursteuerung","Leitzinsentscheidungen","Steuersätze einzelner Gemeinden"],a:[0],e:"Prozesspolitik greift dagegen in laufende Abläufe ein; Strukturpolitik fördert Regionen/Branchen."},
+{m:9,q:"Welche Phasen hat ein Konjunkturzyklus?",o:["Aufschwung","Hochkonjunktur (Boom)","Abschwung","Tiefstand (Rezession)","Stillstand für immer"],a:[0,1,2,3],e:"Im Abschwung sind Banken bei Krediten oft vorsichtiger."},
+{m:9,q:"Woran orientieren sich langfristige Bauzinsen besonders?",o:["An den Renditen langfristiger Anleihen, z. B. Pfandbriefe und Bundesanleihen","Am Tagesgeldzins","Am DAX","An der Grunderwerbsteuer"],a:[0],e:"Kurzfristige variable Zinsen folgen eher dem EZB-Leitzins bzw. Euribor."},
+{m:9,q:"Wie wirkt eine Leitzinserhöhung der EZB in der Regel?",o:["Kredite werden teurer, Inflation soll sinken","Kredite werden billiger","Kein Einfluss auf Zinsen","Immobilienpreise steigen garantiert"],a:[0],e:"Geld wird knapper und teurer."},
+{m:9,q:"Was beeinflusst das Zinsniveau unmittelbar?",o:["Inflationserwartung","Geldpolitik","Kapitalangebot und -nachfrage","Bonität des Schuldners (für den individuellen Zins)"],a:[0,1,2,3],e:"Der individuelle Zins hängt zusätzlich von Beleihungsauslauf und Bonität ab."},
+{m:9,q:"Was ist ein Pfandbrief?",o:["Eine gedeckte Anleihe, mit der Banken Immobilienkredite refinanzieren","Ein Grundschuldbrief","Ein Sparbuch","Ein Bausparvertrag"],a:[0],e:"Deckung durch erstrangige Grundpfandrechte bis 60 % des Beleihungswerts."},
+{m:9,q:"Welche Akteure gibt es in der Immobilienwirtschaft?",o:["Bauunternehmen und Bauträger","Architekten und Ingenieure","Finanzierer und Vermittler","Verwalter und Vermieter"],a:[0,1,2,3],e:"Der Vermittler steht an der Schnittstelle zwischen Kunde und Finanzierer."},
+{m:9,q:"Was ist eine gemischt genutzte Immobilie?",o:["Teils Wohnen, teils Gewerbe","Eine Ferienwohnung","Ein Grundstück ohne Gebäude","Eine Garage"],a:[0],e:"Banken bewerten den gewerblichen Teil oft vorsichtiger."},
+{m:9,q:"Wovon wird die Grunderwerbsteuer berechnet?",o:["Vom Kaufpreis für Grund und Gebäude","Vom Kaufpreis inkl. mitverkaufter beweglicher Gegenstände","Vom Darlehen","Vom Einkommen"],a:[0],e:"Separat ausgewiesenes, angemessen bewertetes Inventar ist nicht steuerpflichtig."},
+{m:9,q:"Wer erhebt die Grundsteuer?",o:["Die Gemeinde über ihren Hebesatz","Der Bund","Die Bank","Der Notar"],a:[0],e:"Seit 2025 nach neuer Bewertung – je nach Land Bundesmodell oder eigenes Ländermodell."},
+{m:9,q:"Was ersetzte ab 2025 den Einheitswert bei der Grundsteuer?",o:["Der Grundsteuerwert nach der Grundsteuerreform","Der Beleihungswert","Der Kaufpreis","Nichts"],a:[0],e:"Bundesmodell und Baden-Württemberg; einige Länder (z. B. Bayern, Hamburg, Hessen, Niedersachsen) nutzen eigene Flächenmodelle."},
+{m:9,q:"Können Selbstnutzer Schuldzinsen steuerlich absetzen?",o:["Nein","Ja, voll","Ja, zur Hälfte","Nur im ersten Jahr"],a:[0],e:"Keine Einkünfteerzielung – kein Werbungskostenabzug."},
+{m:9,q:"Was ist mit Kaufnebenkosten (GrESt, Notar Kaufvertrag, Makler) bei einer vermieteten Immobilie?",o:["Sie erhöhen die Anschaffungskosten und wirken über die AfA (Gebäudeanteil)","Sie sind sofort voll absetzbar","Sie sind gar nicht absetzbar","Sie sind Sonderausgaben"],a:[0],e:"Der Anteil für Grund und Boden wird nicht abgeschrieben."},
+{m:9,q:"Welche Kosten der Finanzierung sind bei Vermietung sofort Werbungskosten?",o:["Schuldzinsen","Notar- und Grundbuchkosten der Grundschuld","Disagio (in marktüblicher Höhe)","Tilgung"],a:[0,1,2],e:"Finanzierungskosten sind sofort abziehbar."},
+{m:9,q:"Wird der Grund und Boden abgeschrieben?",o:["Nein, nur das Gebäude","Ja, mit 2 %","Ja, mit 3 %","Ja, sofort"],a:[0],e:"Grund und Boden nutzt sich nicht ab."},
+{m:9,q:"Was ist anschaffungsnaher Aufwand?",o:["Renovierungskosten über 15 % der Gebäudeanschaffungskosten (netto) in den ersten 3 Jahren","Kaufpreis","Grunderwerbsteuer","Laufende Reparaturen nach 10 Jahren"],a:[0],e:"§ 6 Abs. 1 Nr. 1a EStG – muss dann über die AfA verteilt werden."},
+{m:9,q:"Ab welcher Miethöhe bei Vermietung an Angehörige sind Werbungskosten voll abziehbar?",o:["Ab 66 % der ortsüblichen Miete","Ab 10 %","Nur bei 100 %","Nie"],a:[0],e:"§ 21 Abs. 2 EStG: ab 66 % voll entgeltlich; 50–66 % Totalüberschussprognose; unter 50 % Aufteilung."},
+{m:9,q:"Welche Steuerermäßigung gibt es für Handwerkerleistungen im selbst genutzten Haushalt?",o:["20 % der Arbeitskosten, max. 1.200 € pro Jahr","100 % der Kosten","Keine","50 % der Materialkosten"],a:[0],e:"§ 35a Abs. 3 EStG."},
+{m:9,q:"Wie wird eine energetische Sanierung am selbst genutzten Eigenheim gefördert (§ 35c EStG)?",o:["20 % der Kosten über 3 Jahre, max. 40.000 € Steuerermäßigung","Gar nicht","Vollständige Erstattung","Nur bei Vermietung"],a:[0],e:"Gebäude muss älter als 10 Jahre sein; alternativ Zuschussförderung, nicht beides."},
+{m:9,q:"Wie ergibt sich das zu versteuernde Einkommen vereinfacht?",o:["Einkünfte − Sonderausgaben − außergewöhnliche Belastungen − Freibeträge","Bruttolohn + Kindergeld","Nettolohn × 12","Umsatz − Miete"],a:[0],e:"Einkünfte = Einnahmen − Werbungskosten."},
+{m:9,q:"Was sind Werbungskosten?",o:["Aufwendungen zur Erwerbung, Sicherung und Erhaltung der Einnahmen","Private Lebenshaltungskosten","Spenden","Kirchensteuer"],a:[0],e:"§ 9 EStG – z. B. Fahrtkosten, bei Vermietung Zinsen und AfA."},
+{m:9,q:"Was ist der Grundfreibetrag?",o:["Das Einkommen, das steuerfrei bleibt, um das Existenzminimum zu sichern","Der Freibetrag für Kinder","Der Sparerpauschbetrag","Die Werbungskostenpauschale"],a:[0],e:"Wird jährlich angepasst (2026: 12.348 € für Ledige)."},
+{m:9,q:"Wie hoch sind Eingangs- und Spitzensteuersatz der Einkommensteuer?",o:["14 % und 42 % (45 % „Reichensteuer“)","10 % und 30 %","20 % und 50 %","25 % und 60 %"],a:[0],e:"Dazwischen liegt die Progressionszone."},
+{m:9,q:"Was bedeutet Progression in der Einkommensteuer?",o:["Mit steigendem Einkommen steigt der Steuersatz","Alle zahlen den gleichen Satz","Der Satz sinkt mit dem Einkommen","Es gibt keinen Steuersatz"],a:[0],e:"Grenzsteuersatz vs. Durchschnittssteuersatz unterscheiden."},
+{m:9,q:"Was ist der Vorteil des Splittingtarifs?",o:["Bei Ehegatten mit unterschiedlichem Einkommen sinkt die Progression","Er gilt für Ledige","Er erhöht die Steuer","Er gilt nur für Rentner"],a:[0],e:"Gemeinsames Einkommen halbiert, Steuer berechnet, verdoppelt."},
+{m:9,q:"Wann ist der Gewinn aus dem Verkauf einer vermieteten Immobilie steuerfrei?",o:["Nach Ablauf von 10 Jahren zwischen Anschaffung und Verkauf","Nach 2 Jahren","Nie","Sofort"],a:[0],e:"§ 23 EStG."},
+{m:9,q:"Was ist der Unterschied zwischen Erhaltungs- und Herstellungsaufwand?",o:["Erhaltungsaufwand ist bei Vermietung sofort abziehbar","Herstellungsaufwand (Erweiterung, wesentliche Verbesserung) wird über AfA verteilt","Beides ist identisch","Herstellungsaufwand ist nie steuerlich relevant"],a:[0,1],e:"Wichtig bei der Finanzierung von Modernisierungen."},
+{m:9,q:"Was zeigt ein Tilgungsplan eines Annuitätendarlehens?",o:["Je Periode Rate, Zinsanteil, Tilgungsanteil und Restschuld","Nur die Rate","Nur den Effektivzins","Den Beleihungswert"],a:[0],e:"Kunde hat Anspruch auf einen Tilgungsplan (§ 492 Abs. 3 BGB)."},
+{m:9,q:"Wie verändert sich bei gleicher Rate die Laufzeit, wenn der Zins steigt?",o:["Sie wird länger","Sie wird kürzer","Sie bleibt gleich","Sie wird null"],a:[0],e:"Mehr vom gleichen Betrag geht in die Zinsen."},
+{m:9,q:"Wie lange dauert die Volltilgung bei 1 % Anfangstilgung und rund 4 % Zins etwa?",o:["Gut 40 Jahre","10 Jahre","20 Jahre","100 Jahre"],a:[0],e:"Bei 2 % Tilgung sind es rund 28 Jahre, bei 3 % rund 21 Jahre."},
+{m:9,q:"Was ist der Sparerpauschbetrag?",o:["1.000 € (Ledige) bzw. 2.000 € (Verheiratete) für Kapitalerträge","Ein Freibetrag für Mieten","Die Grunderwerbsteuer","Ein Bausparbonus"],a:[0],e:"Relevant, wenn Eigenkapital aus Kapitalanlagen stammt."},
+
+/* ---- Modul 10: Risiken & Vertragsbeendigung ---- */
+{m:10,q:"Welche Folgen kann das Zinsänderungsrisiko nach Ende der Zinsbindung haben?",o:["Höhere Rate","Längere Laufzeit","Fehlende Tragfähigkeit der Finanzierung","Automatische Zinssenkung"],a:[0,1,2],e:"Gegenmittel: lange Zinsbindung, hohe Tilgung, Forward, Sondertilgung."},
+{m:10,q:"Welches Risiko besteht bei Tilgungsersatzmitteln wie Fonds oder Lebensversicherungen?",o:["Das Ansparergebnis kann geringer ausfallen und eine Lücke zur Darlehenssumme lassen","Kein Risiko","Die Grundschuld erlischt","Der Zins sinkt"],a:[0],e:"Ablaufleistung oder Fondswert sind nicht garantiert."},
+{m:10,q:"Was ist das besondere Risiko eines Fremdwährungsdarlehens?",o:["Wechselkursrisiko – die Schuld in Euro kann steigen","Kein Risiko","Höhere Grunderwerbsteuer","Wegfall des Widerrufsrechts"],a:[0],e:"Daher Umwandlungsrecht nach § 503 BGB."},
+{m:10,q:"Welche Lebensrisiken gefährden eine Finanzierung?",o:["Arbeitslosigkeit oder Einkommensrückgang","Krankheit, Berufsunfähigkeit, Unfall","Scheidung oder Tod","Ein Wohnortwechsel"],a:[0,1,2,3],e:"Beratung muss diese Risiken über die gesamte Laufzeit ansprechen."},
+{m:10,q:"Welche Absicherung passt zu welchem Risiko?",o:["Tod → Risikolebensversicherung","Berufsunfähigkeit → BU-Versicherung","Feuer, Sturm, Leitungswasser → Wohngebäudeversicherung","Hochwasser → automatisch in jeder Gebäudeversicherung"],a:[0,1,2],e:"Elementarschäden (Hochwasser, Starkregen) müssen extra versichert werden."},
+{m:10,q:"Welche Versicherung braucht ein Bauherr während der Bauphase?",o:["Bauherrenhaftpflicht","Bauleistungsversicherung","Feuerrohbauversicherung","Reisegepäckversicherung"],a:[0,1,2],e:"Feuerrohbau ist oft beitragsfrei in der späteren Wohngebäudeversicherung."},
+{m:10,q:"Woran erkennt man notleidende Kredite frühzeitig?",o:["Rückstände bei Raten","Dauerhafte Kontoüberziehungen","Ungewöhnlicher Kontaktabbruch des Kunden","Pünktliche Zahlung"],a:[0,1,2],e:"Früh sprechen: Stundung, Tilgungsaussetzung, Laufzeitstreckung."},
+{m:10,q:"Was ist bei Zahlungsschwierigkeiten des Kunden sinnvoll?",o:["Frühzeitig mit der Bank Lösungen suchen (z. B. Tilgungsaussetzung, Stundung)","Abwarten bis zur Kündigung","Neue Konsumkredite aufnehmen","Post nicht mehr öffnen"],a:[0],e:"Eine außergerichtliche Einigung ist meist günstiger als die Zwangsversteigerung."},
+{m:10,q:"Wie verwertet eine Bank Grundpfandrechte?",o:["Zwangsversteigerung","Zwangsverwaltung","Freihändiger Verkauf in Abstimmung mit dem Eigentümer","Pfändung des Grundbuchs"],a:[0,1,2],e:"Der freihändige Verkauf bringt meist den besseren Erlös."},
+{m:10,q:"Was ist eine Zwangsräumung?",o:["Gerichtlich angeordnete Räumung nach Zuschlag, wenn der frühere Eigentümer nicht auszieht","Kündigung des Darlehens","Löschung der Grundschuld","Schufa-Eintrag"],a:[0],e:"Der Zuschlagsbeschluss ist Vollstreckungstitel."},
+{m:10,q:"Wie kann die Bank weitere Sicherheiten verwerten?",o:["Abgetretene Lebensversicherung kündigen und Rückkaufswert einziehen","Bürgen in Anspruch nehmen","Abgetretenes Gehalt beim Arbeitgeber einziehen","Ohne Sicherheit beim Arbeitgeber pfänden"],a:[0,1,2],e:"Ohne Titel und ohne Sicherheit keine Pfändung."},
+{m:10,q:"Welche Kündigungsrechte hat die Bank?",o:["Bei Zahlungsverzug nach § 498 BGB","Bei wesentlicher Vermögensverschlechterung (§ 490 Abs. 1 BGB)","Aus wichtigem Grund, z. B. wenn der Kunde Informationen wissentlich vorenthalten oder gefälscht hat (§ 499 Abs. 3 BGB)","Jederzeit ohne Grund bei Festzins"],a:[0,1,2],e:"Festzinsdarlehen kann die Bank nicht ordentlich kündigen."},
+{m:10,q:"Was ist eine Nichtabnahmeentschädigung?",o:["Entschädigung an die Bank, wenn der Kunde ein zugesagtes Darlehen nicht abnimmt","Strafe für Sondertilgung","Gebühr für Schufa","Bereitstellungszins"],a:[0],e:"Berechnung ähnlich der Vorfälligkeitsentschädigung."},
+{m:10,q:"Was muss der Darlehensgeber bei Rückzahlungswunsch des Kunden während der Zinsbindung tun?",o:["Unverzüglich über die Voraussetzungen und Höhe einer Vorfälligkeitsentschädigung informieren","Nichts","Die Grundschuld löschen","Den Kunden an die IHK verweisen"],a:[0],e:"§ 493 Abs. 5 BGB."},
+{m:10,q:"Worüber muss der Darlehensgeber vor Vertragsschluss u. a. informieren?",o:["Über Kündigungsmöglichkeiten und die Vorfälligkeitsentschädigung","Über die Sondertilgungsrechte","Über die Hobbys des Sachbearbeiters","Über die Schufa-Daten anderer Kunden"],a:[0,1],e:"Teil der vorvertraglichen Pflichten (§ 491a BGB, ESIS)."},
+{m:10,q:"Was sind Vorteile einer Prolongation?",o:["Kein Wechselaufwand, keine neue Grundschuld","Kein neuer Kreditantrag mit vollen Unterlagen","Immer der günstigste Zins","Automatisch höhere Tilgung"],a:[0,1],e:"Nachteil: Bank kennt die geringe Wechselneigung – Zins oft nicht optimal."},
+{m:10,q:"Was sind Vorteile einer Umschuldung?",o:["Oft günstigere Konditionen","Neue Gestaltung von Tilgung und Sondertilgung","Kein Aufwand","Keine Bonitätsprüfung"],a:[0,1],e:"Nachteile: Unterlagen, Bonitätsprüfung, ggf. Kosten für Grundschuldabtretung."},
+{m:10,q:"Wie wird die Grundschuld bei einer Umschuldung meist übertragen?",o:["Durch Abtretung an die neue Bank","Durch Neueintragung mit Löschung der alten (immer)","Gar nicht","Durch Schenkung"],a:[0],e:"Die Abtretung ist günstiger als eine Neubestellung."},
+{m:10,q:"Welche Rechtsfolge hat eine fehlerhafte Kreditwürdigkeitsprüfung?",o:["Sollzins ermäßigt sich auf den marktüblichen Zins","Fristloses Kündigungsrecht ohne Vorfälligkeitsentschädigung","Bank kann keine Ansprüche wegen Pflichtverletzung geltend machen, wenn eine ordnungsgemäße Prüfung zur Ablehnung geführt hätte","Der Vertrag ist automatisch nichtig"],a:[0,1,2],e:"§ 505d Abs. 1 und 2 BGB – nicht bei vorsätzlich oder grob fahrlässig falschen Angaben des Kunden (Abs. 3)."},
+{m:10,q:"Welche Zusatzkosten können bei Zahlungsverzug entstehen?",o:["Verzugszinsen","Mahn- und Rechtsverfolgungskosten","Kosten der Zwangsversteigerung","Gutschrift für den Kunden"],a:[0,1,2],e:"Daher Zahlungsprobleme früh lösen."},
+{m:10,q:"Welche Risiken entstehen durch geänderte Anforderungen an die Immobilie?",o:["Familienzuwachs braucht mehr Platz","Barrierefreiheit im Alter","Unerwartete Sanierung, z. B. Heizung oder Dach","Keine"],a:[0,1,2],e:"Rücklagen und flexible Finanzierungsbausteine einplanen."},
+{m:10,q:"Was gilt bei einer Finanzierung im Ruhestand?",o:["Tragfähigkeit mit der Rente prüfen","Laufzeit und Restschuld kritisch betrachten","Erben ggf. einbeziehen","Rente spielt keine Rolle"],a:[0,1,2],e:"Banken achten auf Kapitaldienstfähigkeit bis zum Laufzeitende."},
+{m:10,q:"Wie kann ein Kunde das Zinsänderungsrisiko begrenzen?",o:["Lange Sollzinsbindung","Forward-Darlehen","Hohe Tilgung bzw. Sondertilgungen","Nur variable Darlehen"],a:[0,1,2],e:"Ein Cap begrenzt das Risiko beim variablen Zins."},
+{m:10,q:"Was passiert bei einer Scheidung mit gemeinsamer Finanzierung?",o:["Beide bleiben gegenüber der Bank Gesamtschuldner, solange die Bank niemanden entlässt","Die Schuld halbiert sich automatisch","Die Bank muss den Kredit kündigen","Der Kredit erlischt"],a:[0],e:"Haftentlassung nur mit Zustimmung der Bank, oft gegen Nachweis der Tragfähigkeit."},
+{m:10,q:"Was ist eine Liquiditätsfinanzierung (z. B. nach Scheidung)?",o:["Beleihung der Immobilie, um z. B. den Ex-Partner auszuzahlen","Ein Bausparvertrag","Ein Mietkauf","Eine Rentenversicherung"],a:[0],e:"Finanzierungsanlass nach Rahmenplan."},
+{m:10,q:"Wann kann der Kunde ein Darlehen ohne Vorfälligkeitsentschädigung zurückzahlen?",o:["Zum Ende der Sollzinsbindung","Nach 10 Jahren ab Vollauszahlung mit 6 Monaten Frist","Bei variablem Zins mit 3 Monaten Frist","Jederzeit bei Festzins ohne Grund"],a:[0,1,2],e:"§ 489 BGB."},
+{m:10,q:"Was ist bei Hagel- und Sturmschäden zu beachten?",o:["Sie sind in der Wohngebäudeversicherung üblich enthalten","Sie sind Elementarschäden und nie versichert","Sie zahlt die Bank","Sie sind Sache des Notars"],a:[0],e:"Feuer, Leitungswasser, Sturm/Hagel = Grunddeckung; Elementar extra."},
+{m:10,q:"Warum verlangen Banken den Nachweis einer Wohngebäudeversicherung?",o:["Sie schützt den Wert der Sicherheit","Pflicht nach GwG","Für die Schufa","Für die IHK"],a:[0],e:"Ohne Gebäude ist die Grundschuld weniger wert."},
+{m:10,q:"Was sind Folgen einer Gesamtfälligstellung?",o:["Die gesamte Restschuld wird sofort fällig","Bank kann aus der Grundschuld vollstrecken","Vorfälligkeitsentschädigung ist bei Verbraucherdarlehen nicht zusätzlich verlangbar, wohl aber Verzugszins","Der Kunde bekommt Zinsen erstattet"],a:[0,1,2],e:"§ 497 BGB regelt den Verzugsschaden."},
+{m:10,q:"Was sollte der Berater bei einem sehr hohen Beleihungsauslauf ansprechen?",o:["Höheres Risiko bei Wertverlust","Höherer Zinsaufschlag","Mögliche Restschuld über dem Objektwert","Kein Risiko"],a:[0,1,2],e:"Negatives Eigenkapital bei Verkauf möglich."},
+{m:10,q:"Was ist eine Laufzeitverlängerung als Reaktion auf Zinsanstieg?",o:["Rate bleibt gleich, Gesamtlaufzeit wächst","Rate steigt","Darlehen endet früher","Darlehen wird gelöscht"],a:[0],e:"Alternativ Ratenerhöhung bei gleicher Laufzeit."},
+{m:10,q:"Was bedeutet Gesamtschuldnerschaft bei Paaren?",o:["Jeder haftet der Bank für die ganze Schuld","Jeder haftet für die Hälfte","Nur der Besserverdienende haftet","Keiner haftet persönlich"],a:[0],e:"§ 421 BGB."},
+{m:10,q:"In welchem Fall bleibt eine Grundschuld im Grundbuch bestehen?",o:["Bei vollständiger Rückzahlung des Darlehens","Bei Löschung im Grundbuch","Bei Zuschlag in der Versteigerung (wenn nicht bestehen bleibend)","Bei Verzicht und Löschung"],a:[0],e:"Sie ist nicht akzessorisch; der Kunde hat einen Rückgewähranspruch."},
+/* ---- Modul 6: Beratung – Rahmenplan Teil 1 ---- */
+{m:6,q:"Welche Kontaktwege zum Kunden nennt der Rahmenplan?",o:["Brief, Telefon, E-Mail","Homepage und soziale Netzwerke","Messen und Räume Dritter (z. B. Bauträger)","Besuch und Objektbesichtigung"],a:[0,1,2,3],e:"Bei Telefon und E-Mail die UWG-Einwilligungsregeln beachten."},
+{m:6,q:"Was gehört zur Vorbereitung eines Kundentermins?",o:["Vorhandene Kundenunterlagen sichten","Produkt- und Informationsmaterial bereitlegen","Objektdaten beschaffen","Sich auf Gesprächsanlass und Kunden einstellen"],a:[0,1,2,3],e:"Gute Vorbereitung spart Zeit und schafft Vertrauen."},
+{m:6,q:"Welche Anlässe eignen sich für eine erneute Kundenansprache?",o:["Auslaufende Zinsbindung (Prolongation)","Nachfinanzierung oder Modernisierung","Neue Förderprogramme oder Gesetzesänderungen","Geburtstag ohne Bezug"],a:[0,1,2],e:"Bestandskunden aktiv betreuen."},
+{m:6,q:"Was ist eine offene Frage?",o:["Eine W-Frage, die eine ausführliche Antwort ermöglicht","Eine Frage, die nur mit Ja/Nein beantwortet wird","Eine Suggestivfrage","Eine rhetorische Frage"],a:[0],e:"Z. B. „Wie stellen Sie sich Ihr neues Zuhause vor?“ – ideal für die Bedarfsermittlung."},
+{m:6,q:"Wofür eignen sich geschlossene Fragen?",o:["Zum Bestätigen von Fakten und zum Abschließen","Zur offenen Bedarfsermittlung","Um den Kunden zum Erzählen zu bringen","Gar nicht"],a:[0],e:"Z. B. „Ist das Arbeitsverhältnis unbefristet?“"},
+{m:6,q:"Was ist eine Alternativfrage?",o:["Eine Frage mit zwei positiven Wahlmöglichkeiten","Eine Ja/Nein-Frage","Eine Gegenfrage","Eine Suggestivfrage"],a:[0],e:"Z. B. „Passt Ihnen Dienstag oder Donnerstag besser?“"},
+{m:6,q:"Was bedeutet aktives Zuhören?",o:["Aufmerksam zuhören, nachfragen und das Gesagte mit eigenen Worten wiederholen","Den Kunden unterbrechen","Nebenbei E-Mails lesen","Nur über Produkte sprechen"],a:[0],e:"Signalisiert Wertschätzung und vermeidet Missverständnisse."},
+{m:6,q:"Was ist der Unterschied zwischen Einwand und Vorwand?",o:["Ein Einwand ist ein echter Bedenkenpunkt, ein Vorwand ein vorgeschobener Grund","Beides ist identisch","Ein Vorwand ist immer berechtigt","Einwände ignoriert man"],a:[0],e:"Vorwände durch Fragen auf den echten Grund zurückführen."},
+{m:6,q:"Wie funktioniert die „Ja-aber-Methode“ in der Einwandbehandlung?",o:["Dem Einwand teilweise zustimmen und dann ein Gegenargument bringen","Den Einwand sofort zurückweisen","Thema wechseln","Den Kunden verunsichern"],a:[0],e:"Besser oft „Ja, und …“ statt „aber“."},
+{m:6,q:"Was ist die Nutzenargumentation?",o:["Produktmerkmal → Vorteil → konkreter Nutzen für den Kunden","Nur Merkmale aufzählen","Nur über den Preis reden","Fachbegriffe häufen"],a:[0],e:"Z. B. lange Zinsbindung → feste Rate → Planungssicherheit für die Familie."},
+{m:6,q:"Wie unterstützt Visualisierung das Gespräch?",o:["Zahlen und Abläufe werden verständlicher","Kunde kann besser vergleichen","Entscheidungen werden nachvollziehbarer","Sie ersetzt die Beratung"],a:[0,1,2],e:"Z. B. Tilgungsverlauf zeichnen, Varianten nebeneinander."},
+{m:6,q:"Welche Sitzposition gilt als kundenfreundlich?",o:["Über Eck","Frontal gegenüber mit großem Abstand","Rücken an Rücken","Stehend"],a:[0],e:"Wirkt partnerschaftlich und erleichtert gemeinsames Arbeiten an Unterlagen."},
+{m:6,q:"Was gehört zur Gesprächseröffnung nach Rahmenplan?",o:["Vorstellung und Status (Vermittler/Berater)","Gesprächsanlass","Positives Gesprächsklima","Sofortige Unterschrift"],a:[0,1,2],e:"Dazu Hinweis auf den Service."},
+{m:6,q:"Was gehört zum Gesprächsabschluss?",o:["Zusammenfassung und Übereinstimmung herstellen","Entscheidung des Kunden bestätigen","Empfehlung erfragen","Folgetermin vereinbaren"],a:[0,1,2,3],e:"Auch Cross- oder Upselling sinnvoll ansprechen, z. B. Absicherung."},
+{m:6,q:"Warum ist Beratung auch Schutz vor Überschuldung?",o:["Weil eine nicht tragfähige Finanzierung die Existenz gefährden kann","Weil Banken das verlangen","Weil es Provision bringt","Das ist kein Thema"],a:[0],e:"Kundeninteresse geht vor Abschluss."},
+{m:6,q:"Welche Motive für ein Immobiliardarlehen gibt es?",o:["Selbstnutzung","Kapitalanlage","Modernisierung","Umschuldung oder Liquidität"],a:[0,1,2,3],e:"Das Motiv bestimmt Produktwahl und Steueraspekte."},
+{m:6,q:"Was erfragen Sie zu den Wünschen des Kunden an die Finanzierung?",o:["Wunsch nach Sicherheit (Zinsbindung)","Flexibilität bei Tilgung und Sondertilgung","Gewünschte Laufzeit und Belastung","Einzubringende Eigenmittel und Eigenleistung"],a:[0,1,2,3],e:"Daraus wird eine kundenorientierte Lösung hergeleitet."},
+{m:6,q:"Was gehört zur langfristigen Kundenbetreuung?",o:["Über Gesetzesänderungen informieren","Erreichbar sein","Bei veränderten Lebenslagen neu beraten","Nach Abschluss keinen Kontakt mehr"],a:[0,1,2],e:"Und über die künftige Betreuung informieren (z. B. Ansprechpartner)."},
+{m:6,q:"Was sollte der Berater zu bestehenden Finanzierungsbausteinen erfragen?",o:["Laufende Kredite und Raten","Bausparverträge und Versicherungen","Zinsbindungsenden bestehender Darlehen","Lieblingsessen"],a:[0,1,2],e:"Für Gesamtbild und Haushaltsrechnung nötig."},
+{m:6,q:"Was ist kundenorientierte Sprache?",o:["Verständlich, ohne unnötige Fachbegriffe, mit Beispielen","Möglichst viele Fachbegriffe","Lange Monologe","Abkürzungen ohne Erklärung"],a:[0],e:"Den Nutzen herausstellen."},
+{m:6,q:"Welche Kundensignale sollte der Berater beachten?",o:["Körpersprache und Mimik","Kaufsignale wie Detailfragen","Zögern und Unsicherheit","Keine"],a:[0,1,2],e:"Situationsgerecht reagieren."},
+{m:6,q:"Wie gehen Sie mit dem Einwand „Ich muss das noch mit meinem Partner besprechen“ um?",o:["Verständnis zeigen und einen gemeinsamen Termin anbieten","Druck aufbauen","Partner für unwichtig erklären","Gespräch beenden ohne Folgetermin"],a:[0],e:"Beide Partner sind meist Darlehensnehmer."},
+{m:6,q:"Was ist bei der Finanzierung für einen Kapitalanleger in der Haushaltsrechnung zu berücksichtigen?",o:["Mieteinnahmen mit Abschlag","Nicht umlegbare Kosten","Steuerliche Effekte","Rate der neuen Finanzierung"],a:[0,1,2,3],e:"Leerstand und Instandhaltung einkalkulieren."},
+{m:6,q:"Was sollten Sie bei einer Empfehlung des Kunden beachten?",o:["Nur mit Zustimmung der empfohlenen Person Kontakt aufnehmen bzw. UWG beachten","Sofort ungefragt anrufen","Daten weiterverkaufen","Nichts"],a:[0],e:"Datenschutz und Wettbewerbsrecht."},
+
+/* ---- Modul 5: Produkte & Finanzierung – Rahmenplan Teil 3 ---- */
+{m:5,q:"Welche Finanzierungsanlässe nennt der Rahmenplan?",o:["Kauf, Neubau, Erweiterung","Renovierung, energetische Sanierung","Umschuldung, Prolongation","Liquiditätsbeschaffung, Finanzierung im Ruhestand"],a:[0,1,2,3],e:"Jeder Anlass hat eigene Unterlagen und Auszahlungsvoraussetzungen."},
+{m:5,q:"Was ist ein Zinszahlungsdarlehen?",o:["Während der Laufzeit werden nur Zinsen gezahlt, Tilgung am Ende","Rate mit steigender Tilgung","Darlehen ohne Zinsen","Bausparvertrag"],a:[0],e:"Kombiniert mit Tilgungsersatzmittel; oft zur Vorfinanzierung."},
+{m:5,q:"Wofür setzt man eine Zwischenfinanzierung ein?",o:["Bis Eigenkapital oder ein Bauspardarlehen verfügbar ist","Bis die alte Immobilie verkauft ist","Als dauerhafte Hauptfinanzierung","Zur Mietkaution"],a:[0,1],e:"Meist variabel und tilgungsfrei, daher Zinsrisiko."},
+{m:5,q:"Was ist ein Policendarlehen?",o:["Darlehen gegen eine kapitalbildende Lebensversicherung bis zur Höhe des Rückkaufswerts","Ein Bauspardarlehen","Ein KfW-Kredit","Eine Bürgschaft"],a:[0],e:"Versicherungsschutz bleibt bestehen; Zinsen an den Versicherer."},
+{m:5,q:"Wie wird der Forward-Aufschlag typischerweise bemessen?",o:["Nach der Vorlaufzeit bis zum Auszahlungstermin – je länger, desto höher","Pauschal 5 %","Nach der Grundstücksgröße","Gar nicht"],a:[0],e:"Oft wenige Hundertstel Prozentpunkte pro Monat Vorlauf."},
+{m:5,q:"Was ist ein 1a-Darlehen?",o:["Der erstrangige Teil innerhalb von 60 % des Beleihungswerts","Der nachrangige Teil","Ein KfW-Kredit","Ein unbesicherter Kredit"],a:[0],e:"Der Teil darüber (1b) kostet einen Zinsaufschlag."},
+{m:5,q:"Welche Kosten zählen zu den indirekten Nebenkosten?",o:["Schätz- bzw. Wertermittlungsgebühren","Bauzeit- und Bereitstellungszinsen","Teilvalutierungszuschläge","Grunderwerbsteuer"],a:[0,1,2],e:"Grunderwerbsteuer, Notar, Grundbuch und Makler sind direkte Nebenkosten."},
+{m:5,q:"Was ist ein Teilvalutierungszuschlag?",o:["Zinsaufschlag, wenn das Darlehen nur in Teilbeträgen ausgezahlt wird","Ein Rabatt","Grundbuchgebühr","Schufa-Gebühr"],a:[0],e:"Typisch bei Neubau und Bauträgerkauf."},
+{m:5,q:"Welche Eigenmittel kann ein Kunde einbringen?",o:["Kontoguthaben und Wertpapiere","Bausparguthaben und Rückkaufswerte von Versicherungen","Eigenleistung","Vorhandenes Grundstück"],a:[0,1,2,3],e:"Eine Liquiditätsreserve sollte immer bleiben."},
+{m:5,q:"Was spricht gegen den Einsatz des gesamten Eigenkapitals?",o:["Keine Liquiditätsreserve für Notfälle","Altersvorsorge wird aufgelöst","Ggf. Vorfälligkeit oder Verluste bei Wertpapieren","Der Zins sinkt dadurch nie"],a:[0,1,2],e:"Vor- und Nachteile abwägen."},
+{m:5,q:"Welche Fremdmittel gibt es neben Bankdarlehen?",o:["Verwandtendarlehen","Arbeitgeberdarlehen","Förderkredite und Bauspardarlehen","Policendarlehen"],a:[0,1,2,3],e:"Rangverhältnis und Rückzahlungsbedingungen beachten."},
+{m:5,q:"Was zeigt ein Kosten- und Finanzierungsplan?",o:["Gesamtkosten","Vorhandene Mittel","Finanzierungslücke","Deckungsbausteine"],a:[0,1,2,3],e:"Grundlage des Kreditantrags."},
+{m:5,q:"Wie wirken tilgungsfreie Anlaufjahre?",o:["Anfangs niedrigere Belastung","Höhere Gesamtzinskosten","Restschuld sinkt anfangs nicht","Gesamtkosten sinken"],a:[0,1,2],e:"Typisch bei KfW-Darlehen."},
+{m:5,q:"Wie kann eine Sondertilgung wirken?",o:["Laufzeit verkürzen bei gleicher Rate","Rate senken bei gleicher Laufzeit (wenn vereinbart)","Zinsbindung verlängern","Effektivzins erhöhen"],a:[0,1],e:"Ein hohes Sondertilgungsrecht kann einen kleinen Zinsaufschlag kosten."},
+{m:5,q:"Was gehört zu den Auszahlungsvoraussetzungen beim Kauf einer Bestandsimmobilie?",o:["Grundschuld eingetragen bzw. Rangbestätigung des Notars","Eigenmittel eingesetzt","Fälligkeitsmitteilung des Notars","Bezug der Immobilie"],a:[0,1,2],e:"Bei Neubau zusätzlich Bautenstandsberichte."},
+{m:5,q:"Welche Unterlagen gehören zum Kreditantrag?",o:["Einkommens- und Vermögensnachweise","Nachweise über Ausgaben und Verbindlichkeiten","Grundbuchauszug","Kaufvertrag bzw. Entwurf, Objektunterlagen"],a:[0,1,2,3],e:"Stimmigkeit und Vollständigkeit prüfen."},
+{m:5,q:"Was ist bei Bausparverträgen in der Darlehensphase typisch?",o:["Fester Zins und hohe Tilgung","Nachrangige Besicherung möglich","Variable Zinsen","Keine Tilgung"],a:[0,1],e:"Daher kurze Laufzeit und hohe Raten."},
+{m:5,q:"Was gilt für Blankodarlehen von Bausparkassen?",o:["Kleinere Beträge (gesetzlich bis 50.000 €) ohne Grundschuld möglich","Unbegrenzt ohne Sicherheit","Nur mit Grundschuld","Gibt es nicht"],a:[0],e:"§ 12 Abs. 1 BausparkV – bis 50.000 € je Einzelfall; häufig mit Negativerklärung."},
+{m:5,q:"Was ist die Eigenheimrente (Wohn-Riester)?",o:["Riester-Förderung für selbst genutztes Wohneigentum","Steuerfreie Mietzahlung","Förderung für Kapitalanleger","Eine KfW-Zulage"],a:[0],e:"Verwendung: Entnahme beim Erwerb oder Tilgung; Besteuerung über das Wohnförderkonto."},
+{m:5,q:"Welches Risiko hat Wohn-Riester im Ruhestand?",o:["Steuer auf das Wohnförderkonto belastet die Liquidität im Alter","Kein Risiko","Die Immobilie wird enteignet","Die Grundschuld steigt"],a:[0],e:"Alternativ Einmalbesteuerung von 70 % des Wohnförderkontos zu Rentenbeginn."},
+{m:5,q:"Was fördert das 5. Vermögensbildungsgesetz?",o:["Vermögenswirksame Leistungen, z. B. in Bausparverträgen, mit Arbeitnehmersparzulage","Mietzahlungen","Kreditkartenzahlungen","Grunderwerbsteuer"],a:[0],e:"9 % auf bis zu 470 € jährlich bei Bausparen; Einkommensgrenzen 40.000 / 80.000 € (seit 2024)."},
+{m:5,q:"Welche Rolle hat die Hausbank bei KfW-Darlehen?",o:["Sie leitet den Kredit durch und trägt meist das Ausfallrisiko","Sie hat keine Rolle","Sie zahlt die Zinsen","Sie prüft nur das Grundbuch"],a:[0],e:"Durchleitungsprinzip – deshalb auch dort Bonitätsprüfung."},
+{m:5,q:"Wie berechnet man den Tilgungssatz bei gegebener Monatsrate?",o:["Tilgungssatz = Monatsrate × 12 ÷ Darlehen − Sollzins","Tilgungssatz = Darlehen ÷ Rate","Tilgungssatz = Zins × 2","Tilgungssatz = Rate − Zins"],a:[0],e:"Beispiel: 1.250 × 12 ÷ 250.000 = 6 % − 4 % = 2 %."},
+{m:5,q:"Wie berechnet man die Gesamtbelastung bei einem Kopplungsprodukt (Festdarlehen + Bausparvertrag)?",o:["Zinsen des Festdarlehens + Sparrate in den Bausparvertrag","Nur die Bausparrate","Nur die Zinsen","Zinsen × 2"],a:[0],e:"Später folgt die Rate des Bauspardarlehens."},
+{m:5,q:"Was bedeutet „Zinsfestschreibung“?",o:["Sollzins ist für einen vereinbarten Zeitraum fest","Zins ist für immer gleich","Zins ändert sich täglich","Keine Zinsen"],a:[0],e:"Vorteil Planungssicherheit, Nachteil VFE bei vorzeitiger Rückzahlung."},
+{m:5,q:"Wann ist ein variabler Zins sinnvoll?",o:["Bei geplanter kurzfristiger Rückzahlung (z. B. Verkauf, Erbschaft)","Bei erwarteten sinkenden Zinsen","Bei knapper Haushaltsrechnung ohne Puffer","Bei Wunsch nach maximaler Sicherheit"],a:[0,1],e:"Risiko steigender Raten."},
+{m:5,q:"Was beeinflusst den Zins der Bank individuell?",o:["Beleihungsauslauf","Bonität / Scoring","Zusätzliche Sicherheiten","Höhe der Grunderwerbsteuer"],a:[0,1,2],e:"Dazu Zinsbindung, Darlehenshöhe und Sondertilgungsrechte."},
+{m:5,q:"Welche Kosten sind im effektiven Jahreszins NICHT enthalten?",o:["Notar- und Grundbuchkosten","Grunderwerbsteuer","Kosten bei Vertragsverletzung (z. B. Verzugszinsen)","Bearbeitungsentgelt"],a:[0,1,2],e:"§ 16 Abs. 4 PAngV (u. a. Notarkosten, Grundbuchgebühren der Eigentumsumschreibung, Kosten bei Vertragsverletzung)."},
+{m:5,q:"Was ist die Gesamtlaufzeit einer Finanzierung?",o:["Der Zeitraum bis zur vollständigen Tilgung","Die Zinsbindung","Die Bereitstellungsfrist","Die Widerrufsfrist"],a:[0],e:"Oft länger als die Zinsbindung – Anschlussfinanzierung nötig."},
+{m:5,q:"Was müssen Banken nach § 18a KWG bzw. Versicherer nach § 15a VAG vor Immobiliar-Verbraucherdarlehen prüfen?",o:["Die Kreditwürdigkeit (Tragbarkeit)","Nur den Objektwert","Nichts","Die Schufa des Vermittlers"],a:[0],e:"Auch Versicherer vergeben Baufinanzierungen."},
+{m:5,q:"Was sind typische K.-o.-Kriterien bei der Kreditwürdigkeitsprüfung?",o:["Laufende Insolvenz oder harte Negativmerkmale","Fehlende Tragfähigkeit der Rate","Befristete Beschäftigung ohne Perspektive (je nach Bank)","Unbefristeter Arbeitsvertrag"],a:[0,1,2],e:"Zum Objekt kommen eigene K.-o.-Kriterien (z. B. Schwarzbau)."},
+{m:5,q:"Was ist Scoring?",o:["Statistisches Verfahren zur Bewertung der Ausfallwahrscheinlichkeit","Bewertung der Immobilie","Grundbuchprüfung","Zinsberechnung"],a:[0],e:"Interne und externe Scores (z. B. Auskunfteien)."},
+{m:5,q:"Wie unterscheiden sich persönliche und materielle Kreditwürdigkeit?",o:["Persönlich: Zuverlässigkeit, Beruf, Zahlungsverhalten","Materiell: Einkommen, Vermögen, Tragfähigkeit","Beides ist identisch","Materiell betrifft nur das Alter"],a:[0,1],e:"Haushaltsrechnung belegt die materielle Seite."},
+
+/* ---- Modul 3: Sicherheiten – Ergänzung ---- */
+{m:3,q:"Was ist eine selbstschuldnerische Bürgschaft?",o:["Der Bürge verzichtet auf die Einrede der Vorausklage","Der Bürge haftet nur, wenn Vollstreckung erfolglos war","Ein Bürge ohne Schriftform","Eine Grundschuld"],a:[0],e:"Bankübliche Form; Schriftform nach § 766 BGB."},
+{m:3,q:"Was ist eine Höchstbetragsbürgschaft?",o:["Die Haftung des Bürgen ist auf einen Betrag begrenzt","Unbegrenzte Haftung","Eine Ausfallbürgschaft","Eine mündliche Bürgschaft"],a:[0],e:"Schützt den Bürgen vor unüberschaubarer Haftung."},
+{m:3,q:"Welche Form braucht eine Bürgschaftserklärung eines Privatmanns?",o:["Schriftform","Textform","Mündlich","Notariell"],a:[0],e:"§ 766 BGB; für Kaufleute gilt das nicht."},
+{m:3,q:"Was ist eine stille Abtretung?",o:["Der Drittschuldner (z. B. Arbeitgeber) wird nicht informiert, solange alles läuft","Abtretung ohne Vertrag","Abtretung mit sofortiger Info an alle","Gibt es nicht"],a:[0],e:"Offengelegt wird erst im Sicherungsfall."},
+{m:3,q:"Was unterscheidet Verpfändung von Abtretung?",o:["Bei der Verpfändung bleibt der Kunde Inhaber, die Bank erhält ein Pfandrecht","Bei der Abtretung wechselt der Anspruch zur Bank","Beides ist identisch","Verpfändung gibt es nur bei Immobilien"],a:[0,1],e:"Verpfändung von Rechten muss dem Schuldner angezeigt werden (§ 1280 BGB)."},
+{m:3,q:"Was ist eine Negativerklärung?",o:["Kunde verpflichtet sich, das Objekt nicht ohne Zustimmung der Bank zu belasten oder zu veräußern","Ablehnung des Kredits","Schufa-Negativeintrag","Löschungsbewilligung"],a:[0],e:"Bei Blankodarlehen statt Grundschuld."},
+{m:3,q:"Was ist der Rückgewähranspruch?",o:["Anspruch des Sicherungsgebers auf Rückübertragung oder Löschung der Grundschuld nach Wegfall des Sicherungszwecks","Anspruch der Bank auf Zinsen","Recht auf Widerruf","Erstattung der Grunderwerbsteuer"],a:[0],e:"Folgt aus der Sicherungsabrede."},
+{m:3,q:"Was bedeutet die persönliche Haftung in der Grundschuldbestellungsurkunde?",o:["Der Kunde haftet zusätzlich mit seinem gesamten Vermögen (abstraktes Schuldanerkenntnis)","Nur die Immobilie haftet","Nur der Notar haftet","Die Bank haftet"],a:[0],e:"Dingliche Haftung = Grundstück, persönliche Haftung = Person."},
+{m:3,q:"Was passiert mit einer Hypothek, wenn die Forderung getilgt ist?",o:["Sie wird zur Eigentümergrundschuld","Sie erlischt im Grundbuch automatisch","Sie geht auf den Notar über","Sie wird zur Reallast"],a:[0],e:"§§ 1163, 1177 BGB."},
+{m:3,q:"Was ist eine Neuvalutierung (Revalutierung) einer Grundschuld?",o:["Erneute Nutzung der Grundschuld für ein neues Darlehen","Neuschätzung des Hauses","Löschung","Zinsänderung"],a:[0],e:"Spart Notar- und Grundbuchkosten."},
+{m:3,q:"Was ist eine Rangänderung?",o:["Vereinbarte Änderung der Rangfolge zwischen eingetragenen Rechten","Neue Grundbuchnummer","Eigentümerwechsel","Zinsänderung"],a:[0],e:"Braucht Einigung der Berechtigten und Eintragung (§ 880 BGB)."},
+{m:3,q:"Welche Arten von Sicherheiten unterscheidet man?",o:["Ersatzsicherheiten","Zusatzsicherheiten","Übergangssicherheiten (z. B. bis Eintragung)","Fantasiesicherheiten"],a:[0,1,2],e:"Hauptsicherheit ist meist die Grundschuld."},
+{m:3,q:"Welche K.-o.-Kriterien kann es beim Beleihungsobjekt geben?",o:["Fehlende Baugenehmigung (Schwarzbau)","Erhebliche Vorlasten in Abt. II/III","Nicht verkehrsfähige Objekte","Neue Fenster"],a:[0,1,2],e:"Die Sicherheit muss verwertbar sein."},
+{m:3,q:"Was ist bei einer Grundschuld zu den Grundschuldzinsen zu sagen?",o:["Sie sind dingliche Zinsen als Sicherheitspuffer, meist 12–18 % p. a.","Sie sind der Darlehenszins","Sie zahlt der Notar","Sie sind verboten"],a:[0],e:"Können Rückstände rückwirkend absichern."},
+{m:3,q:"Wer haftet bei der Hypothek persönlich?",o:["Der Schuldner der Forderung; das Grundstück haftet dinglich","Nur der Notar","Niemand","Die Gemeinde"],a:[0],e:"Hypothek ist an die Forderung gebunden."},
+{m:3,q:"Wie kann eine Bank Wertpapiere als Sicherheit nehmen?",o:["Verpfändung des Depots","Abtretung der Ansprüche","Grundschuld","Bürgschaft"],a:[0,1],e:"Mit Beleihungsabschlag je nach Risiko."},
+
+/* ---- Modul 4: Bewertung – Ergänzung ---- */
+{m:4,q:"Was verlangt § 505c BGB bei Immobilienbewertungen?",o:["Zuverlässige Bewertungsstandards","Fachlich kompetente und unabhängige Gutachter","Bewertung durch den Vermittler","Keine Bewertung"],a:[0,1],e:"Ergänzt durch § 18a KWG – Trennung von Gutachter und Kreditentscheidung."},
+{m:4,q:"Was sind Gutachterausschüsse?",o:["Unabhängige Gremien, die Kaufpreissammlungen führen und Bodenrichtwerte ermitteln","Private Makler","Teil der Bank","Gerichte"],a:[0],e:"§§ 192 ff. BauGB."},
+{m:4,q:"Was ist ein Sicherungsabschlag?",o:["Abschlag vom Verkehrswert zur Ermittlung des Beleihungswerts","Rabatt beim Kaufpreis","Zinsabschlag","Steuerabzug"],a:[0],e:"Abschlagsverfahren: Verkehrswert − Sicherheitsabschlag = Beleihungswert."},
+{m:4,q:"Welche Wertbegriffe muss ein Vermittler unterscheiden?",o:["Verkehrswert","Beleihungswert","Bodenwert und Bodenrichtwert","Einheitswert bzw. Grundsteuerwert"],a:[0,1,2,3],e:"Nur Verkehrs- und Beleihungswert sind für die Finanzierung zentral."},
+{m:4,q:"Was ist ein Bodenrichtwert?",o:["Durchschnittlicher Lagewert des Bodens je m² für eine Zone","Der Kaufpreis eines konkreten Grundstücks","Der Beleihungswert","Die Grundsteuer"],a:[0],e:"Bodenwert = Fläche × Bodenrichtwert (mit Anpassungen)."},
+{m:4,q:"Welche sonstigen Bewertungsverfahren gibt es neben den drei Normverfahren?",o:["Residualwertverfahren (Projektentwicklung)","Discounted-Cashflow-Verfahren (Gewerbe)","Vergleichsfaktoren / Ertragsfaktoren als Faustformel","Würfeln"],a:[0,1,2],e:"Für Standard-Wohnobjekte sind sie selten maßgeblich."},
+{m:4,q:"Wie hängen Verkehrswert und Beleihungsgrenze zusammen?",o:["Verkehrswert → Abschlag → Beleihungswert → davon 60 % Beleihungsgrenze","Beleihungsgrenze = Verkehrswert","Beleihungsgrenze = Kaufpreis + Nebenkosten","Kein Zusammenhang"],a:[0],e:"Beispiel: 400.000 → 360.000 → 216.000 €."},
+{m:4,q:"Wer darf bei der Bank nicht über den Kredit entscheiden, wenn er das Objekt bewertet hat?",o:["Der Gutachter (Trennung von Bewertung und Kreditentscheidung)","Der Vorstand","Der Kunde","Niemand"],a:[0],e:"Unabhängigkeit der Bewertung."},
+{m:4,q:"Was berücksichtigt das Vergleichswertverfahren?",o:["Kaufpreise vergleichbarer Objekte nach Lage, Größe, Baujahr, Ausstattung","Mieterträge","Herstellungskosten","Zinsen"],a:[0],e:"Abweichungen werden über Zu- und Abschläge angepasst."},
+
+/* ---- Modul 2: Verbraucherdarlehen – Ergänzung ---- */
+{m:2,q:"Was unterscheidet Allgemein- und Immobiliar-Verbraucherdarlehen?",o:["Immobiliar-Verbraucherdarlehen sind grundpfandrechtlich besichert oder dienen dem Immobilienerwerb","Allgemein-Verbraucherdarlehen sind z. B. Ratenkredite","Für Immobiliar-Verbraucherdarlehen gelten strengere Regeln (ESIS, Bedenkzeit, Beratung)","Es gibt keinen Unterschied"],a:[0,1,2],e:"§ 491 Abs. 2 und 3 BGB."},
+{m:2,q:"Was verlangt § 655a Abs. 2 BGB vom Vermittler?",o:["Informationen nach Art. 247 § 13 EGBGB vor Abschluss des Vermittlungsvertrags","Nur eine Visitenkarte","Grundschuldbestellung","Nichts"],a:[0],e:"Transparenz über Vermittler, Vergütung und Tätigkeit."},
+{m:2,q:"Was regelt Art. 247 § 13b EGBGB?",o:["Besondere Informationspflichten des Immobiliardarlehensvermittlers (Status, Register, Vergütung)","Die Grunderwerbsteuer","Das Widerrufsrecht bei Kaufverträgen","Die Grundbuchordnung"],a:[0],e:"Statusbezogene Pflichten."},
+{m:2,q:"Was regelt Art. 247 § 18 EGBGB?",o:["Informationen vor Erbringung von Beratungsleistungen","Den Zinssatz","Die Zwangsversteigerung","Die Makler-Provision"],a:[0],e:"Z. B. ob nur eigene Produkte oder eine große Auswahl am Markt betrachtet werden und ob eine Vergütung anfällt."},
+{m:2,q:"Was muss der Berater nach § 511 BGB berücksichtigen?",o:["Persönliche und finanzielle Situation des Kunden","Kapitaldienstfähigkeit über die Laufzeit","Risiken aus Produkt und Lebenssituation","Nur den Zins"],a:[0,1,2],e:"Kredit- und Objektbewertung dabei getrennt betrachten."},
+{m:2,q:"Welche Dokumentationspflicht gilt bei Beratungsleistungen?",o:["Empfehlung auf dauerhaftem Datenträger","Keine","Nur mündlich","Nur bei Ablehnung"],a:[0],e:"Schützt Kunde und Berater bei späteren Streitigkeiten."},
+{m:2,q:"Warum ist die Trennung von Kreditwürdigkeit und Objektwert wichtig?",o:["Die Rückzahlung soll aus dem Einkommen erfolgen, nicht aus der Verwertung der Immobilie","Weil der Notar es verlangt","Ohne Bedeutung","Wegen der Grundsteuer"],a:[0],e:"Kernidee der Wohnimmobilienkreditrichtlinie."},
+{m:2,q:"Wann muss das ESIS bei einem verbindlichen Angebot erneut ausgehändigt werden?",o:["Mit dem bindenden Vertragsangebot (insb. bei Bedenkzeit)","Nie","Nur auf Wunsch der IHK","Nach Auszahlung"],a:[0],e:"Art. 247 § 1 Abs. 2 EGBGB."},
+
+/* ---- Modul 1: Vermittlerrecht – Ergänzung ---- */
+{m:1,q:"Worin unterscheidet sich der Honorar-Immobiliardarlehensberater rechtlich vom Vermittler?",o:["Er erhält Vergütung nur vom Kunden und muss dies vorher offenlegen","Er braucht keine Erlaubnis","Er darf nur eine Bank anbieten","Er ist BaFin-beaufsichtigt"],a:[0],e:"§ 34i Abs. 5 GewO; Informationspflichten nach Art. 247 § 13b EGBGB."},
+{m:1,q:"Welche Unterlagen braucht man für den Erlaubnisantrag nach § 34i?",o:["Führungszeugnis und Gewerbezentralregisterauszug","Auskunft aus dem Schuldnerverzeichnis / Insolvenzgericht","Versicherungsbestätigung","Sachkundenachweis","Schufa des Ehepartners"],a:[0,1,2,3],e:"Zum Nachweis von Zuverlässigkeit, Vermögen, Versicherung und Sachkunde."},
+{m:1,q:"Welche Personengruppe muss in einer juristischen Person die Sachkunde nachweisen?",o:["Die mit der Leitung betraute Person bzw. ausreichend viele Personen der Leitung","Alle Gesellschafter ohne Ausnahme","Niemand","Nur der Buchhalter"],a:[0],e:"Plus alle unmittelbar mitwirkenden Beschäftigten."},
+/* ---- Fallfragen quer durch alle Module ---- */
+{m:6,q:"Fall: Ein Paar verdient zusammen 4.000 € netto, die geplante Rate liegt bei 2.300 €. Wie beurteilen Sie das?",o:["Zu hoch – über 50 % des Nettos, kaum Puffer","Unproblematisch","Ideal","Nur der Zins zählt"],a:[0],e:"Faustregel 35–40 %; Varianten mit mehr Eigenkapital oder günstigerem Objekt prüfen."},
+{m:6,q:"Fall: Ein Kunde nennt im Gespräch Überstundenzuschläge als festes Einkommen. Wie gehen Sie vor?",o:["Nur nachhaltig gesicherte Einkünfte ansetzen und nachfragen","Voll ansetzen","Ignorieren und Bank nichts sagen","Verdoppeln"],a:[0],e:"Vorsichtige Haushaltsrechnung."},
+{m:6,q:"Fall: Eine Kundin möchte, dass Sie in den Antrag ein höheres Einkommen eintragen. Was tun Sie?",o:["Ablehnen – falsche Angaben sind unzulässig und gefährden alle Beteiligten","Machen, wenn es nur wenig ist","Machen und nicht dokumentieren","Die Bank fragen, ob das okay ist"],a:[0],e:"Kann Betrug bzw. Beihilfe dazu sein (§ 263 StGB) und die gewerberechtliche Zuverlässigkeit kosten."},
+{m:2,q:"Fall: Der Kunde unterschreibt am 1. März einen Immobilien-Darlehensvertrag mit korrekter Widerrufsbelehrung. Bis wann kann er widerrufen?",o:["Bis zum 15. März (14 Tage)","Bis 8. März","Bis 1. April","Gar nicht"],a:[0],e:"Fristbeginn mit Vertragsschluss und Erhalt der Pflichtangaben."},
+{m:2,q:"Fall: Der Kunde will nach 6 Jahren einer 15-jährigen Zinsbindung sein Haus verkaufen. Was gilt?",o:["Außerordentliche Kündigung möglich, aber Vorfälligkeitsentschädigung","Kündigung kostenlos","Keine Kündigung möglich, Haus darf nicht verkauft werden","Erst nach 15 Jahren"],a:[0],e:"§ 490 Abs. 2 BGB; Alternative: Darlehen auf neues Objekt übertragen (Pfandtausch)."},
+{m:2,q:"Fall: Ein Darlehen wurde vor 11 Jahren voll ausgezahlt, Zinsbindung 20 Jahre. Was kann der Kunde tun?",o:["Mit 6 Monaten Frist ohne VFE kündigen","Nichts bis Jahr 20","Nur mit VFE kündigen","Nur die Bank kann kündigen"],a:[0],e:"§ 489 Abs. 1 Nr. 2 BGB – lohnt sich, wenn die Marktzinsen niedriger sind."},
+{m:2,q:"Fall: Die Bank hat bei einer Finanzierung die Einkommensprüfung unterlassen, der Kunde gerät in Schwierigkeiten. Was gilt?",o:["Zins sinkt auf marktüblichen Zins, fristlose Kündigung ohne VFE möglich","Kunde haftet allein","Vermittler muss zahlen","Vertrag nichtig"],a:[0],e:"§ 505d BGB."},
+{m:3,q:"Fall: Im Grundbuch steht in Abt. II ein lebenslanges Wohnrecht der Großmutter. Was bedeutet das für die Finanzierung?",o:["Es mindert den Beleihungswert erheblich; Bank verlangt evtl. Rangrücktritt","Ohne Bedeutung","Die Bank zahlt mehr aus","Das Wohnrecht wird automatisch gelöscht"],a:[0],e:"Ein vorrangiges Wohnrecht bleibt auch in der Versteigerung bestehen."},
+{m:3,q:"Fall: Der Kunde hat sein altes Darlehen getilgt, die Grundschuld über 150.000 € steht noch im Grundbuch. Er will 60.000 € modernisieren. Was bietet sich an?",o:["Grundschuld bei der Bank neu valutieren lassen","Neue Grundschuld zwingend","Grundschuld vorher löschen","Ohne Bedeutung"],a:[0],e:"Spart Notar- und Grundbuchkosten (Revalutierung)."},
+{m:3,q:"Fall: Die Grundschuld der Bank soll an erster Stelle stehen, eingetragen ist aber eine ältere Grundschuld der Eltern. Lösung?",o:["Rangrücktritt der Eltern","Grundschuld der Bank in Abt. II eintragen","Eltern enterben","Nichts möglich"],a:[0],e:"Rangänderung mit Zustimmung und Eintragung."},
+{m:4,q:"Fall: Verkehrswert 300.000 €, Sicherheitsabschlag 10 %. Bis zu welchem Betrag reicht die 60-%-Grenze?",o:["162.000 €","180.000 €","270.000 €","300.000 €"],a:[0],e:"300.000 × 90 % = 270.000; × 60 % = 162.000 €."},
+{m:4,q:"Fall: Kaufpreis 400.000 €, Jahresnettokaltmiete 16.000 €. Wie hoch sind Kaufpreisfaktor und Bruttomietrendite?",o:["Faktor 25, Rendite 4 %","Faktor 20, Rendite 5 %","Faktor 40, Rendite 2,5 %","Faktor 16, Rendite 6 %"],a:[0],e:"400.000 ÷ 16.000 = 25; 16.000 ÷ 400.000 = 4 %."},
+{m:5,q:"Fall: Darlehen 300.000 €, Sollzins 3,5 %, Monatsrate 1.250 €. Welcher anfängliche Tilgungssatz ergibt sich?",o:["1,5 %","2 %","2,5 %","1 %"],a:[0],e:"1.250 × 12 = 15.000 ÷ 300.000 = 5 % − 3,5 % = 1,5 %."},
+{m:5,q:"Fall: Festdarlehen 200.000 € zu 4 %, dazu Bausparrate 400 € im Monat. Wie hoch ist die monatliche Gesamtbelastung?",o:["1.066,67 €","666,67 €","400 €","1.200 €"],a:[0],e:"200.000 × 4 % ÷ 12 = 666,67 + 400 = 1.066,67 €."},
+{m:5,q:"Fall: Die Zinsbindung eines Kunden endet in 3 Jahren, er fürchtet steigende Zinsen. Welches Produkt passt?",o:["Forward-Darlehen","Variables Darlehen","Policendarlehen","Ratenkredit"],a:[0],e:"Sichert den heutigen Zins gegen Aufschlag."},
+{m:5,q:"Fall: Ein Kunde kauft ein Haus, sein altes Haus ist noch nicht verkauft. Was brauchen Sie?",o:["Zwischenfinanzierung bis zum Verkaufserlös","Bausparvertrag mit 7 Jahren Wartezeit","Nichts","Schenkung"],a:[0],e:"Risiko: Verkauf dauert länger oder bringt weniger."},
+{m:5,q:"Fall: Eine Familie will 40.000 € für eine Wärmepumpe finanzieren, ohne Grundbucheintrag. Was passt?",o:["Unbesichertes Modernisierungsdarlehen, ggf. mit Förderung","Neue erstrangige Grundschuld zwingend","Forward-Darlehen","Policendarlehen"],a:[0],e:"Förderzuschüsse und KfW-Programme vorher prüfen – Antrag vor Beginn."},
+{m:5,q:"Fall: Ein Kunde will 100.000 € Sondertilgung pro Jahr leisten können. Worauf achten Sie?",o:["Sondertilgungsrecht vertraglich vereinbaren, ggf. Zinsaufschlag","Ist immer kostenlos erlaubt","Geht gesetzlich nicht","Nur bei variablem Zins möglich"],a:[0],e:"Ohne Vereinbarung kein Sondertilgungsrecht bei Festzins."},
+{m:7,q:"Fall: Ein 17-Jähriger möchte ein Darlehen für eine Eigentumswohnung aufnehmen. Was gilt?",o:["Er ist beschränkt geschäftsfähig – Zustimmung der Eltern und familiengerichtliche Genehmigung nötig","Er kann allein unterschreiben","Er ist geschäftsunfähig","Kein Problem mit 17"],a:[0],e:"§§ 107, 1643 BGB – Grundstücks- und Kreditgeschäfte Minderjähriger brauchen die Genehmigung des Familiengerichts."},
+{m:7,q:"Fall: Käufer und Verkäufer vereinbaren privat schriftlich den Verkauf eines Grundstücks. Ist der Vertrag wirksam?",o:["Nein, formnichtig – Beurkundung fehlt","Ja, schriftlich reicht","Ja, wenn bezahlt wurde","Ja, wenn Zeugen dabei waren"],a:[0],e:"§ 311b BGB i. V. m. § 125 BGB."},
+{m:7,q:"Fall: Das Haus brennt nach Kaufvertrag, aber vor Übergabe ab. Wer trägt die Gefahr?",o:["Grundsätzlich der Verkäufer","Der Käufer","Die Bank","Der Notar"],a:[0],e:"Gefahrübergang mit Übergabe (§ 446 BGB) – Versicherung prüfen."},
+{m:8,q:"Fall: Ein Kollege möchte Kontakte aus einer gekauften Adressliste anrufen. Was sagen Sie?",o:["Ohne vorherige ausdrückliche Einwilligung unzulässig (UWG/DSGVO)","Kein Problem","Nur abends","Nur mit unterdrückter Nummer"],a:[0],e:"Bußgelder und Abmahnungen drohen."},
+{m:8,q:"Fall: Ein Kunde will 80.000 € Eigenkapital in bar einzahlen und kann die Herkunft nicht erklären. Was tun?",o:["Herkunft nachweisen lassen; bei Verdacht Meldung nach GwG prüfen","Einfach annehmen","Kunden warnen, dass eine Meldung droht","Ignorieren"],a:[0],e:"Kein Tipping-off."},
+{m:8,q:"Fall: Ein Kunde fragt, ob sich die Immobilie für ihn steuerlich lohnt. Wie reagieren Sie?",o:["Allgemein erklären und für die individuelle Berechnung auf einen Steuerberater verweisen","Eine verbindliche Steuerberechnung erstellen","Sagen, dass Steuern keine Rolle spielen","Steuerrückzahlung garantieren"],a:[0],e:"Keine unerlaubte Steuerberatung."},
+{m:8,q:"Fall: Ein Kunde beschwert sich, die Bank habe falsche Vorfälligkeitsentschädigung berechnet. Wohin kann er sich außergerichtlich wenden?",o:["An die zuständige Schlichtungsstelle bzw. den Ombudsmann","An das Grundbuchamt","An die IHK-Prüfungsstelle","Nirgends"],a:[0],e:"Kostenlos für Verbraucher."},
+{m:9,q:"Fall: Kaufpreis 300.000 € in Bayern (3,5 %). Wie hoch ist die Grunderwerbsteuer?",o:["10.500 €","3.500 €","16.500 €","19.500 €"],a:[0],e:"300.000 × 3,5 %."},
+{m:9,q:"Fall: Ein Vermieter zahlt 9.000 € Schuldzinsen und 6.000 € Tilgung pro Jahr. Was ist als Werbungskosten absetzbar?",o:["9.000 € Schuldzinsen","15.000 €","6.000 €","Nichts"],a:[0],e:"Tilgung ist keine Werbungskostenposition; AfA kommt hinzu."},
+{m:9,q:"Fall: Eine Wohnung wird nach 8 Jahren mit Gewinn verkauft, sie war die ganze Zeit vermietet. Was gilt?",o:["Gewinn ist steuerpflichtig (Spekulationsfrist 10 Jahre)","Steuerfrei","Nur Grunderwerbsteuer","Schenkungsteuer"],a:[0],e:"§ 23 EStG."},
+{m:9,q:"Fall: Die EZB senkt die Leitzinsen deutlich. Was ist am ehesten zu erwarten?",o:["Variable Kreditzinsen sinken eher schnell","Langfristige Bauzinsen sinken immer im gleichen Maß","Grunderwerbsteuer sinkt","Mieten sinken sofort"],a:[0],e:"Langfristige Zinsen hängen stärker vom Kapitalmarkt und Erwartungen ab."},
+{m:10,q:"Fall: Ein Kunde wird arbeitslos und kann 2 Raten nicht zahlen. Was raten Sie?",o:["Sofort mit der Bank sprechen: Stundung, Tilgungsaussetzung, Laufzeitstreckung","Abwarten","Weitere Kredite aufnehmen","Immobilie sofort verschenken"],a:[0],e:"Früherkennung verhindert Gesamtfälligstellung."},
+{m:10,q:"Fall: Zinsbindung endet, Restschuld 180.000 €, Zins steigt von 1,5 % auf 4 %. Bei gleicher Tilgung 2 %: Wie ändert sich die Monatsrate?",o:["Von 525 € auf 900 €","Von 525 € auf 600 €","Bleibt gleich","Sinkt"],a:[0],e:"180.000 × 3,5 % ÷ 12 = 525 €; × 6 % ÷ 12 = 900 €."},
+{m:10,q:"Fall: Ein Ehepaar trennt sich, nur der Mann will das Haus behalten. Was gilt gegenüber der Bank?",o:["Die Frau bleibt Mitschuldnerin, bis die Bank sie aus der Haftung entlässt","Die Frau ist automatisch frei","Die Bank muss das Haus verkaufen","Der Kredit wird halbiert"],a:[0],e:"Bank prüft, ob der Mann allein tragfähig ist."},
+{m:10,q:"Fall: Ein Kunde will nach Hochwasser Schadensersatz von der Versicherung, hat aber nur eine Grunddeckung. Was gilt?",o:["Elementarschäden sind ohne Zusatzbaustein nicht versichert","Immer versichert","Die Bank zahlt","Der Staat zahlt immer"],a:[0],e:"Daher Elementarschutz in der Beratung ansprechen."},
+{m:6,q:"Fall: Ein 58-jähriger Kunde möchte 30 Jahre finanzieren. Worauf achten Sie?",o:["Tragfähigkeit nach Renteneintritt und Restschuld bei Rente","Nichts Besonderes","Er bekommt automatisch kein Darlehen","Nur der Objektwert zählt"],a:[0],e:"Höhere Tilgung oder kürzere Laufzeit prüfen."},
+{m:6,q:"Fall: Ein Kunde sagt „Bei meiner Hausbank ist das bestimmt günstiger.“ Wie reagieren Sie?",o:["Verständnis zeigen und einen transparenten Vergleich anbieten","Hausbank schlechtmachen","Gespräch beenden","Garantieren, dass Sie immer günstiger sind"],a:[0],e:"Einwandbehandlung mit Nutzen und Fakten."},
+{m:6,q:"Fall: Selbstständiger mit Gewinnen 30.000 / 60.000 / 45.000 € in drei Jahren. Welches Einkommen setzen Banken oft an?",o:["Den Durchschnitt, hier 45.000 €","60.000 €","30.000 € immer","Die Prognose für nächstes Jahr"],a:[0],e:"Manche Banken gewichten das letzte Jahr stärker oder nehmen den niedrigsten Wert."},
+{m:1,q:"Fall: Ihr Mitarbeiter hat keine Sachkunde, führt aber eigenständig Finanzierungsgespräche. Was ist das Problem?",o:["Unzulässig – mitwirkende Beschäftigte brauchen Sachkunde und Registrierung","Kein Problem","Nur bei über 10 Kunden","Erlaubt, wenn er nett ist"],a:[0],e:"Gefährdet die Zuverlässigkeit des Gewerbetreibenden."},
+{m:1,q:"Fall: Ein Kollege mit Erlaubnis nach § 34i GewO fragt, wie viele Stunden Weiterbildung er jährlich nachweisen muss. Was gilt?",o:["Für § 34i gibt es keine gesetzliche Stundenpflicht; regelmäßige Fortbildung ist aber sinnvoll","15 Stunden pro Kalenderjahr","20 Stunden in 3 Jahren","40 Stunden pro Jahr"],a:[0],e:"Anders als § 34d (15 Std./Jahr) und § 34c für Makler/Verwalter (20 Std. in 3 Jahren)."},
+{m:3,q:"Fall: Ein Vater bürgt für die Finanzierung seines Sohnes. Was sollte der Vater wissen?",o:["Er haftet bei Ausfall mit seinem Vermögen","Bankübliche Bürgschaften sind selbstschuldnerisch","Eine Höchstbetragsbürgschaft begrenzt sein Risiko","Er haftet nie"],a:[0,1,2],e:"Schriftform nötig."}
+];
+
+const FC=[
+[1,"§ 34i GewO – Wofür?","Erlaubnis für die gewerbsmäßige Vermittlung von und Beratung zu Immobiliar-Verbraucherdarlehen"],
+[1,"5 Erlaubnisvoraussetzungen","Zuverlässigkeit · geordnete Vermögensverhältnisse · Berufshaftpflicht · Sachkunde · Hauptniederlassung im Inland"],
+[1,"Berufshaftpflicht – Mindestdeckung","460.000 € je Schadensfall · 750.000 € pro Jahr"],
+[1,"Weiterbildung bei § 34i","Keine gesetzliche Stundenpflicht (anders: § 34d 15 Std./Jahr, § 34c 20 Std./3 Jahre)"],
+[1,"Vermittlerregister","§ 11a GewO, geführt von den IHKs – vermittlerregister.info"],
+[1,"Gebundener Vermittler","Nur ein Darlehensgeber/Gruppe · braucht trotzdem Erlaubnis nach § 34i (keine Ausnahme wie bei § 34d Abs. 7) · Status im Register und in der Erstinformation"],
+[1,"Honorar-Immobiliardarlehensberater","Nur Honorar vom Kunden, keine Provisionen, ausreichende Marktauswahl (§ 34i Abs. 5)"],
+[1,"§ 655c BGB","Vergütung erst, wenn Darlehen geleistet und Widerruf nicht mehr möglich"],
+[1,"§ 655d BGB","Keine Nebenentgelte – nur vereinbarter Auslagenersatz"],
+[1,"EU-Grundlage","Wohnimmobilienkreditrichtlinie 2014/17/EU, umgesetzt 21.03.2016"],
+[2,"Immobiliar-Verbraucherdarlehen (§ 491 Abs. 3)","Grundpfandrecht/Reallast-besichert ODER für Erwerb/Erhalt von Grundstücks-/Gebäudeeigentum"],
+[2,"ESIS","Europäisches Standardisiertes Merkblatt – vorvertragliche Information"],
+[2,"Widerrufsfrist","14 Tage · Erlöschen spätestens 12 Monate + 14 Tage"],
+[2,"Bedenkzeit","Mind. 7 Tage mit bindendem Angebot, wenn kein Widerrufsrecht"],
+[2,"Kreditwürdigkeitsprüfung","§§ 505a–d BGB · nicht überwiegend auf Immobilienwert stützen"],
+[2,"§ 505d BGB","Fehlerhafte KWP → marktüblicher Zins + fristloses Kündigungsrecht"],
+[2,"§ 511 BGB","Beratung: geeignete Verträge aus ausreichender Zahl, Empfehlung auf dauerhaftem Datenträger"],
+[2,"Kündigung nach 10 Jahren","§ 489 Abs. 1 Nr. 2: 10 J. nach Vollauszahlung, 6 Monate Frist, ohne VFE"],
+[2,"Variables Darlehen kündigen","Jederzeit mit 3 Monaten (§ 489 Abs. 2)"],
+[2,"Vorfälligkeitsentschädigung","§ 502 BGB · Aktiv-Aktiv oder Aktiv-Passiv · z. B. bei Verkauf (§ 490 Abs. 2)"],
+[2,"Verzugszins Immobiliardarlehen","2,5 Prozentpunkte über Basiszins"],
+[2,"Gesamtfälligstellung","2 Raten in Folge + 2,5 % des Nennbetrags rückständig + 2 Wochen Frist"],
+[3,"Grundbuch – Aufbau","Aufschrift · Bestandsverzeichnis · Abt. I Eigentümer · Abt. II Lasten · Abt. III Grundpfandrechte"],
+[3,"Abteilung II – Beispiele","Wohnrecht, Nießbrauch, Wegerecht, Vorkaufsrecht, Auflassungsvormerkung, ZV-Vermerk"],
+[3,"Grundbucheinsicht","Nur bei berechtigtem Interesse (§ 12 GBO)"],
+[3,"Öffentlicher Glaube","§ 892 BGB – Inhalt gilt für Gutgläubige als richtig"],
+[3,"Rang","Gleiche Abteilung: Locusprinzip · verschiedene Abteilungen: Tempusprinzip"],
+[3,"Grundschuld","Nicht akzessorisch · revalutierbar · Verknüpfung über Sicherungszweckerklärung"],
+[3,"Hypothek","Akzessorisch – entsteht und erlischt mit der Forderung"],
+[3,"Grundschuldzinsen","12–18 % p. a. als Sicherheitspuffer"],
+[3,"Eigentumsübergang","Auflassung (notariell) + Eintragung (§§ 873, 925 BGB)"],
+[3,"Zwangsversteigerung – Grenzen","1. Termin: 5/10-Grenze (von Amts wegen) · 7/10-Grenze (auf Antrag)"],
+[4,"Verkehrswert","§ 194 BauGB, Ermittlung nach ImmoWertV"],
+[4,"3 Bewertungsverfahren","Vergleichswert (ETW, Bauland) · Ertragswert (vermietet) · Sachwert (selbst genutztes EFH)"],
+[4,"Beleihungswert","Vorsichtiger, dauerhaft erzielbarer Wert, meist 80–90 % des Marktwerts"],
+[4,"Beleihungsgrenze","60 % des Beleihungswerts (erstrangiger Realkredit)"],
+[4,"Beleihungsauslauf","Darlehen ÷ Beleihungswert × 100"],
+[4,"Ertragswert – Ablauf","Rohertrag − Bewirtschaftung = Reinertrag − Bodenwertverzinsung = Gebäudereinertrag × Vervielfältiger + Bodenwert"],
+[4,"Sachwert – Ablauf","Bodenwert + Gebäudesachwert (NHK − Alterswertminderung) + Außenanlagen × Sachwertfaktor"],
+[5,"Annuität","Jahresrate = Darlehen × (Sollzins + Tilgung)"],
+[5,"Max. Darlehen","Monatsrate × 12 ÷ (Sollzins + Tilgung)"],
+[5,"Effektiver Jahreszins","Sollzins + Kosten an Darlehensgeber (Bearbeitung, Disagio, Provision) – ohne Notar/Grundbuch"],
+[5,"Disagio","Auszahlungsabschlag · senkt Sollzins · bei Vermietung Werbungskosten"],
+[5,"Bereitstellungszinsen","Auf nicht abgerufene Beträge, häufig 0,25 % pro Monat"],
+[5,"Forward-Darlehen","Zinssicherung für Anschlussfinanzierung bis ca. 5 Jahre vorher, mit Aufschlag"],
+[5,"KfW","Antrag vor Vorhabensbeginn über Hausbank/Finanzierungspartner"],
+[5,"Wohnungsbauprämie","10 % auf 700 € / 1.400 € · Einkommensgrenze 35.000 € / 70.000 €"],
+[5,"Kaufnebenkosten","GrESt 3,5–6,5 % · Notar/Grundbuch ca. 1,5–2 % · Makler bis 3,57 % je Partei"],
+[5,"Spekulationsfrist","10 Jahre – außer Selbstnutzung im Verkaufsjahr + 2 Vorjahre"],
+[6,"Gesprächsablauf","Erstinformation → Ziele → Situation → Bedarf → Haushaltsrechnung → Lösung → Risiken/Absicherung → Abschluss"],
+[6,"Eigenkapital-Faustregel","Mindestens Nebenkosten · ideal 20–30 %"],
+[6,"Haushaltsrechnung","Sichere Einnahmen − alle Ausgaben = freier Betrag; Rate mit Puffer darunter"],
+[6,"Mieteinnahmen in der Haushaltsrechnung","Meist nur 70–80 % der Kaltmiete"],
+[6,"Absicherung","Risikolebensversicherung, Berufsunfähigkeit, Wohngebäudeversicherung"],
+[1,"Wer braucht keine § 34i-Erlaubnis?","Kreditinstitute mit KWG-Erlaubnis und Wertpapierinstitute (Abs. 3) · Vermittler mit EU-/EWR-Zulassung (Abs. 4) · angestellte Mitarbeiter eines Erlaubnisinhabers"],
+[2,"Info vor Ende der Zinsbindung","Darlehensgeber spätestens 3 Monate vorher (§ 493 Abs. 1 BGB)"],
+[2,"Anschlussfinanzierung, gleiche Bank","Keine neue Kreditwürdigkeitsprüfung, außer bei deutlicher Erhöhung (§ 505a Abs. 3 BGB)"],
+[2,"Form des Darlehensvertrags","Schriftform, elektronische Form zulässig (§ 492 BGB)"],
+[3,"Erbbaurecht","Gebäude auf fremdem Grund · Erbbauzins · eigenes Erbbaugrundbuch · oft 99 Jahre"],
+[3,"Wohnungseigentum","Sondereigentum + Miteigentumsanteil · Teilungserklärung · Wohnungsgrundbuch"],
+[3,"Baulasten","Im Baulastenverzeichnis, nicht im Grundbuch"],
+[3,"Finanzierungsvollmacht","Käufer darf Grundschuld schon vor Umschreibung eintragen lassen"],
+[4,"Bruttomietrendite","Jahresnettokaltmiete ÷ Kaufpreis × 100 · Kaufpreisfaktor = Kehrwert"],
+[4,"Wohnfläche (WoFlV)","Balkon meist 1/4 (max. 1/2) · 1–2 m Höhe zur Hälfte · unter 1 m gar nicht"],
+[5,"Volltilger","Am Ende der Zinsbindung komplett getilgt – kein Zinsänderungsrisiko"],
+[5,"Prolongation vs. Umschuldung","Bisherige Bank vs. neue Bank (Grundschuld per Abtretung)"],
+[5,"Bausparvertrag","Ansparen → Zuteilung → Darlehen · Abschlussgebühr ca. 1–1,6 %"],
+[6,"Selbstständige","Durchschnitt der letzten 2–3 Jahre, BWA, Bilanzen, Steuerbescheide"],
+[6,"Datenschutz","Vor Weitergabe an Banken Auftrag/Einwilligung des Kunden"],
+[7,"Geschäftsfähigkeit","Unter 7: geschäftsunfähig · 7–17: beschränkt · ab 18: voll"],
+[7,"Kreditfähigkeit vs. Kreditwürdigkeit","Rechtlich einen Kredit abschließen können vs. wirtschaftlich zurückzahlen können"],
+[7,"Abstraktionsprinzip","Kaufvertrag (Verpflichtung) und Auflassung (Verfügung) sind getrennt"],
+[7,"Werkvertrag vs. Dienstvertrag","Werkvertrag schuldet Erfolg (Bau) · Dienstvertrag schuldet Tätigkeit"],
+[7,"Anfechtung","Irrtum: unverzüglich · arglistige Täuschung: 1 Jahr ab Entdeckung"],
+[7,"Grundstückskaufvertrag – Form","Notarielle Beurkundung (§ 311b BGB) · Entwurf 2 Wochen vorher an Verbraucher"],
+[7,"Bauträger / MaBV","Grundstück + Gebäude aus einer Hand · Zahlung in bis zu 7 Raten nach Baufortschritt"],
+[7,"Gefahrübergang","Mit Übergabe (§ 446 BGB) – Besitz, Nutzen, Lasten meist nach Kaufpreiszahlung"],
+[7,"Zwangsversteigerung – Erwerb","Eigentum mit Zuschlag · Sicherheitsleistung 10 % des Verkehrswerts"],
+[7,"Nicht eingetragene Lasten","Baulasten · gesetzliches Vorkaufsrecht der Gemeinde · öffentliche Lasten"],
+[8,"AGB-Recht","Überraschende Klauseln gelten nicht (§ 305c) · Individualabrede geht vor (§ 305b) · Inhaltskontrolle (§ 307)"],
+[8,"UWG – Telefon & E-Mail","Werbung an Verbraucher nur mit vorheriger ausdrücklicher Einwilligung (§ 7 UWG)"],
+[8,"UWG – Ansprüche","Beseitigung, Unterlassung, Schadensersatz, Gewinnabschöpfung"],
+[8,"Bezeichnung „Bank“","Nur für Kreditinstitute mit Erlaubnis (§ 39 KWG)"],
+[8,"Aufsicht","Banken/Versicherer: BaFin + Bundesbank · § 34i-Vermittler: Gewerbeaufsicht (IHK/Gewerbeamt)"],
+[8,"DSGVO-Bußgeld","Bis 20 Mio. € oder 4 % des weltweiten Jahresumsatzes"],
+[8,"Geldwäschegesetz","Identifizieren · wirtschaftlich Berechtigter · PEP-Prüfung · Verdacht an FIU · kein Tipping-off · 5 Jahre aufbewahren"],
+[8,"Schlichtung","Ombudsmann private Banken · Verbände Sparkassen/Genossen · Bundesbank – für Verbraucher kostenlos"],
+[9,"EZB","Geldpolitik im Euroraum · Ziel Preisstabilität (2 % mittelfristig)"],
+[9,"Politikarten","Geldpolitik (EZB) · Fiskalpolitik (Staatseinnahmen/-ausgaben) · Ordnungs-, Struktur-, Prozesspolitik"],
+[9,"Langfristige Bauzinsen","Orientieren sich an Pfandbrief- und Bundesanleiherenditen"],
+[9,"Einkommensteuer","Eingangssatz 14 % · Spitzensatz 42 % (45 %) · Grundfreibetrag · Splitting bei Ehegatten"],
+[9,"Vermietung – sofort abziehbar","Schuldzinsen, Grundschuldkosten, Disagio, Erhaltungsaufwand"],
+[9,"Vermietung – über AfA","Gebäudeanteil inkl. anteiliger Kaufnebenkosten · Boden nie"],
+[9,"Anschaffungsnaher Aufwand","Über 15 % der Gebäudekosten (netto) in 3 Jahren → AfA statt Sofortabzug"],
+[9,"Steuerermäßigungen Selbstnutzer","Handwerker 20 % der Arbeitskosten (max. 1.200 €) · energetisch § 35c: 20 %, max. 40.000 €"],
+[9,"Tilgungssatz aus Rate","Rate × 12 ÷ Darlehen − Sollzins"],
+[10,"Zinsänderungsrisiko","Höhere Rate oder längere Laufzeit nach Ende der Zinsbindung"],
+[10,"Elementarschäden","Hochwasser, Starkregen, Erdrutsch – nur mit Zusatzbaustein versichert"],
+[10,"Bauphase versichern","Bauherrenhaftpflicht · Bauleistungsversicherung · Feuerrohbau"],
+[10,"Nichtabnahmeentschädigung","Kunde nimmt zugesagtes Darlehen nicht ab → Bank verlangt Ersatz"],
+[10,"§ 493 Abs. 5 BGB","Bei Rückzahlungswunsch: Bank informiert unverzüglich über VFE"],
+[10,"Prolongation vs. Umschuldung","Prolongation bequem · Umschuldung oft günstiger (Grundschuld per Abtretung)"],
+[10,"Gesamtschuldner","Jeder haftet für die ganze Schuld – Entlassung nur mit Zustimmung der Bank"],
+[5,"1a / 1b-Darlehen","1a: innerhalb 60 % des Beleihungswerts · 1b: darüber, mit Zinsaufschlag"],
+[5,"Indirekte Nebenkosten","Schätzkosten · Bauzeit-/Bereitstellungszinsen · Teilvalutierungszuschlag · Disagio"],
+[5,"Policendarlehen","Darlehen gegen Rückkaufswert einer Lebensversicherung"],
+[3,"Bürgschaft","Schriftform (§ 766) · bankenüblich selbstschuldnerisch · Höchstbetrag begrenzt Risiko"],
+[3,"Negativerklärung","Objekt nicht ohne Zustimmung der Bank belasten/verkaufen – bei Blankodarlehen"],
+[3,"Rückgewähranspruch","Nach Zweckwegfall Rückgabe/Löschung der Grundschuld verlangen"],
+[6,"Fragetechnik","Offen (W-Fragen) für Bedarf · geschlossen zum Bestätigen · Alternativfrage zum Abschluss"],
+[6,"Nutzenargumentation","Merkmal → Vorteil → Nutzen für genau diesen Kunden"]
+];
+
+const STOFF={
+1:`<p>Wer gewerbsmäßig Immobiliar-Verbraucherdarlehen vermittelt oder dazu berät, braucht eine Erlaubnis nach <b>§ 34i GewO</b>. Grundlage: EU-Wohnimmobilienkreditrichtlinie 2014/17/EU, umgesetzt zum 21.03.2016. Details regelt die <b>ImmVermV</b>.</p>
+<div class="tbl"><table><tr><th>Voraussetzung</th><th>Inhalt</th></tr>
+<tr><td>Zuverlässigkeit</td><td>keine einschlägigen Verurteilungen in den letzten 5 Jahren</td></tr>
+<tr><td>Vermögensverhältnisse</td><td>keine Insolvenz, kein Schuldnerverzeichnis</td></tr>
+<tr><td>Berufshaftpflicht</td><td>460.000 € je Fall / 750.000 € pro Jahr (§ 10 ImmVermV)</td></tr>
+<tr><td>Sachkunde</td><td>IHK-Prüfung oder gleichgestellter Abschluss (z. B. Bankkaufmann)</td></tr>
+<tr><td>Niederlassung</td><td>Hauptniederlassung/Wohnsitz im Inland</td></tr></table></div>
+<ul><li><b>Register:</b> § 11a GewO, IHK-Vermittlerregister; auch mitwirkende Mitarbeiter</li>
+<li><b>Weiterbildung:</b> für § 34i keine gesetzliche Stundenpflicht (anders als § 34d/§ 34c) – Fortbildung bleibt sinnvoll</li>
+<li><b>Gebundener Vermittler:</b> braucht ebenfalls die Erlaubnis (keine Ausnahme wie bei § 34d); Status wird im Register vermerkt · <b>Abs. 3:</b> Kreditinstitute befreit · <b>Abs. 4:</b> Vermittler mit EU-/EWR-Zulassung (Europäischer Pass)</li>
+<li><b>Honorarberater</b> (Abs. 5): nur Kundenhonorar, keine Provisionen</li>
+<li><b>Erstinformation:</b> Name, Anschrift, Registernummer, Status, Vergütung/Provisionen, Beschwerdestellen</li>
+<li><b>§§ 655a–e BGB:</b> Vermittlungsvertrag in Textform mit Vergütung in %; Vergütung erst bei Auszahlung und Ablauf des Widerrufs; keine Nebenentgelte</li></ul>`,
+2:`<p>Geregelt in <b>§§ 491 ff. BGB</b> und <b>Art. 247 EGBGB</b>. Immobiliar-Verbraucherdarlehen = grundpfandrechtlich besichert ODER für Erwerb/Erhalt von Immobilieneigentum.</p>
+<div class="tbl"><table><tr><th>Thema</th><th>Regel</th><th>Norm</th></tr>
+<tr><td>Information</td><td>ESIS-Merkblatt vor Vertragsschluss</td><td>§ 491a BGB</td></tr>
+<tr><td>Bedenkzeit</td><td>mind. 7 Tage, wenn kein Widerrufsrecht</td><td>§ 495 III</td></tr>
+<tr><td>Widerruf</td><td>14 Tage; max. 12 Monate + 14 Tage</td><td>§§ 355, 356b</td></tr>
+<tr><td>Kreditwürdigkeit</td><td>nicht überwiegend Immobilienwert</td><td>§§ 505a–d</td></tr>
+<tr><td>Sanktion</td><td>marktüblicher Zins, fristlose Kündigung</td><td>§ 505d</td></tr>
+<tr><td>Beratung</td><td>geeignete Produkte, dauerhafter Datenträger, Abraten erlaubt</td><td>§ 511</td></tr>
+<tr><td>Kopplung</td><td>verboten, Ausnahmen (Konto, Bauspar, Versicherung)</td><td>§§ 492a/b</td></tr>
+<tr><td>Verzugszins</td><td>2,5 PP über Basiszins</td><td>§ 497 IV</td></tr>
+<tr><td>Fälligstellung</td><td>2 Raten + 2,5 % + 2 Wochen Frist</td><td>§ 498</td></tr>
+<tr><td>Fremdwährung</td><td>Umwandlungsrecht</td><td>§ 503</td></tr></table></div>
+<h3>Vorzeitige Rückzahlung</h3>
+<ul><li>Nach 10 Jahren ab Vollauszahlung: Kündigung mit 6 Monaten Frist ohne VFE (§ 489 I Nr. 2)</li>
+<li>Variabel: jederzeit mit 3 Monaten (§ 489 II)</li>
+<li>Berechtigtes Interesse (Verkauf): außerordentlich gegen VFE (§§ 490 II, 502)</li>
+<li>VFE: Aktiv-Aktiv- oder Aktiv-Passiv-Methode, abgezinst, minus ersparte Kosten</li></ul>`,
+3:`<div class="tbl"><table><tr><th>Teil</th><th>Inhalt</th></tr>
+<tr><td>Aufschrift</td><td>Amtsgericht, Bezirk, Blatt</td></tr>
+<tr><td>Bestandsverzeichnis</td><td>Gemarkung, Flur, Flurstück, Größe</td></tr>
+<tr><td>Abteilung I</td><td>Eigentümer, Erwerbsgrundlage</td></tr>
+<tr><td>Abteilung II</td><td>Lasten: Wohnrecht, Nießbrauch, Wegerecht, Vorkaufsrecht, Auflassungsvormerkung</td></tr>
+<tr><td>Abteilung III</td><td>Grundschuld, Hypothek, Rentenschuld</td></tr></table></div>
+<ul><li>Einsicht bei berechtigtem Interesse (§ 12 GBO); öffentlicher Glaube (§ 892 BGB)</li>
+<li>Rang: Locusprinzip (gleiche Abt.), Tempusprinzip (verschiedene Abt.); Rangrücktritt möglich</li>
+<li>Eigentum: Auflassung + Eintragung (§§ 873, 925 BGB); Auflassungsvormerkung schützt den Käufer</li>
+<li><b>Grundschuld:</b> nicht akzessorisch, revalutierbar, Sicherungszweckerklärung, Buch- oder Briefgrundschuld, meist vollstreckbar; Grundschuldzinsen 12–18 % als Puffer</li>
+<li><b>Hypothek:</b> akzessorisch, kaum noch genutzt</li>
+<li>Weitere Sicherheiten: Abtretung LV/RV, Bausparguthaben, Bürgschaft, Depotverpfändung</li>
+<li>Zwangsversteigerung: 5/10- und 7/10-Grenze im ersten Termin</li></ul>`,
+4:`<p>Verkehrswert nach <b>§ 194 BauGB</b>, Ermittlung nach <b>ImmoWertV</b>.</p>
+<div class="tbl"><table><tr><th>Verfahren</th><th>Objekte</th><th>Kern</th></tr>
+<tr><td>Vergleichswert</td><td>ETW, Bauland, RH</td><td>Vergleichspreise, Bodenrichtwerte</td></tr>
+<tr><td>Ertragswert</td><td>MFH, Gewerbe, vermietet</td><td>nachhaltige Miete kapitalisiert</td></tr>
+<tr><td>Sachwert</td><td>selbst genutztes EFH/ZFH</td><td>Boden + Gebäude − Alterswertminderung</td></tr></table></div>
+<h3>Ertragswert</h3><ol><li>Jahresrohertrag (Nettokaltmiete × 12)</li><li>− Bewirtschaftungskosten = Reinertrag</li><li>− Bodenwert × Liegenschaftszins = Gebäudereinertrag</li><li>× Vervielfältiger = Gebäudeertragswert</li><li>+ Bodenwert = Ertragswert</li></ol>
+<h3>Sachwert</h3><ol><li>Bodenwert</li><li>+ Gebäudesachwert (NHK − Alterswertminderung)</li><li>+ Außenanlagen</li><li>× Sachwertfaktor</li></ol>
+<h3>Beleihung</h3><ul><li>Beleihungswert ≈ 80–90 % des Marktwerts (BelWertV)</li><li>Beleihungsgrenze 60 % (Realkredit)</li><li>Beleihungsauslauf = Darlehen ÷ Beleihungswert × 100</li><li>Nebenkosten erhöhen den Wert nicht</li></ul>`,
+5:`<div class="tbl"><table><tr><th>Darlehen</th><th>Rate</th><th>Einsatz</th></tr>
+<tr><td>Annuität</td><td>konstant, Tilgung steigt</td><td>Standard</td></tr>
+<tr><td>Tilgungsdarlehen</td><td>fallend</td><td>selten privat</td></tr>
+<tr><td>Endfällig</td><td>nur Zinsen</td><td>mit Tilgungsersatz, Kapitalanleger</td></tr>
+<tr><td>Variabel</td><td>schwankt (Euribor)</td><td>Zwischenfinanzierung</td></tr>
+<tr><td>Forward</td><td>fest ab Anschluss</td><td>Zinssicherung, Aufschlag</td></tr>
+<tr><td>Bauspar</td><td>fest, hohe Tilgung</td><td>Zinssicherheit</td></tr>
+<tr><td>KfW</td><td>oft tilgungsfreie Anlaufjahre</td><td>Antrag vor Vorhabensbeginn</td></tr></table></div>
+<div class="formula">Jahresrate = Darlehen × (Sollzins + Tilgung)</div>
+<div class="formula">Max. Darlehen = Rate × 12 ÷ (Sollzins + Tilgung)</div>
+<ul><li><b>Effektivzins:</b> Sollzins + Bearbeitung, Disagio, Provision – ohne Notar/Grundbuch (§ 16 PAngV)</li>
+<li><b>Disagio:</b> weniger Auszahlung, niedriger Sollzins</li>
+<li><b>Bereitstellungszins:</b> oft 0,25 % p. M.</li>
+<li><b>Sondertilgung:</b> oft 5–10 % p. a. vereinbar</li>
+<li><b>Nebenkosten:</b> GrESt 3,5–6,5 % (Sachsen 5,5 %), Notar/Grundbuch 1,5–2 %, Makler bis 3,57 %</li>
+<li><b>Förderung:</b> KfW, Landesförderbanken (z. B. SAB), Wohn-Riester, Wohnungsbauprämie 10 % auf 700/1.400 €, Arbeitnehmersparzulage 9 % auf 470 €</li>
+<li><b>Steuer:</b> Selbstnutzung keine Zinsabzüge; Vermietung: Zinsen, AfA (3 % ab 2023, sonst 2 %/2,5 %), Disagio; Spekulationsfrist 10 Jahre</li></ul>`,
+6:`<ol><li>Begrüßung & Erstinformation</li><li>Anlass & Ziele (Kauf, Bau, Modernisierung, Anschluss; Selbstnutzung/Vermietung)</li><li>Persönliche Situation & Zukunft (Kinder, Elternzeit, Rente)</li><li>Finanzierungsbedarf: Kaufpreis + Nebenkosten + Modernisierung − Eigenkapital</li><li>Haushaltsrechnung: freier Betrag</li><li>Lösung: Darlehensart, Zinsbindung, Tilgung, Sondertilgung, Förderung</li><li>Risiken & Absicherung (RLV, BU, Gebäude)</li><li>Zusammenfassung, Unterlagen, nächste Schritte, Dokumentation</li></ol>
+<ul><li>Eigenkapital mindestens Nebenkosten, ideal 20–30 %</li><li>Rate ≈ max. 35–40 % des Nettos, mit Puffer</li><li>Mieten nur 70–80 % ansetzen; Überstunden/Boni vorsichtig</li><li>Unterlagen: Ausweis, Gehaltsnachweise, Lohnsteuerbescheinigung bzw. BWA/Bilanzen/Steuerbescheide, Eigenkapitalnachweise, Exposé, Grundbuch, Flurkarte, Grundrisse, Wohnfläche; bei ETW Teilungserklärung, Protokolle, Wirtschaftsplan</li></ul>
+<p><b>Häufige Fehler:</b> Erstinformation vergessen, sofort Produkt verkaufen, keine Haushaltsrechnung, Zinsänderungsrisiko nicht erwähnt, keine Zusammenfassung.</p>`,
+7:`<p>Grundlagen aus dem BGB, die jeder Immobilienkauf berührt.</p>
+<div class="tbl"><table><tr><th>Begriff</th><th>Kern</th></tr>
+<tr><td>Rechtsfähigkeit</td><td>ab Geburt (§ 1 BGB)</td></tr>
+<tr><td>Geschäftsfähigkeit</td><td>unter 7 unfähig · 7–17 beschränkt · ab 18 voll</td></tr>
+<tr><td>Vertrag</td><td>Angebot + Annahme; Abstraktionsprinzip: Verpflichtung ≠ Verfügung</td></tr>
+<tr><td>Anfechtung</td><td>Irrtum unverzüglich · Täuschung/Drohung 1 Jahr</td></tr>
+<tr><td>Widerruf / Rücktritt</td><td>Widerruf = Verbraucherrecht ohne Grund · Rücktritt braucht Rücktrittsrecht</td></tr>
+<tr><td>Vertragsarten</td><td>Darlehen (§ 488) · Werkvertrag = Erfolg · Dienstvertrag = Tätigkeit · Geschäftsbesorgung (§ 675)</td></tr></table></div>
+<h3>Grundstück & Erwerb</h3>
+<ul><li>Bauland · Rohbauland · Bauerwartungsland · land-/forstwirtschaftliche Fläche</li>
+<li>Gebäude = wesentlicher Bestandteil (§ 94) · Zubehör (§ 97) geht im Zweifel mit</li>
+<li>Wohnungs-/Teileigentum (WEG) · Erbbaurecht mit Erbbaugrundbuch</li>
+<li>Erwerb durch Kauf, Erbschaft, Schenkung, Zuschlag (Eigentum mit Zuschlag, 10 % Sicherheitsleistung)</li>
+<li>Direktkauf · Maklerkauf · Bauträgerkauf (MaBV, bis 7 Raten) · Bauherr (Werkverträge)</li>
+<li>Beurkundung (§ 311b), Entwurf 2 Wochen vorher; Notar belehrt neutral</li>
+<li>Ablauf: Kaufvertrag → Vormerkung → Negativattest Gemeinde → Fälligkeit → Zahlung → Unbedenklichkeitsbescheinigung → Umschreibung</li>
+<li>Besitz, Nutzen, Lasten meist mit Kaufpreiszahlung; Gefahr mit Übergabe (§ 446)</li>
+<li>Zugewinngemeinschaft als gesetzlicher Güterstand · Erbengemeinschaft verfügt gemeinsam</li></ul>
+<h3>Grundbuch-Verfahren</h3><ul><li>Antrag + Bewilligung + Eintragung; Löschung mit Löschungsbewilligung</li><li>Abt. II: Vormerkung, Widerspruch, Verfügungsbeschränkung, Reallast, Dienstbarkeiten, Vorkaufsrecht</li><li>Nicht eingetragen: Baulasten, gesetzliches Vorkaufsrecht, öffentliche Lasten</li></ul>`,
+8:`<div class="tbl"><table><tr><th>Bereich</th><th>Kernregeln</th></tr>
+<tr><td>AGB-Recht</td><td>§ 305b Individualabrede vor AGB · § 305c überraschende Klausel gilt nicht · § 307 Inhaltskontrolle · BGH 2014: Bearbeitungsentgelt in AGB unwirksam</td></tr>
+<tr><td>UWG</td><td>keine Irreführung (§ 5) · Telefon/E-Mail nur mit Einwilligung (§ 7) · Unterlassung, Schadensersatz, Gewinnabschöpfung</td></tr>
+<tr><td>Firma & Titel</td><td>Firmenwahrheit (§ 18 HGB) · „Bank“ nur mit Erlaubnis (§ 39 KWG)</td></tr>
+<tr><td>Rechts-/Steuerberatung</td><td>keine Einzelfallberatung durch Vermittler (RDG, StBerG)</td></tr>
+<tr><td>Werbung</td><td>Sollzins, Nettodarlehensbetrag, Effektivzins, repräsentatives Beispiel (§ 17 PAngV)</td></tr>
+<tr><td>Aufsicht</td><td>Banken: BaFin/Bundesbank (ggf. EZB) · Vermittler: Gewerbeaufsicht · Schlichtung kostenlos</td></tr>
+<tr><td>Datenschutz</td><td>DSGVO: Zweckbindung, Datenminimierung, Auskunft/Löschung · Bußgeld bis 20 Mio. € / 4 %</td></tr>
+<tr><td>Geldwäsche</td><td>Identifizieren, wirtschaftlich Berechtigter, PEP, Verdacht an FIU, kein Tipping-off, 5 Jahre aufbewahren</td></tr>
+<tr><td>EU-Binnenmarkt</td><td>Dienstleistungs- und Niederlassungsfreiheit · Europäischer Pass</td></tr></table></div>
+<p>Berufsverbände vertreten Interessen und bieten Weiterbildung; Gewerkschaften vertreten Arbeitnehmer. Die Erlaubnis erteilt nur die Behörde.</p>`,
+9:`<h3>Wirtschaft</h3><ul><li>Preise aus Angebot und Nachfrage; Einfluss: Zinsen, Einkommen, Bevölkerung, Bau- und Bodenkosten</li>
+<li>Steigende Zinsen dämpfen Nachfrage und Preise</li>
+<li>EZB = Geldpolitik (Ziel 2 % Inflation) · Fiskalpolitik = Staat · Ordnungs-, Struktur-, Prozesspolitik</li>
+<li>Konjunktur: Aufschwung → Boom → Abschwung → Rezession; im Abschwung strengere Kreditvergabe</li>
+<li>Variable Zinsen folgen Leitzins/Euribor, lange Bauzinsen den Pfandbrief- und Bundesanleiherenditen</li></ul>
+<h3>Rechnen mit Annuitäten</h3>
+<div class="formula">Tilgungssatz = Monatsrate × 12 ÷ Darlehen − Sollzins</div>
+<div class="formula">Kopplung: Zinsen Festdarlehen + Sparrate Tilgungsersatz</div>
+<p>Je höher Zins bei gleicher Rate, desto länger die Laufzeit. Faustwerte bei 4 % Zins: 1 % Tilgung ≈ 40 Jahre, 2 % ≈ 28 Jahre, 3 % ≈ 21 Jahre.</p>
+<h3>Steuern</h3>
+<div class="tbl"><table><tr><th>Thema</th><th>Regel</th></tr>
+<tr><td>Grunderwerbsteuer</td><td>3,5–6,5 % vom Kaufpreis (ohne angemessen bewertetes Inventar); Unbedenklichkeitsbescheinigung</td></tr>
+<tr><td>Grundsteuer</td><td>Gemeinde, Hebesatz; seit 2025 neu bewertet (Bundesmodell oder Ländermodell)</td></tr>
+<tr><td>Selbstnutzung</td><td>keine Zinsabzüge; § 35a Handwerker 20 % (max. 1.200 €); § 35c energetisch 20 % (max. 40.000 €)</td></tr>
+<tr><td>Vermietung</td><td>Zinsen, Grundschuldkosten, Disagio, Erhaltung sofort; Gebäude + Nebenkosten über AfA; Boden nie</td></tr>
+<tr><td>Anschaffungsnah</td><td>> 15 % der Gebäudekosten in 3 Jahren → AfA</td></tr>
+<tr><td>Angehörige</td><td>ab 66 % ortsüblicher Miete voll entgeltlich; 50–66 % Prognose; unter 50 % Aufteilung</td></tr>
+<tr><td>Verkauf</td><td>steuerfrei nach 10 Jahren oder bei Selbstnutzung (Verkaufsjahr + 2 Vorjahre)</td></tr>
+<tr><td>Einkommensteuer</td><td>Einkünfte − Sonderausgaben − agB − Freibeträge = zvE · 14 % bis 42/45 % · Grundfreibetrag · Splitting</td></tr></table></div>`,
+10:`<h3>Risiken der Finanzierung</h3>
+<ul><li>Zinsänderung nach Zinsbindung → höhere Rate oder längere Laufzeit</li>
+<li>Tilgungsersatz (Fonds, LV) kann Lücke lassen · Wechselkurs bei Fremdwährung</li>
+<li>Persönlich: Arbeitslosigkeit, Krankheit, BU, Tod, Scheidung, Ortswechsel</li>
+<li>Objekt: Sanierung, Gebäudeschäden; Elementarschäden nur mit Zusatzbaustein</li>
+<li>Bauphase: Bauherrenhaftpflicht, Bauleistungs-, Feuerrohbauversicherung</li></ul>
+<h3>Notleidende Kredite</h3>
+<ul><li>Frühwarnzeichen: Rückstände, Überziehungen, Kontaktabbruch</li>
+<li>Lösungen: Stundung, Tilgungsaussetzung, Laufzeitstreckung, freihändiger Verkauf</li>
+<li>Verwertung: Zwangsversteigerung, Zwangsverwaltung, Zwangsräumung, Abtretungen, Bürgen</li></ul>
+<h3>Beendigung</h3>
+<div class="tbl"><table><tr><th>Wer</th><th>Wann</th></tr>
+<tr><td>Kunde</td><td>Ende Zinsbindung · nach 10 Jahren (6 Mon.) · variabel (3 Mon.) · berechtigtes Interesse gegen VFE · § 505d</td></tr>
+<tr><td>Bank</td><td>Verzug (§ 498) · Vermögensverschlechterung (§ 490 I) · wichtiger Grund (AGB)</td></tr></table></div>
+<ul><li>VFE: Info-Pflicht bei Rückzahlungswunsch (§ 493 V) · Nichtabnahmeentschädigung bei Nichtabnahme</li>
+<li>Prolongation: bequem, oft nicht der beste Zins · Umschuldung: günstiger, Grundschuld per Abtretung</li>
+<li>Gesamtschuldner haften voll – Entlassung nur mit Zustimmung der Bank</li></ul>`
+};
+
+/* ===================== HILFEN ===================== */
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const eur=(n,d=2)=>fmt(n,d)+' €';
+const rnd=(a,b,s=1)=>Math.round((a+Math.random()*(b-a))/s)*s;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let mem={stats:{},fc:{},chk:{}};
+function load(){try{const s=localStorage.getItem('lerntool34i');if(s)mem=Object.assign(mem,JSON.parse(s))}catch(e){}}
+function save(){try{localStorage.setItem('lerntool34i',JSON.stringify(mem))}catch(e){}}
+load();
+function rec(id,ok){const s=mem.stats[id]||{r:0,w:0,last:null};ok?s.r++:s.w++;s.last=ok;mem.stats[id]=s;save()}
+
+/* theme */
+$('themeBtn').onclick=()=>{const r=document.documentElement;const cur=r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');r.dataset.theme=cur==='dark'?'light':'dark'};
+
+/* nav */
+function go(s){document.querySelectorAll('section').forEach(x=>x.classList.toggle('on',x.id===s));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));if(s==='start')dash();window.scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.s));
+
+/* ===================== DASHBOARD ===================== */
+function dash(){
+  let h='';
+  for(const m in MODS){
+    const qs=Q.map((q,i)=>[q,i]).filter(([q])=>q.m==m);
+    const seen=qs.filter(([,i])=>mem.stats[i]).length;
+    const good=qs.filter(([,i])=>mem.stats[i]&&mem.stats[i].last).length;
+    const p=Math.round(good/qs.length*100);
+    h+=`<div class="stat"><span>${m} · ${MODS[m]}</span><span class="muted">${good}/${qs.length} sicher</span></div><div class="bar" style="margin-bottom:8px"><i style="width:${p}%"></i></div>`;
+  }
+  const weak=Q.filter((q,i)=>mem.stats[i]&&mem.stats[i].last===false).length;
+  h+=`<p class="muted" style="margin:8px 0 0">${weak} Frage(n) zuletzt falsch beantwortet · ${Q.length} Fragen · ${FC.length} Karteikarten</p>`;
+  $('dash').innerHTML=h;
+}
+function resetStats(){if(confirm('Gesamten Lernfortschritt löschen?')){mem={stats:{},fc:{},chk:{}};save();dash();renderChecklist()}}
+
+/* ===================== LERNSTOFF ===================== */
+$('stoffBox').innerHTML=Object.keys(MODS).map(m=>`<details><summary>Modul ${m}: ${MODS[m]}</summary><div class="in">${STOFF[m]}<div class="row" style="margin-top:10px"><button class="btn sec" onclick="go('quiz');startQuiz('${m}')">Quiz zu Modul ${m}</button></div></div></details>`).join('');
+
+/* ===================== KARTEIKARTEN ===================== */
+const modOpts='<option value="all">Alle Module</option>'+Object.keys(MODS).map(m=>`<option value="${m}">${m} · ${MODS[m]}</option>`).join('');
+$('fcMod').innerHTML=modOpts;
+let fcList=[],fcI=0;
+function fcBuild(){const v=$('fcMod').value;fcList=FC.map((c,i)=>i).filter(i=>v==='all'||FC[i][0]==v);
+  fcList.sort((a,b)=>(mem.fc[a]||0)-(mem.fc[b]||0));fcI=0;fcShow()}
+function fcShow(){const c=FC[fcList[fcI]];$('flash').classList.remove('flip');
+  setTimeout(()=>{$('fcF').innerHTML=`<span class="tag">Modul ${c[0]}</span><br>${c[1]}`;$('fcB').textContent=c[2]},150);
+  $('fcPos').textContent=`${fcI+1} / ${fcList.length}`}
+function fcMove(d){fcI=(fcI+d+fcList.length)%fcList.length;fcShow()}
+function fcKnow(ok){const id=fcList[fcI];mem.fc[id]=(mem.fc[id]||0)+(ok?1:-1);save();if(!ok){fcList.splice(Math.min(fcI+4,fcList.length),0,id)}fcMove(1)}
+function fcShuffle(){fcList=shuffle(fcList);fcI=0;fcShow()}
+$('fcMod').onchange=fcBuild;fcBuild();
+
+/* ===================== FRAGE-RENDERER ===================== */
+function qHTML(q,name,order){
+  const multi=q.a.length>1;
+  return `<div class="tag">Modul ${q.m}</div>${multi?'<span class="tag">Mehrere Antworten richtig</span>':''}
+  <p style="font-weight:600;margin:8px 0">${q.q}</p>
+  ${order.map(oi=>`<label class="opt" data-oi="${oi}"><input type="${multi?'checkbox':'radio'}" name="${name}" value="${oi}"><span>${q.o[oi]}</span></label>`).join('')}`;
+}
+function readSel(box){return [...box.querySelectorAll('input:checked')].map(x=>+x.value).sort()}
+function isOk(q,sel){const a=q.a.slice().sort();return a.length===sel.length&&a.every((v,i)=>v===sel[i])}
+function markOpts(box,q){box.querySelectorAll('.opt').forEach(l=>{const oi=+l.dataset.oi;const inp=l.querySelector('input');inp.disabled=true;
+  if(q.a.includes(oi))l.classList.add('ok');else if(inp.checked)l.classList.add('bad')})}
+
+/* ===================== QUIZ ===================== */
+$('qMod').innerHTML=modOpts;
+let qz={list:[],i:0,ok:0};
+function startQuiz(mode){
+  let ids=Q.map((q,i)=>i);
+  if(mode==='weak'){ids=ids.filter(i=>mem.stats[i]&&mem.stats[i].last===false);
+    if(!ids.length){$('quizBox').innerHTML='<div class="card">Keine Schwachstellen – super! Starte ein Modul-Quiz oder die Simulation.</div>';return}}
+  else if(mode!=='all')ids=ids.filter(i=>Q[i].m==mode);
+  qz={list:shuffle(ids),i:0,ok:0};showQ();
+}
+function showQ(){
+  if(qz.i>=qz.list.length){const p=Math.round(qz.ok/qz.list.length*100);
+    $('quizBox').innerHTML=`<div class="card"><div class="big">${p} %</div><p>${qz.ok} von ${qz.list.length} richtig.</p><div class="row"><button class="btn" onclick="startQuiz('weak')">Fehler wiederholen</button><button class="btn sec" onclick="go('start')">Zum Lernstand</button></div></div>`;return}
+  const id=qz.list[qz.i],q=Q[id];
+  $('quizBox').innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">Frage ${qz.i+1} von ${qz.list.length}</span><span class="muted">${qz.ok} richtig</span></div>
+  <div class="bar" style="margin:6px 0 10px"><i style="width:${qz.i/qz.list.length*100}%"></i></div>
+  <div id="qq">${qHTML(q,'qz',shuffle(q.o.map((_,i)=>i)))}</div>
+  <div id="qfb"></div><div class="row" style="margin-top:12px"><button class="btn" id="qBtn">Prüfen</button></div></div>`;
+  $('qBtn').onclick=()=>{
+    const sel=readSel($('qq'));if(!sel.length)return;
+    const ok=isOk(q,sel);rec(id,ok);if(ok)qz.ok++;markOpts($('qq'),q);
+    $('qfb').innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b>${ok?'Richtig!':'Leider falsch.'}</b> Richtig: ${q.a.map(a=>q.o[a]).join(' · ')}<br><span class="muted">${q.e}</span></div>`;
+    $('qBtn').textContent='Weiter ›';$('qBtn').onclick=()=>{qz.i++;showQ()};
+  };
+}
+
+/* ===================== RECHENTRAINER ===================== */
+const ZS=[2.8,3.1,3.4,3.6,3.8,4.0,4.2];
+const BL=[["Bayern",3.5],["Sachsen",5.5],["Berlin",6.0],["Hamburg",5.5],["Nordrhein-Westfalen",6.5],["Hessen",6.0],["Baden-Württemberg",5.0],["Niedersachsen",5.0]];
+const CALC={
+ rate:{n:"Monatsrate (Annuität)",g(){const K=rnd(150000,500000,5000),z=pick(ZS),t=pick([1.5,2,2.5,3]);const r=K*(z+t)/100/12;
+   return{t:`Darlehen ${eur(K,0)}, Sollzins ${fmt(z,1)} %, anfängliche Tilgung ${fmt(t,1)} %. Wie hoch ist die <b>Monatsrate</b>?`,a:r,s:`${eur(K,0)} × (${fmt(z,1)} % + ${fmt(t,1)} %) = ${eur(K*(z+t)/100)} pro Jahr ÷ 12 = <b>${eur(r)}</b>`}}},
+ zins:{n:"Zinsanteil 1. Monat",g(){const K=rnd(150000,500000,5000),z=pick(ZS);const r=K*z/100/12;
+   return{t:`Darlehen ${eur(K,0)}, Sollzins ${fmt(z,1)} %. Wie hoch ist der <b>Zinsanteil der ersten Monatsrate</b>?`,a:r,s:`${eur(K,0)} × ${fmt(z,1)} % ÷ 12 = <b>${eur(r)}</b>`}}},
+ tilg:{n:"Tilgungsanteil 1. Monat",g(){const K=rnd(150000,500000,5000),z=pick(ZS),t=pick([1.5,2,2.5,3]);const R=K*(z+t)/100/12,Z=K*z/100/12;
+   return{t:`Darlehen ${eur(K,0)}, Sollzins ${fmt(z,1)} %, Tilgung ${fmt(t,1)} %. Wie hoch ist der <b>Tilgungsanteil der ersten Monatsrate</b>?`,a:R-Z,s:`Rate ${eur(R)} − Zins ${eur(Z)} = <b>${eur(R-Z)}</b> (Kurzweg: ${eur(K,0)} × ${fmt(t,1)} % ÷ 12)`}}},
+ max:{n:"Maximales Darlehen",g(){const R=rnd(900,2500,50),z=pick(ZS),t=pick([1.5,2,2.5,3]);const K=R*12/((z+t)/100);
+   return{t:`Der Kunde kann höchstens ${eur(R,0)} im Monat zahlen. Sollzins ${fmt(z,1)} %, Tilgung ${fmt(t,1)} %. Wie hoch darf das <b>Darlehen</b> sein?`,a:K,s:`${eur(R,0)} × 12 = ${eur(R*12,0)} ÷ ${fmt(z+t,1)} % = <b>${eur(K,0)}</b>`}}},
+ nk:{n:"Kaufnebenkosten",g(){const P=rnd(200000,600000,10000),[b,g]=pick(BL),no=pick([1.5,2]),ma=pick([0,3.57]);const v=P*(g+no+ma)/100;
+   return{t:`Kaufpreis ${eur(P,0)} in ${b} (Grunderwerbsteuer ${fmt(g,1)} %), Notar/Grundbuch ${fmt(no,1)} %, Makler ${ma?fmt(ma,2)+' %':'keiner'}. Wie hoch sind die <b>Nebenkosten insgesamt</b>?`,a:v,s:`GrESt ${eur(P*g/100,0)} + Notar/GB ${eur(P*no/100,0)}${ma?' + Makler '+eur(P*ma/100,0):''} = <b>${eur(v,0)}</b>`}}},
+ bl:{n:"Beleihungsauslauf",g(){const M=rnd(250000,600000,10000),f=pick([80,85,90]),B=M*f/100,D=rnd(B*0.5,B*1.1,1000);const p=D/B*100;
+   return{t:`Marktwert ${eur(M,0)}, die Bank setzt den Beleihungswert mit ${f} % an. Darlehen ${eur(D,0)}. Wie hoch ist der <b>Beleihungsauslauf in %</b>?`,a:p,u:'%',s:`Beleihungswert ${eur(B,0)}; ${eur(D,0)} ÷ ${eur(B,0)} × 100 = <b>${fmt(p)} %</b>`}}},
+ dis:{n:"Disagio – Auszahlung",g(){const K=rnd(100000,400000,10000),d=pick([1,2,3,4,5]);const a=K*(1-d/100);
+   return{t:`Darlehen ${eur(K,0)} mit ${d} % Disagio. Welcher <b>Betrag wird ausgezahlt</b>?`,a:a,s:`${eur(K,0)} − ${d} % (${eur(K*d/100,0)}) = <b>${eur(a,0)}</b>`}}},
+ ber:{n:"Bereitstellungszinsen",g(){const B=rnd(50000,300000,10000),m=rnd(2,8),p=pick([0.15,0.2,0.25,0.3]);const v=B*p/100*m;
+   return{t:`${eur(B,0)} werden ${m} Monate nach Ende der bereitstellungsfreien Zeit abgerufen. Bereitstellungszins ${fmt(p,2)} % pro Monat. Wie hoch sind die <b>Bereitstellungszinsen</b>?`,a:v,s:`${eur(B,0)} × ${fmt(p,2)} % × ${m} = <b>${eur(v)}</b>`}}},
+ rest:{n:"Restschuld nach Zinsbindung (schwer)",g(){const K=rnd(200000,400000,10000),z=pick(ZS),t=pick([2,2.5,3]),n=pick([5,10,15]);const i=z/100/12,R=K*(z+t)/100/12,N=n*12,q=Math.pow(1+i,N);const RS=K*q-R*(q-1)/i;
+   return{t:`Annuitätendarlehen ${eur(K,0)}, Sollzins ${fmt(z,1)} %, Tilgung ${fmt(t,1)} %, monatliche Zahlung. Wie hoch ist die <b>Restschuld nach ${n} Jahren</b>?`,a:RS,s:`Rate ${eur(R)}; i = ${fmt(z,1)} % ÷ 12; q<sup>${N}</sup> = ${fmt(q,5)}<br>${eur(K,0)} × ${fmt(q,5)} − ${eur(R)} × (${fmt(q,5)} − 1) ÷ ${fmt(i,6)} = <b>${eur(RS,0)}</b>`}}},
+ tilgd:{n:"Tilgungsdarlehen – Jahresrate",g(){const K=rnd(60000,300000,10000),L=pick([10,15,20]),z=pick([3,4,5]),j=rnd(1,4);const T=K/L,RS=K-T*(j-1),r=T+RS*z/100;
+   return{t:`Tilgungsdarlehen ${eur(K,0)}, Laufzeit ${L} Jahre, Zins ${z} %, jährliche Zahlung. Wie hoch ist die <b>Rate im ${j}. Jahr</b>?`,a:r,s:`Tilgung ${eur(T)} p. a.; Restschuld zu Beginn Jahr ${j}: ${eur(RS)}; Zins ${eur(RS*z/100)}; Rate = <b>${eur(r)}</b>`}}},
+ ew:{n:"Ertragswert",g(){const M=rnd(1000,4000,100),bk=pick([15,20,25]),B=rnd(60000,200000,10000),lz=pick([3,3.5,4,4.5]),v=pick([12,14,15,16,18]);
+   const RE=M*12,RN=RE*(1-bk/100),G=RN-B*lz/100,E=G*v+B;
+   return{t:`Nettokaltmiete ${eur(M,0)}/Monat, Bewirtschaftungskosten ${bk} %, Bodenwert ${eur(B,0)}, Liegenschaftszins ${fmt(lz,1)} %, Vervielfältiger ${v}. Wie hoch ist der <b>Ertragswert</b>?`,a:E,s:`Rohertrag ${eur(RE,0)} − ${bk} % = ${eur(RN,0)} − ${eur(B*lz/100,0)} = ${eur(G,0)} × ${v} = ${eur(G*v,0)} + ${eur(B,0)} = <b>${eur(E,0)}</b>`}}},
+ mr:{n:"Bruttomietrendite",g(){const P=rnd(150000,600000,5000),M=rnd(500,2500,25);const r=M*12/P*100;
+   return{t:`Kaufpreis ${eur(P,0)}, Nettokaltmiete ${eur(M,0)} pro Monat. Wie hoch ist die <b>Bruttomietrendite in %</b>?`,a:r,u:'%',s:`${eur(M*12,0)} ÷ ${eur(P,0)} × 100 = <b>${fmt(r)} %</b> (Kaufpreisfaktor ${fmt(P/(M*12),1)})`}}},
+ bw:{n:"Bodenwert",g(){const F=rnd(300,1200,10),B=rnd(80,600,10);const v=F*B;
+   return{t:`Grundstück ${F} m², Bodenrichtwert ${eur(B,0)}/m². Wie hoch ist der <b>Bodenwert</b>?`,a:v,s:`${F} m² × ${eur(B,0)} = <b>${eur(v,0)}</b>`}}},
+ ek:{n:"Eigenkapitalquote",g(){const P=rnd(250000,600000,5000),nk=P*0.1,E=rnd(20000,150000,5000);const q=E/(P+nk)*100;
+   return{t:`Kaufpreis ${eur(P,0)}, Nebenkosten 10 % (${eur(nk,0)}), Eigenkapital ${eur(E,0)}. Wie hoch ist die <b>Eigenkapitalquote am Gesamtaufwand in %</b>?`,a:q,u:'%',s:`${eur(E,0)} ÷ ${eur(P+nk,0)} × 100 = <b>${fmt(q)} %</b>`}}},
+ ts:{n:"Tilgungssatz aus Rate",g(){const K=rnd(150000,450000,10000),z=pick(ZS),t=pick([1,1.5,2,2.5,3]);const R=Math.round(K*(z+t)/100/12);const tt=R*12/K*100-z;
+   return{t:`Darlehen ${eur(K,0)}, Sollzins ${fmt(z,1)} %, vereinbarte Monatsrate ${eur(R,0)}. Wie hoch ist der <b>anfängliche Tilgungssatz in %</b>?`,a:tt,u:'%',s:`${eur(R,0)} × 12 ÷ ${eur(K,0)} = ${fmt(R*12/K*100)} % − ${fmt(z,1)} % = <b>${fmt(tt)} %</b>`}}},
+ kop:{n:"Kopplung Festdarlehen + Bausparen",g(){const K=rnd(100000,350000,10000),z=pick(ZS),b=rnd(150,700,10);const v=K*z/100/12+b;
+   return{t:`Festdarlehen ${eur(K,0)} zu ${fmt(z,1)} % (nur Zinsen), dazu Bausparrate ${eur(b,0)} im Monat. Wie hoch ist die <b>monatliche Gesamtbelastung</b>?`,a:v,s:`${eur(K,0)} × ${fmt(z,1)} % ÷ 12 = ${eur(K*z/100/12)} + ${eur(b,0)} = <b>${eur(v)}</b>`}}},
+ lz:{n:"Laufzeit bis Volltilgung (schwer)",g(){const z=pick([3,3.5,4,4.5]),t=pick([1,1.5,2,2.5,3]);const i=z/100/12,R=(z+t)/100/12;const n=Math.log(R/(R-i))/Math.log(1+i)/12;
+   return{t:`Annuitätendarlehen, Sollzins ${fmt(z,1)} %, anfängliche Tilgung ${fmt(t,1)} %, monatliche Zahlung, Zins bleibt gleich. Nach wie vielen <b>Jahren</b> ist es vollständig getilgt?`,a:n,u:'Jahren',s:`n = ln(R ÷ (R − i)) ÷ ln(1 + i) mit i = ${fmt(z,1)} % ÷ 12 und R = ${fmt(z+t,1)} % ÷ 12 → ${fmt(n*12,0)} Monate = <b>${fmt(n,1)} Jahre</b>`}}},
+ gre:{n:"Grunderwerbsteuer",g(){const P=rnd(150000,700000,5000),[b,g]=pick(BL);const v=P*g/100;
+   return{t:`Kaufpreis ${eur(P,0)} in ${b}. Wie hoch ist die <b>Grunderwerbsteuer</b>?`,a:v,s:`${eur(P,0)} × ${fmt(g,1)} % = <b>${eur(v,0)}</b>`}}},
+ hh:{n:"Haushaltsrechnung",g(){const N=rnd(2800,6500,100),kg=pick([0,259,518]),L=rnd(1200,2400,50),NK=rnd(200,450,10),V=rnd(150,400,10),A=rnd(0,600,50);const f=N+kg-L-NK-V-A;
+   return{t:`Nettoeinkommen ${eur(N,0)}${kg?', Kindergeld '+eur(kg,0):''}. Ausgaben: Lebenshaltung ${eur(L,0)}, Nebenkosten Immobilie ${eur(NK,0)}, Versicherungen ${eur(V,0)}, Auto ${eur(A,0)}. Wie hoch ist der <b>freie Betrag</b>?`,a:f,s:`${eur(N+kg,0)} − ${eur(L+NK+V+A,0)} = <b>${eur(f,0)}</b> – die Rate sollte mit Puffer darunter liegen.`}}}
+};
+$('rType').innerHTML='<option value="mix">Gemischt</option>'+Object.entries(CALC).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
+let cur=null,cStat={r:0,n:0};
+function newCalc(){
+  const k=$('rType').value==='mix'?pick(Object.keys(CALC)):$('rType').value;cur=CALC[k].g();cur.k=k;
+  $('calcBox').innerHTML=`<div class="card"><span class="tag">${CALC[k].n}</span><span class="tag">${cStat.r}/${cStat.n} richtig</span><p>${cur.t}</p>
+  <div class="row"><input type="text" inputmode="decimal" id="cIn" placeholder="Ergebnis in ${cur.u||'€'}" style="width:200px"><button class="btn" id="cBtn">Prüfen</button><button class="btn sec" onclick="showSol()">Lösung</button></div><div id="cFb"></div></div>`;
+  $('cIn').onkeydown=e=>{if(e.key==='Enter')$('cBtn').click()};
+  $('cBtn').onclick=()=>{const v=parseFloat($('cIn').value.replace(/\./g,'').replace(',','.').replace(/[^\d.\-]/g,''));if(isNaN(v))return;
+    const ok=Math.abs(v-cur.a)<=Math.max(Math.abs(cur.a)*0.01,1);cStat.n++;if(ok)cStat.r++;
+    $('cFb').innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b>${ok?'Richtig!':'Nicht ganz.'}</b><br>${cur.s}</div><div class="row" style="margin-top:10px"><button class="btn" onclick="newCalc()">Nächste Aufgabe ›</button></div>`;
+    $('cBtn').disabled=true};
+  $('cIn').focus();
+}
+function showSol(){$('cFb').innerHTML=`<div class="fb ok">${cur.s}</div><div class="row" style="margin-top:10px"><button class="btn" onclick="newCalc()">Nächste Aufgabe ›</button></div>`}
+
+/* ===================== SIMULATION ===================== */
+let sim=null,simT=null;
+function startSim(){
+  const [n,min]=$('simLen').value.split('|').map(Number);
+  const nCalc=Math.round(n*0.2),nQ=Math.min(n-nCalc,Q.length);
+  const items=shuffle(Q.map((q,i)=>i)).slice(0,nQ).map(i=>({type:'q',id:i,order:shuffle(Q[i].o.map((_,j)=>j)),sel:[]}));
+  for(let i=0;i<n-nQ;i++){const k=pick(Object.keys(CALC));const c=CALC[k].g();items.push({type:'c',c,k,val:''})}
+  sim={items:shuffle(items),i:0,end:Date.now()+min*60000,done:false};
+  $('simSetup').style.display='none';clearInterval(simT);simT=setInterval(tick,1000);renderSim();
+}
+function tick(){if(!sim||sim.done)return clearInterval(simT);const r=Math.max(0,sim.end-Date.now());
+  const el=$('simTime');if(el)el.textContent=`${String(Math.floor(r/60000)).padStart(2,'0')}:${String(Math.floor(r/1000)%60).padStart(2,'0')}`;
+  if(r<=0){alert('Zeit abgelaufen – Auswertung folgt.');finishSim()}}
+function saveSim(){const it=sim.items[sim.i];if(sim.done)return;
+  if(it.type==='q')it.sel=readSel($('simQ'));else it.val=$('simIn').value}
+function renderSim(){
+  const it=sim.items[sim.i];let body;
+  if(it.type==='q'){const q=Q[it.id];body=`<div id="simQ">${qHTML(q,'sim',it.order)}</div>`}
+  else body=`<span class="tag">Rechenaufgabe</span><p>${it.c.t}</p><input type="text" inputmode="decimal" id="simIn" placeholder="Ergebnis in ${it.c.u||'€'}" style="width:220px" value="${it.val}">`;
+  $('simBox').innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">Aufgabe ${sim.i+1} von ${sim.items.length}</span>${sim.done?'':'<span>⏱ <span class="timer" id="simTime"></span></span>'}</div>
+  <div class="qnav">${sim.items.map((x,i)=>{let c='';if(sim.done)c=x.ok?'ok':'bad';else if((x.type==='q'&&x.sel.length)||(x.type==='c'&&x.val))c='done';return `<button class="${c} ${i===sim.i?'cur':''}" onclick="simJump(${i})">${i+1}</button>`}).join('')}</div>
+  ${body}<div id="simFb"></div>
+  <div class="row" style="margin-top:12px;justify-content:space-between"><button class="btn sec" onclick="simJump(${sim.i-1})" ${sim.i?'':'disabled'}>‹ Zurück</button>
+  ${sim.done?'<button class="btn sec" onclick="resetSim()">Neue Simulation</button>':'<button class="btn sec" onclick="if(confirm(\'Prüfung jetzt abgeben?\'))finishSim()">Abgeben</button>'}
+  <button class="btn" onclick="simJump(${sim.i+1})" ${sim.i<sim.items.length-1?'':'disabled'}>Weiter ›</button></div></div>`;
+  if(it.type==='q')it.sel.forEach(v=>{const x=$('simQ').querySelector(`input[value="${v}"]`);if(x)x.checked=true});
+  if(sim.done){
+    if(it.type==='q'){const q=Q[it.id];markOpts($('simQ'),q);$('simFb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${q.e}</div>`}
+    else{$('simIn').disabled=true;$('simFb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${it.c.s}</div>`}
+  }
+  tick();
+}
+function simJump(i){if(i<0||i>=sim.items.length)return;saveSim();sim.i=i;renderSim()}
+function finishSim(){saveSim();sim.done=true;clearInterval(simT);let ok=0;
+  sim.items.forEach(it=>{if(it.type==='q'){it.ok=isOk(Q[it.id],it.sel);rec(it.id,it.ok)}else{const v=parseFloat(String(it.val).replace(/\./g,'').replace(',','.'));it.ok=!isNaN(v)&&Math.abs(v-it.c.a)<=Math.max(Math.abs(it.c.a)*0.01,1)}if(it.ok)ok++});
+  const p=Math.round(ok/sim.items.length*100);
+  const byM={};sim.items.forEach(it=>{const k=it.type==='q'?'Modul '+Q[it.id].m:'Rechnen';byM[k]=byM[k]||[0,0];byM[k][1]++;if(it.ok)byM[k][0]++});
+  $('simBox').insertAdjacentHTML('beforebegin','');
+  sim.i=0;renderSim();
+  $('simBox').insertAdjacentHTML('afterbegin',`<div class="card"><div class="big">${p} %</div><p>${ok} von ${sim.items.length} Aufgaben richtig. ${p>=70?'Gute Basis – weiter so!':'Noch Lücken: Schwachstellen gezielt üben.'}</p>
+  ${Object.entries(byM).sort().map(([k,[a,b]])=>`<div class="stat"><span>${k}</span><span>${a}/${b}</span></div>`).join('')}
+  <p class="muted" style="margin-bottom:0">Unten kannst du jede Aufgabe mit Lösung durchgehen (grün = richtig, rot = falsch).</p></div>`);
+}
+function resetSim(){sim=null;$('simBox').innerHTML='';$('simSetup').style.display=''}
+
+/* ===================== PRAXIS ===================== */
+const CHK=["Begrüßung, Vorstellung, Erstinformation (Status, Registernummer, Vergütung)","Gesprächsziel und Zeitrahmen vereinbart","Anlass und Ziele erfragt (Kauf/Bau/Anschluss, Selbstnutzung/Vermietung)","Persönliche Situation: Familie, Beruf, Beschäftigungsart, Alter","Zukunftsplanung: Kinder, Elternzeit, Jobwechsel, Rente","Finanzierungsbedarf inkl. Nebenkosten berechnet","Eigenkapital und Herkunft geklärt","Haushaltsrechnung mit freiem Betrag","Lösungsvorschlag begründet (Darlehensart, Zinsbindung, Tilgung)","Sondertilgung / Tilgungssatzwechsel angesprochen","Förderprogramme (KfW, Land, Riester, WoP) geprüft","Zinsänderungsrisiko und Restschuld erklärt","Absicherung: Risikoleben, BU, Gebäudeversicherung","Einwände ruhig und kundenorientiert behandelt","Verständliche Sprache, Rückfragen beim Kunden","Zusammenfassung, Unterlagenliste, nächster Termin"];
+function renderChecklist(){$('checklist').innerHTML=CHK.map((c,i)=>`<label class="chk"><input type="checkbox" ${mem.chk[i]?'checked':''} onchange="mem.chk[${i}]=this.checked;save()"><span>${c}</span></label>`).join('')+`<div class="row" style="margin-top:8px"><button class="btn sec" onclick="mem.chk={};save();renderChecklist()">Häkchen zurücksetzen</button></div>`}
+renderChecklist();
+
+const NAMES=["Familie Becker","Herr und Frau Yilmaz","Frau Schneider","Herr Wagner","Familie Hoffmann","Herr Lehmann","Frau Krüger"];
+const OBJ=[["Eigentumswohnung","selbst nutzen",280000,420000],["Reihenhaus","selbst nutzen",350000,520000],["freistehendes Einfamilienhaus","selbst nutzen",420000,650000],["vermietete Eigentumswohnung","als Kapitalanlage",180000,320000]];
+const TW=["Ein Kind ist in zwei Jahren geplant, dann ein Jahr Elternzeit.","Ein Partner ist noch in der Probezeit.","Der Kunde ist seit 4 Jahren selbstständig.","Die Zinsbindung der bestehenden Finanzierung endet in 3 Jahren – Anschluss gleich mitdenken.","Der Kunde ist 52 und möchte bis zur Rente schuldenfrei sein.","Ein Bausparvertrag mit 30.000 € Guthaben ist zuteilungsreif.","Der Kunde möchte zusätzlich 40.000 € energetisch modernisieren."];
+let curCase=null;
+function newCase(){
+  const n=pick(NAMES),[o,u,a,b]=pick(OBJ),P=rnd(a,b,5000),[bl,g]=pick(BL),ek=rnd(P*0.08,P*0.3,5000),ein=rnd(3200,7000,100),aus=Math.round(ein*rnd(0.45,0.6,0.01)/50)*50,tw=pick(TW);
+  curCase={P,g,ek,ein,aus};
+  $('caseBox').innerHTML=`<p><b>${n}</b> möchte ein(e) <b>${o}</b> in ${bl} für <b>${eur(P,0)}</b> kaufen und ${u}. Eigenkapital: <b>${eur(ek,0)}</b>. Haushaltsnetto inkl. Kindergeld: <b>${eur(ein,0)}</b>, laufende Ausgaben ohne Miete: <b>${eur(aus,0)}</b>. Makler 3,57 %. ${tw}</p>
+  <p class="muted">Aufgabe: 20 Minuten vorbereiten, dann 20 Minuten Beratungsgespräch führen. Mini-Rechner unten ist vorbefüllt.</p>
+  <details><summary>Lösungsskizze anzeigen</summary><div class="in" id="caseSol"></div></details>`;
+  $('fKP').value=P;$('fGE').value=g;$('fEK').value=ek;$('fEI').value=ein;$('fAU').value=aus;calcF();
+  const nk=P*(g+2+3.57)/100,d=P+nk-ek,r=d*(3.7+2)/100/12,f=ein-aus;
+  $('caseSol').innerHTML=`<ul><li>Nebenkosten (GrESt ${fmt(g,1)} %, Notar/GB 2 %, Makler 3,57 %): ${eur(nk,0)}</li><li>Darlehensbedarf: ${eur(P,0)} + ${eur(nk,0)} − ${eur(ek,0)} = <b>${eur(d,0)}</b></li><li>Eigenkapitalquote am Gesamtaufwand: ${fmt(ek/(P+nk)*100,1)} % ${ek<nk?'– deckt nicht einmal die Nebenkosten: offen ansprechen!':''}</li><li>Rate bei 3,7 % + 2 %: ${eur(r,0)} / Monat · freier Betrag ${eur(f,0)} → ${r<f*0.85?'tragfähig mit Puffer':'zu knapp – Alternativen (mehr EK, günstigeres Objekt, längere Laufzeit, Förderung) besprechen'}</li><li>Besonderheit des Falls: „${tw}“ – im Gespräch gezielt aufgreifen</li><li>Risiken, Absicherung, Unterlagen und nächste Schritte nicht vergessen</li></ul>`;
+}
+['fKP','fGE','fNO','fMA','fEK','fZI','fTI','fEI','fAU'].forEach(id=>$(id).addEventListener('input',calcF));
+function calcF(){const v=id=>parseFloat($(id).value)||0;const P=v('fKP'),nk=P*(v('fGE')+v('fNO')+v('fMA'))/100,d=Math.max(0,P+nk-v('fEK')),r=d*(v('fZI')+v('fTI'))/100/12,f=v('fEI')-v('fAU');
+  $('fOut').innerHTML=`<div class="stat"><span>Kaufnebenkosten</span><b>${eur(nk,0)}</b></div><div class="stat"><span>Gesamtkosten</span><b>${eur(P+nk,0)}</b></div><div class="stat"><span>Darlehensbedarf</span><b>${eur(d,0)}</b></div><div class="stat"><span>Monatsrate</span><b>${eur(r,0)}</b></div><div class="stat"><span>Freier Betrag</span><b>${eur(f,0)}</b></div><div class="stat"><span>Puffer nach Rate</span><b style="color:${f-r>=0?'var(--ok)':'var(--bad)'}">${eur(f-r,0)}</b></div>`}
+calcF();newCase();dash();
+</script>
+</body>
+</html>
