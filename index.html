@@ -2,278 +2,253 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2747">
 <title>Bankshop Akademie §34i</title>
 <style>
 :root{
-  --bg:#f5f3ee;--card:#ffffff;--ink:#0f1e33;--muted:#5d6a7c;--line:#e3ddd0;
-  --brand:#0f2747;--brand2:#1c3d6b;--accent:#c5a253;--gold2:#a8862f;--ok:#1d8a4e;--okbg:#e7f4ec;
-  --bad:#b8392d;--badbg:#fbecea;--soft:#f3efe4;--shadow:0 1px 3px rgba(15,39,71,.08),0 8px 24px rgba(15,39,71,.06);
-  --head:#0f2747;
+  --bg:#f4f2ec;--card:#fff;--card2:#faf8f3;--ink:#0f1e33;--muted:#5f6b7d;--line:#e4dfd3;
+  --navy:#0f2747;--navy2:#1c3d6b;--gold:#c5a253;--gold2:#a8862f;--goldsoft:#f6efdc;
+  --g:#16a34a;--gbg:#e3f6ea;--y:#d4a106;--ybg:#fdf4d6;--r:#dc2626;--rbg:#fde8e8;--n:#9aa5b5;--nbg:#eef1f5;
+  --shadow:0 1px 2px rgba(15,39,71,.06),0 8px 28px rgba(15,39,71,.08);--radius:16px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0b1424;--card:#13203a;--ink:#eef1f6;--muted:#a3adbd;--line:#25365a;
-  --brand:#d9bd79;--brand2:#2c4f85;--accent:#d9bd79;--gold2:#c5a253;--ok:#4cc483;--okbg:#14301f;
-  --bad:#ef7a6d;--badbg:#3a1a17;--soft:#1a2a4a;--shadow:none;--head:#081020;}}
-:root[data-theme="dark"]{--bg:#0b1424;--card:#13203a;--ink:#eef1f6;--muted:#a3adbd;--line:#25365a;
-  --brand:#d9bd79;--brand2:#2c4f85;--accent:#d9bd79;--gold2:#c5a253;--ok:#4cc483;--okbg:#14301f;
-  --bad:#ef7a6d;--badbg:#3a1a17;--soft:#1a2a4a;--shadow:none;--head:#081020;}
-*{box-sizing:border-box}
+  --bg:#09111f;--card:#111c31;--card2:#15223b;--ink:#eef2f8;--muted:#9eaabd;--line:#22324f;
+  --navy:#d9bd79;--navy2:#2b5088;--goldsoft:#2a2717;--g:#34d27a;--gbg:#0f2d1d;--y:#f2c94c;--ybg:#2f2810;--r:#f87171;--rbg:#351718;--n:#6b7a92;--nbg:#1a2740;--shadow:none}}
+:root[data-theme="dark"]{--bg:#09111f;--card:#111c31;--card2:#15223b;--ink:#eef2f8;--muted:#9eaabd;--line:#22324f;
+  --navy:#d9bd79;--navy2:#2b5088;--goldsoft:#2a2717;--g:#34d27a;--gbg:#0f2d1d;--y:#f2c94c;--ybg:#2f2810;--r:#f87171;--rbg:#351718;--n:#6b7a92;--nbg:#1a2740;--shadow:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-header{background:var(--head);color:#fff;padding:16px 16px 0;border-bottom:3px solid var(--accent)}
-.wrap{max-width:900px;margin:0 auto}
-.brandline{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.logo{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#d9bd79,#a8862f);display:grid;place-items:center;color:#0f2747;font-weight:800;font-size:.95rem;letter-spacing:-.5px;flex:0 0 auto}
-.wordmark{line-height:1.1}
-.wordmark b{display:block;font-size:1.05rem;letter-spacing:.3px}
-.wordmark b span{color:#d9bd79}
-.wordmark small{font-size:.78rem;letter-spacing:.3px;opacity:.75}
-.btn.gold{background:linear-gradient(135deg,#d9bd79,#a8862f);color:#0f2747}
-footer{text-align:center;color:var(--muted);font-size:.8rem;padding:0 16px 30px}
-footer b{color:var(--gold2)}
-header h1{margin:0;font-size:1.3rem;letter-spacing:.2px}
-header p{margin:2px 0 12px;opacity:.85;font-size:.9rem}
-nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav button{flex:0 0 auto;background:transparent;border:0;color:#fff;opacity:.75;padding:10px 12px;font:inherit;font-size:.92rem;border-bottom:3px solid transparent;cursor:pointer}
-nav button.on{opacity:1;border-bottom-color:#d9bd79;color:#d9bd79;font-weight:600}
-main{padding:18px 16px 60px}
-section{display:none}section.on{display:block}
-h2{font-size:1.25rem;margin:0 0 12px;color:var(--brand)}
-h3{font-size:1.05rem;margin:18px 0 8px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow)}
-.tile:hover{border-color:var(--brand2)}
-.tile b{display:block;color:var(--brand);margin-bottom:4px}
-.tile small{color:var(--muted)}
-.muted{color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand2);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
-.btn.sec{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
-.btn:disabled{opacity:.45;cursor:default}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+/* Header */
+header{background:#0f2747;color:#fff;position:sticky;top:0;z-index:20;border-bottom:3px solid #c5a253}
+:root[data-theme="dark"] header{background:#071022}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header{background:#071022}}
+.hbar{display:flex;align-items:center;gap:10px;padding:10px 0}
+.logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#e2c784,#a8862f);display:grid;place-items:center;flex:0 0 auto}
+.wm{line-height:1.15;min-width:0}
+.wm b{display:block;font-size:1rem;white-space:nowrap}.wm b span{color:#e2c784}
+.wm small{font-size:.72rem;opacity:.75;white-space:nowrap}
+.hstats{margin-left:auto;display:flex;gap:6px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border-radius:999px;padding:5px 10px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.pill svg{flex:0 0 auto}
+.iconbtn{background:rgba(255,255,255,.12);border:0;border-radius:10px;width:34px;height:34px;display:grid;place-items:center;cursor:pointer;color:#fff}
+@media (max-width:420px){.wm b{font-size:.92rem}.wm small{font-size:.64rem}.pill.lv{display:none}.hbar{gap:8px}.logo{width:34px;height:34px}}
+/* Bottom nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 24px rgba(15,39,71,.08)}
+nav.tabs .wrap{display:flex;justify-content:space-around;padding:0 4px}
+nav.tabs button{flex:1;background:none;border:0;padding:8px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.72rem;color:var(--muted);cursor:pointer;font-weight:600}
+nav.tabs button svg{width:24px;height:24px}
+nav.tabs button.on{color:var(--navy)}
+nav.tabs button.on .ic{background:var(--goldsoft);border-radius:999px}
+nav.tabs .ic{padding:2px 14px;display:grid;place-items:center;transition:background .2s}
+main{padding:18px 0 30px}
+section{display:none;animation:fade .25s ease}section.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1{font-size:1.45rem;margin:0 0 4px;letter-spacing:-.2px}
+h2{font-size:1.15rem;margin:22px 0 10px}
+h3{font-size:1rem;margin:16px 0 8px}
+.muted{color:var(--muted)}.small{font-size:.86rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-select,input[type=number],input[type=text]{font:inherit;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}
-.bar{height:8px;background:var(--soft);border-radius:6px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;box-shadow:var(--shadow)}
-summary{cursor:pointer;padding:14px 16px;font-weight:600;color:var(--brand);list-style:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--navy2);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;transition:transform .1s,filter .2s}
+.btn:active{transform:scale(.97)}.btn:hover{filter:brightness(1.08)}
+.btn.gold{background:linear-gradient(135deg,#e2c784,#b8933a);color:#0f2747}
+.btn.ghost{background:var(--card2);color:var(--ink);border:1px solid var(--line)}
+.btn.big{width:100%;padding:16px;font-size:1.05rem;border-radius:14px}
+.btn:disabled{opacity:.4;pointer-events:none}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-size:.86rem;cursor:pointer;font-weight:600}
+.chip.on{background:var(--navy2);border-color:var(--navy2);color:#fff}
+/* hero */
+.hero{background:linear-gradient(135deg,#0f2747,#1c3d6b);color:#fff;border-radius:20px;padding:18px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(226,199,132,.35),transparent 70%)}
+.hero .hrow{display:flex;gap:16px;align-items:center;position:relative;z-index:1}
+.ring{position:relative;flex:0 0 auto}
+.ring svg{display:block;transform:rotate(-90deg)}
+.ring .rv{position:absolute;inset:0;display:grid;place-items:center;text-align:center;line-height:1.1}
+.ring .rv b{font-size:1.55rem}.ring .rv small{font-size:.68rem;opacity:.8}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;position:relative;z-index:1}
+.kpi{background:rgba(255,255,255,.1);border-radius:12px;padding:9px 10px}
+.kpi b{display:block;font-size:1.15rem}.kpi span{font-size:.72rem;opacity:.8}
+.xpbar{height:8px;background:rgba(255,255,255,.18);border-radius:9px;overflow:hidden;margin-top:6px}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,#e2c784,#f7e2a8);border-radius:9px;transition:width .6s}
+/* ampel */
+.amp{display:flex;height:12px;border-radius:9px;overflow:hidden;background:var(--nbg)}
+.amp i{display:block;height:100%;transition:width .5s}
+.amp .g{background:var(--g)}.amp .y{background:var(--y)}.amp .r{background:var(--r)}.amp .n{background:transparent}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.dot.g{background:var(--g)}.dot.y{background:var(--y)}.dot.r{background:var(--r)}.dot.n{background:var(--n)}
+.modrow{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:8px}
+.modrow:hover{background:var(--card2)}
+.modrow:last-child{border-bottom:0}
+.modnum{width:28px;height:28px;border-radius:8px;background:var(--goldsoft);color:var(--gold2);display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.modrow .t{font-weight:600;font-size:.92rem;margin-bottom:5px}
+.modrow .p{font-weight:800;font-size:.9rem}
+/* mode tiles */
+.mode{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,border-color .2s;width:100%}
+.mode:hover{border-color:var(--gold)}.mode:active{transform:scale(.985)}
+.mode .mi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto}
+.mode b{display:block;font-size:1rem}.mode span{font-size:.84rem;color:var(--muted)}
+.mi.navy{background:#e4ebf5;color:#1c3d6b}.mi.red{background:var(--rbg);color:var(--r)}.mi.gold{background:var(--goldsoft);color:var(--gold2)}.mi.green{background:var(--gbg);color:var(--g)}.mi.yel{background:var(--ybg);color:var(--y)}
+:root[data-theme="dark"] .mi.navy{background:#1a2c4d;color:#9cc0f2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mi.navy{background:#1a2c4d;color:#9cc0f2}}
+/* quiz */
+.qtop{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.segs{display:flex;gap:3px;flex:1}
+.segs i{flex:1;height:7px;border-radius:5px;background:var(--nbg)}
+.segs i.ok{background:var(--g)}.segs i.bad{background:var(--r)}.segs i.cur{background:var(--gold)}
+.combo{font-weight:800;font-size:.85rem;color:var(--gold2);white-space:nowrap;display:flex;align-items:center;gap:4px}
+.combo.hot{animation:pulse .5s}
+@keyframes pulse{50%{transform:scale(1.25)}}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.qmeta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tag{font-size:.74rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--card2);color:var(--muted);border:1px solid var(--line)}
+.tag.st-g{background:var(--gbg);color:var(--g);border-color:transparent}.tag.st-y{background:var(--ybg);color:var(--y);border-color:transparent}.tag.st-r{background:var(--rbg);color:var(--r);border-color:transparent}.tag.multi{background:var(--goldsoft);color:var(--gold2);border-color:transparent}
+.qtext{font-size:1.12rem;font-weight:700;line-height:1.4;margin:4px 0 14px}
+.opts{display:grid;gap:9px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;background:var(--card2);border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;font-size:.98rem;line-height:1.4}
+.opt:active{transform:scale(.99)}
+.opt .lt{width:28px;height:28px;border-radius:8px;flex:0 0 auto;display:grid;place-items:center;font-weight:800;font-size:.85rem;background:var(--card);border:2px solid var(--line);transition:all .15s}
+.opt.multi .lt{border-radius:7px}
+.opt.sel{border-color:var(--navy2);background:#eaf0f9}
+:root[data-theme="dark"] .opt.sel{background:#1a2c4d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .opt.sel{background:#1a2c4d}}
+.opt.sel .lt{background:var(--navy2);border-color:var(--navy2);color:#fff}
+.opt.c-ok{border-color:var(--g);background:var(--gbg)}.opt.c-ok .lt{background:var(--g);border-color:var(--g);color:#fff}
+.opt.c-bad{border-color:var(--r);background:var(--rbg);animation:shake .35s}.opt.c-bad .lt{background:var(--r);border-color:var(--r);color:#fff}
+.opt.c-miss{border-color:var(--y);background:var(--ybg)}.opt.c-miss .lt{border-color:var(--y);color:var(--y)}
+.opt.c-dim{opacity:.5}
+.opt .why{display:block;font-size:.75rem;font-weight:700;margin-top:3px}
+.opt.c-ok .why{color:var(--g)}.opt.c-bad .why{color:var(--r)}.opt.c-miss .why{color:var(--y)}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.fb{border-radius:14px;padding:13px 14px;margin-top:12px;font-size:.93rem;animation:fade .25s}
+.fb.ok{background:var(--gbg);border:1px solid var(--g)}.fb.bad{background:var(--rbg);border:1px solid var(--r)}.fb.part{background:var(--ybg);border:1px solid var(--y)}
+.fb b.h{display:block;font-size:1rem;margin-bottom:3px}
+.qactions{display:flex;gap:8px;margin-top:14px}
+.qactions .btn{flex:1}
+.kbd{font-size:.72rem;color:var(--muted);text-align:center;margin-top:8px}
+@media (hover:none){.kbd{display:none}}
+/* result */
+.res{text-align:center}
+.bigring{margin:6px auto 8px}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.stat3 div{background:var(--card2);border-radius:12px;padding:10px}
+.stat3 b{display:block;font-size:1.2rem}
+.stat3 span{font-size:.75rem;color:var(--muted)}
+/* blitz */
+.tbar{height:10px;border-radius:9px;background:var(--nbg);overflow:hidden;margin-bottom:12px}
+.tbar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--y),var(--r));transform-origin:left;transition:transform .1s linear}
+.flash-ok{animation:fok .4s}.flash-bad{animation:fbad .4s}
+@keyframes fok{0%{box-shadow:0 0 0 0 rgba(22,163,74,.6)}100%{box-shadow:0 0 0 16px rgba(22,163,74,0)}}
+@keyframes fbad{0%{box-shadow:0 0 0 0 rgba(220,38,38,.6)}100%{box-shadow:0 0 0 16px rgba(220,38,38,0)}}
+/* exam */
+.exbar{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:10px;position:sticky;top:64px;z-index:10;box-shadow:var(--shadow)}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.1rem}
+.timer.warn{color:var(--r)}
+.qnav{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
+.qnav button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;cursor:pointer;position:relative}
+.qnav button.done{background:#e4ebf5;border-color:var(--navy2)}
+:root[data-theme="dark"] .qnav button.done{background:#1a2c4d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .qnav button.done{background:#1a2c4d}}
+.qnav button.cur{outline:3px solid var(--gold);outline-offset:1px}
+.qnav button.flag::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--y);border:2px solid var(--card)}
+.qnav button.ok{background:var(--gbg);border-color:var(--g)}.qnav button.bad{background:var(--rbg);border-color:var(--r)}
+/* badges */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+.badge{text-align:center;padding:10px 6px;border-radius:14px;background:var(--card2);border:1px solid var(--line)}
+.badge .bi{width:46px;height:46px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;background:var(--nbg);color:var(--n)}
+.badge.on .bi{background:linear-gradient(135deg,#f3dc9c,#b8933a);color:#0f2747;box-shadow:0 4px 14px rgba(197,162,83,.4)}
+.badge b{display:block;font-size:.76rem;line-height:1.2}
+.badge span{font-size:.66rem;color:var(--muted);line-height:1.2;display:block;margin-top:2px}
+.badge:not(.on){opacity:.6}
+/* flashcards */
+.fcwrap{perspective:1200px;height:300px;margin:12px 0;touch-action:pan-y}
+.fc{position:relative;width:100%;height:100%;transition:transform .5s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d;cursor:pointer}
+.fc.flip{transform:rotateY(180deg)}
+.fc.out-l{transform:translateX(-120%) rotate(-12deg);opacity:0;transition:transform .3s,opacity .3s}
+.fc.out-r{transform:translateX(120%) rotate(12deg);opacity:0;transition:transform .3s,opacity .3s}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow);border:1px solid var(--line);overflow:auto}
+.fc .front{background:var(--card);font-size:1.2rem;font-weight:800}
+.fc .back{background:linear-gradient(135deg,#0f2747,#1c3d6b);color:#fff;transform:rotateY(180deg);font-size:1.02rem}
+.fc .hint{position:absolute;bottom:12px;font-size:.74rem;color:var(--muted);font-weight:500}
+/* misc */
+details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow)}
+summary{cursor:pointer;padding:14px 16px;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"▸ ";color:var(--accent)}
-details[open] summary::before{content:"▾ "}
-details .in{padding:0 16px 14px}
-table{border-collapse:collapse;width:100%;font-size:.92rem;margin:8px 0}
+details .in{padding:0 16px 16px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:8px 0}
 th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
-th{color:var(--muted);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.3px}
+th{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.3px}
 .tbl{overflow-x:auto}
-.formula{background:var(--soft);border-left:4px solid var(--accent);padding:8px 12px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;margin:6px 0}
-.tag{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:20px;background:var(--soft);color:var(--muted);margin-right:6px}
-.opt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:9px;margin:7px 0;cursor:pointer;background:var(--card)}
-.opt input{margin-top:4px;flex:0 0 auto}
-.opt.ok{background:var(--okbg);border-color:var(--ok)}
-.opt.bad{background:var(--badbg);border-color:var(--bad)}
-.fb{padding:12px;border-radius:9px;margin-top:10px}
-.fb.ok{background:var(--okbg);border:1px solid var(--ok)}
-.fb.bad{background:var(--badbg);border:1px solid var(--bad)}
-.flash{perspective:1000px;height:260px;cursor:pointer;margin:10px 0}
-.flash .inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
-.flash.flip .inner{transform:rotateY(180deg)}
-.flash .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow);overflow:auto}
-.flash .front{background:var(--card);font-size:1.12rem;font-weight:600}
-.flash .back{background:var(--soft);transform:rotateY(180deg);font-size:1rem}
-.flash .hint{position:absolute;bottom:10px;font-size:.75rem;color:var(--muted);font-weight:400}
-.big{font-size:2rem;font-weight:700;color:var(--brand)}
-.stat{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
-.stat:last-child{border:0}
-.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
-.chk:last-child{border:0}
-.chk input{margin-top:5px}
-.timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--brand)}
-.qnav{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
-.qnav button{width:34px;height:34px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;cursor:pointer}
-.qnav button.done{background:var(--soft);border-color:var(--brand2)}
-.qnav button.cur{outline:2px solid var(--accent)}
-.qnav button.ok{background:var(--okbg);border-color:var(--ok)}
-.qnav button.bad{background:var(--badbg);border-color:var(--bad)}
-ul,ol{padding-left:22px;margin:6px 0}
-li{margin:3px 0}
-.theme{position:absolute;right:16px;top:16px;background:rgba(255,255,255,.15);border:0;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:.85rem}
-header .wrap{position:relative}
-@media (max-width:520px){header h1{font-size:1.1rem;padding-right:70px}.flash{height:300px}}
+.formula{background:var(--card2);border-left:4px solid var(--gold);padding:8px 12px;border-radius:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;margin:6px 0}
+input[type=text],input[type=number],input[type=date],select{font:inherit;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);width:100%}
+label.fld{display:block;font-size:.84rem;font-weight:600;color:var(--muted)}
+label.fld input,label.fld select{margin-top:4px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-child{border:0}.chk input{margin-top:4px;width:18px;height:18px;accent-color:var(--g)}
+.stat{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)}.stat:last-child{border:0}
+.subtabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none}
+/* overlay */
+.modal{position:fixed;inset:0;background:rgba(5,12,25,.55);z-index:60;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal.on{display:flex;animation:fade .2s}
+.modal .box{background:var(--card);border-radius:22px;padding:22px;max-width:440px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.lvup{text-align:center}
+.lvup .crest{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,#f3dc9c,#b8933a);display:grid;place-items:center;color:#0f2747;font-weight:900;font-size:2rem;box-shadow:0 10px 30px rgba(197,162,83,.5);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.3)}to{transform:scale(1)}}
+#toasts{position:fixed;left:50%;top:76px;transform:translateX(-50%);z-index:70;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none}
+.toast{background:#0f2747;color:#fff;border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:tin .3s,tout .4s 1.8s forwards;display:flex;gap:8px;align-items:center}
+.toast.gold{background:linear-gradient(135deg,#e2c784,#b8933a);color:#0f2747}
+@keyframes tin{from{opacity:0;transform:translateY(-10px) scale(.9)}}
+@keyframes tout{to{opacity:0;transform:translateY(-10px)}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:80}
+.empty{text-align:center;padding:26px 10px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.76rem;padding:10px 16px 20px}
+footer b{color:var(--gold2)}
+.spark{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:8px}
+.spark div{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
+.spark i{display:block;width:100%;max-width:28px;border-radius:6px 6px 3px 3px;background:var(--navy2);min-height:3px}
+.spark i.today{background:linear-gradient(180deg,#e2c784,#b8933a)}
+.spark span{font-size:.66rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <div class="brandline"><div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f2747" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></div><div class="wordmark"><b>CEB <span>Bankshop</span> AG</b><small>Vermittlung von Bankdienstleistungen</small></div></div>
-  <h1>Lerntool Sachkundeprüfung §34i GewO</h1>
-  <p>Geprüfte/r Fachmann/-frau für Immobiliardarlehensvermittlung IHK</p>
-  <button class="theme" id="themeBtn" aria-label="Hell/Dunkel">◐</button>
-  <nav id="nav">
-    <button data-s="start" class="on">Start</button>
-    <button data-s="stoff">Lernstoff</button>
-    <button data-s="karten">Karteikarten</button>
-    <button data-s="quiz">Quiz</button>
-    <button data-s="rechnen">Rechentrainer</button>
-    <button data-s="sim">Prüfungssimulation</button>
-    <button data-s="praxis">Praxisteil</button>
-  </nav>
+<header><div class="wrap hbar">
+  <div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f2747" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></div>
+  <div class="wm"><b>CEB <span>Bankshop</span> AG</b><small>Vermittlung von Bankdienstleistungen</small></div>
+  <div class="hstats">
+    <span class="pill" id="hStreak" title="Lerntage in Folge"></span>
+    <span class="pill lv" id="hLevel" title="Level"></span>
+    <button class="iconbtn" onclick="openSettings()" aria-label="Einstellungen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+  </div>
 </div></header>
 
 <main class="wrap">
-
-<!-- START -->
-<section id="start" class="on">
-  <div class="card">
-    <h2>So läuft die Prüfung</h2>
-    <div class="tbl"><table>
-      <tr><th>Teil</th><th>Inhalt</th><th>Aufgaben</th><th>Dauer</th></tr>
-      <tr><td>Schriftlich 1</td><td>Kenntnisse für Immobiliardarlehensvermittlung und -beratung</td><td>40</td><td>60 Min.</td></tr>
-      <tr><td>Schriftlich 2</td><td>Finanzierung und Kreditprodukte</td><td>60</td><td>90 Min.</td></tr>
-      <tr><td>Praktisch</td><td>Kundengespräch im Rollenspiel</td><td>1 Fall</td><td>20 + 20 Min. Vorbereitung</td></tr>
-    </table></div>
-    <p class="muted" style="margin:6px 0 0">Single Choice, Multiple Choice („alles oder nichts“) und Rechenaufgaben. Hilfsmittel: nicht programmierbarer Taschenrechner.</p>
-  </div>
-  <div class="card">
-    <h2>Dein Lernstand</h2>
-    <div id="dash"></div>
-    <div class="row" style="margin-top:12px">
-      <button class="btn gold" onclick="go('quiz');startQuiz('weak')">Schwachstellen üben</button>
-      <button class="btn sec" onclick="resetStats()">Fortschritt zurücksetzen</button>
-    </div>
-  </div>
-  <h3>Lernweg in 5 Schritten</h3>
-  <div class="grid">
-    <button class="tile" onclick="go('stoff')"><b>1 · Lernstoff</b><small>Alle Module kompakt mit Tabellen und Formeln</small></button>
-    <button class="tile" onclick="go('karten')"><b>2 · Karteikarten</b><small>Begriffe und Zahlen einprägen</small></button>
-    <button class="tile" onclick="go('quiz')"><b>3 · Quiz</b><small>Fragen nach Modul mit Erklärung</small></button>
-    <button class="tile" onclick="go('rechnen')"><b>4 · Rechentrainer</b><small>Unbegrenzt neue Rechenaufgaben</small></button>
-    <button class="tile" onclick="go('sim')"><b>5 · Simulation</b><small>Prüfung unter Zeitdruck</small></button>
-    <button class="tile" onclick="go('praxis')"><b>Praxisteil</b><small>Gesprächsleitfaden, Fall und Mini-Rechner</small></button>
-  </div>
-</section>
-
-<!-- LERNSTOFF -->
-<section id="stoff">
-  <h2>Lernstoff</h2>
-  <p class="muted">Tippe auf ein Modul zum Aufklappen.</p>
-  <div id="stoffBox"></div>
-</section>
-
-<!-- KARTEIKARTEN -->
-<section id="karten">
-  <h2>Karteikarten</h2>
-  <div class="row">
-    <select id="fcMod"></select>
-    <button class="btn sec" onclick="fcShuffle()">Mischen</button>
-  </div>
-  <div class="flash" id="flash" onclick="this.classList.toggle('flip')">
-    <div class="inner">
-      <div class="face front"><div id="fcF"></div><span class="hint">Tippen zum Umdrehen</span></div>
-      <div class="face back"><div id="fcB"></div></div>
-    </div>
-  </div>
-  <div class="row" style="justify-content:space-between">
-    <button class="btn sec" onclick="fcMove(-1)">‹ Zurück</button>
-    <span class="muted" id="fcPos"></span>
-    <button class="btn sec" onclick="fcKnow(false)">Nochmal</button>
-    <button class="btn" onclick="fcKnow(true)">Gewusst ›</button>
-  </div>
-</section>
-
-<!-- QUIZ -->
-<section id="quiz">
-  <h2>Quiz</h2>
-  <div class="card" id="quizSetup">
-    <p style="margin-top:0">Wähle ein Modul oder übe deine Schwachstellen. Nach jeder Frage siehst du Lösung und Begründung.</p>
-    <div class="row">
-      <select id="qMod"></select>
-      <button class="btn" onclick="startQuiz(document.getElementById('qMod').value)">Starten</button>
-      <button class="btn sec" onclick="startQuiz('weak')">Schwachstellen</button>
-    </div>
-  </div>
-  <div id="quizBox"></div>
-</section>
-
-<!-- RECHNEN -->
-<section id="rechnen">
-  <h2>Rechentrainer</h2>
-  <div class="card">
-    <p style="margin-top:0">Jede Aufgabe wird neu erzeugt. Ergebnis eingeben (auf 2 Nachkommastellen bzw. ganze Euro), Toleranz ±1 %.</p>
-    <div class="row">
-      <select id="rType"></select>
-      <button class="btn" onclick="newCalc()">Neue Aufgabe</button>
-    </div>
-  </div>
-  <div id="calcBox"></div>
-  <details>
-    <summary>Formelsammlung</summary>
-    <div class="in">
-      <div class="formula">Jahresrate = Darlehen × (Sollzins + anfängliche Tilgung)</div>
-      <div class="formula">Monatsrate = Jahresrate ÷ 12</div>
-      <div class="formula">Zinsanteil Monat = Restschuld × Sollzins ÷ 12</div>
-      <div class="formula">Tilgungsanteil = Monatsrate − Zinsanteil</div>
-      <div class="formula">Max. Darlehen = Monatsrate × 12 ÷ (Sollzins + Tilgung)</div>
-      <div class="formula">Beleihungsauslauf = Darlehen ÷ Beleihungswert × 100</div>
-      <div class="formula">Auszahlung = Darlehen × (1 − Disagio)</div>
-      <div class="formula">Bereitstellungszins = Betrag × Satz p. M. × Monate</div>
-      <div class="formula">Restschuld nach n Monaten = K·qⁿ − R·(qⁿ − 1) ÷ i &nbsp; (i = Zins÷12, q = 1+i)</div>
-      <div class="formula">Ertragswert = (Rohertrag − Bewirtschaftung − Bodenwert×LZ) × Vervielfältiger + Bodenwert</div>
-    </div>
-  </details>
-</section>
-
-<!-- SIMULATION -->
-<section id="sim">
-  <h2>Prüfungssimulation</h2>
-  <div class="card" id="simSetup">
-    <p style="margin-top:0">Zufällige Fragen aus allen Modulen plus Rechenaufgaben, mit Zeitlimit. Ergebnis und Auswertung erst am Ende – wie in der echten Prüfung.</p>
-    <div class="row">
-      <select id="simLen">
-        <option value="20|30">Kurz: 20 Aufgaben · 30 Min.</option>
-        <option value="40|60" selected>Teil 1-Format: 40 Aufgaben · 60 Min.</option>
-        <option value="60|90">Teil 2-Format: 60 Aufgaben · 90 Min.</option>
-      </select>
-      <button class="btn gold" onclick="startSim()">Simulation starten</button>
-    </div>
-  </div>
-  <div id="simBox"></div>
-</section>
-
-<!-- PRAXIS -->
-<section id="praxis">
-  <h2>Praxisteil: Kundengespräch</h2>
-  <div class="card">
-    <h3 style="margin-top:0">Checkliste für das Rollenspiel</h3>
-    <p class="muted" style="margin:0 0 6px">Beim Üben abhaken – der Prüfer achtet auf Struktur und Kundenorientierung.</p>
-    <div id="checklist"></div>
-  </div>
-  <div class="card">
-    <h3 style="margin-top:0">Übungsfall</h3>
-    <div class="row"><button class="btn sec" onclick="newCase()">Neuen Fall erzeugen</button></div>
-    <div id="caseBox"></div>
-  </div>
-  <div class="card">
-    <h3 style="margin-top:0">Mini-Finanzierungsrechner</h3>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-      <label>Kaufpreis €<br><input type="number" id="fKP" value="320000"></label>
-      <label>Grunderwerbst. %<br><input type="number" id="fGE" value="5.5" step="0.5"></label>
-      <label>Notar/Grundbuch %<br><input type="number" id="fNO" value="2" step="0.1"></label>
-      <label>Makler %<br><input type="number" id="fMA" value="3.57" step="0.01"></label>
-      <label>Eigenkapital €<br><input type="number" id="fEK" value="50000"></label>
-      <label>Sollzins %<br><input type="number" id="fZI" value="3.7" step="0.05"></label>
-      <label>Tilgung %<br><input type="number" id="fTI" value="2" step="0.1"></label>
-      <label>Netto inkl. Kindergeld €<br><input type="number" id="fEI" value="5000"></label>
-      <label>Ausgaben €<br><input type="number" id="fAU" value="2900"></label>
-    </div>
-    <div id="fOut" style="margin-top:12px"></div>
-  </div>
-</section>
-
+  <section id="v-start" class="on"></section>
+  <section id="v-train"></section>
+  <section id="v-exam"></section>
+  <section id="v-calc"></section>
+  <section id="v-know"></section>
 </main>
-<footer><b>CEB Bankshop AG</b> · Vermittlung von Bankdienstleistungen · Lernhilfe zur IHK-Sachkundeprüfung § 34i GewO · ohne Gewähr – Stand November 2026</footer>
+<footer><b>CEB Bankshop AG</b> · Vermittlung von Bankdienstleistungen<br>Lernhilfe zur IHK-Sachkundeprüfung § 34i GewO · Stand November 2026 · ohne Gewähr</footer>
 
+<nav class="tabs"><div class="wrap">
+  <button data-v="start" class="on"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg></span>Start</button>
+  <button data-v="train"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>Training</button>
+  <button data-v="exam"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span>Prüfung</button>
+  <button data-v="calc"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg></span>Rechnen</button>
+  <button data-v="know"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/></svg></span>Wissen</button>
+</div></nav>
+
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div>
+<div id="toasts"></div>
+<canvas id="confetti"></canvas>
 <script>
-/* ===================== DATEN ===================== */
 const MODS={1:"Recht der Vermittlung",2:"Verbraucherdarlehen & Verbraucherschutz",3:"Grundbuch & Sicherheiten",4:"Immobilienbewertung",5:"Produkte, Förderung & Steuern",6:"Kundenberatung",7:"Allgemeines Recht & Immobilienerwerb",8:"Verbraucherschutz, Wettbewerb, Datenschutz & Aufsicht",9:"Wirtschaft & Steuern",10:"Risiken & Vertragsbeendigung"};
 
 const Q=[
@@ -1020,98 +995,6 @@ const STOFF={
 <li>Gesamtschuldner haften voll – Entlassung nur mit Zustimmung der Bank</li></ul>`
 };
 
-/* ===================== HILFEN ===================== */
-const $=id=>document.getElementById(id);
-const fmt=(n,d=2)=>n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
-const eur=(n,d=2)=>fmt(n,d)+' €';
-const rnd=(a,b,s=1)=>Math.round((a+Math.random()*(b-a))/s)*s;
-const pick=a=>a[Math.floor(Math.random()*a.length)];
-const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-let mem={stats:{},fc:{},chk:{}};
-function load(){try{const s=localStorage.getItem('lerntool34i');if(s)mem=Object.assign(mem,JSON.parse(s))}catch(e){}}
-function save(){try{localStorage.setItem('lerntool34i',JSON.stringify(mem))}catch(e){}}
-load();
-function rec(id,ok){const s=mem.stats[id]||{r:0,w:0,last:null};ok?s.r++:s.w++;s.last=ok;mem.stats[id]=s;save()}
-
-/* theme */
-$('themeBtn').onclick=()=>{const r=document.documentElement;const cur=r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');r.dataset.theme=cur==='dark'?'light':'dark'};
-
-/* nav */
-function go(s){document.querySelectorAll('section').forEach(x=>x.classList.toggle('on',x.id===s));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));if(s==='start')dash();window.scrollTo(0,0)}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.s));
-
-/* ===================== DASHBOARD ===================== */
-function dash(){
-  let h='';
-  for(const m in MODS){
-    const qs=Q.map((q,i)=>[q,i]).filter(([q])=>q.m==m);
-    const seen=qs.filter(([,i])=>mem.stats[i]).length;
-    const good=qs.filter(([,i])=>mem.stats[i]&&mem.stats[i].last).length;
-    const p=Math.round(good/qs.length*100);
-    h+=`<div class="stat"><span>${m} · ${MODS[m]}</span><span class="muted">${good}/${qs.length} sicher</span></div><div class="bar" style="margin-bottom:8px"><i style="width:${p}%"></i></div>`;
-  }
-  const weak=Q.filter((q,i)=>mem.stats[i]&&mem.stats[i].last===false).length;
-  h+=`<p class="muted" style="margin:8px 0 0">${weak} Frage(n) zuletzt falsch beantwortet · ${Q.length} Fragen · ${FC.length} Karteikarten</p>`;
-  $('dash').innerHTML=h;
-}
-function resetStats(){if(confirm('Gesamten Lernfortschritt löschen?')){mem={stats:{},fc:{},chk:{}};save();dash();renderChecklist()}}
-
-/* ===================== LERNSTOFF ===================== */
-$('stoffBox').innerHTML=Object.keys(MODS).map(m=>`<details><summary>Modul ${m}: ${MODS[m]}</summary><div class="in">${STOFF[m]}<div class="row" style="margin-top:10px"><button class="btn sec" onclick="go('quiz');startQuiz('${m}')">Quiz zu Modul ${m}</button></div></div></details>`).join('');
-
-/* ===================== KARTEIKARTEN ===================== */
-const modOpts='<option value="all">Alle Module</option>'+Object.keys(MODS).map(m=>`<option value="${m}">${m} · ${MODS[m]}</option>`).join('');
-$('fcMod').innerHTML=modOpts;
-let fcList=[],fcI=0;
-function fcBuild(){const v=$('fcMod').value;fcList=FC.map((c,i)=>i).filter(i=>v==='all'||FC[i][0]==v);
-  fcList.sort((a,b)=>(mem.fc[a]||0)-(mem.fc[b]||0));fcI=0;fcShow()}
-function fcShow(){const c=FC[fcList[fcI]];$('flash').classList.remove('flip');
-  setTimeout(()=>{$('fcF').innerHTML=`<span class="tag">Modul ${c[0]}</span><br>${c[1]}`;$('fcB').textContent=c[2]},150);
-  $('fcPos').textContent=`${fcI+1} / ${fcList.length}`}
-function fcMove(d){fcI=(fcI+d+fcList.length)%fcList.length;fcShow()}
-function fcKnow(ok){const id=fcList[fcI];mem.fc[id]=(mem.fc[id]||0)+(ok?1:-1);save();if(!ok){fcList.splice(Math.min(fcI+4,fcList.length),0,id)}fcMove(1)}
-function fcShuffle(){fcList=shuffle(fcList);fcI=0;fcShow()}
-$('fcMod').onchange=fcBuild;fcBuild();
-
-/* ===================== FRAGE-RENDERER ===================== */
-function qHTML(q,name,order){
-  const multi=q.a.length>1;
-  return `<div class="tag">Modul ${q.m}</div>${multi?'<span class="tag">Mehrere Antworten richtig</span>':''}
-  <p style="font-weight:600;margin:8px 0">${q.q}</p>
-  ${order.map(oi=>`<label class="opt" data-oi="${oi}"><input type="${multi?'checkbox':'radio'}" name="${name}" value="${oi}"><span>${q.o[oi]}</span></label>`).join('')}`;
-}
-function readSel(box){return [...box.querySelectorAll('input:checked')].map(x=>+x.value).sort()}
-function isOk(q,sel){const a=q.a.slice().sort();return a.length===sel.length&&a.every((v,i)=>v===sel[i])}
-function markOpts(box,q){box.querySelectorAll('.opt').forEach(l=>{const oi=+l.dataset.oi;const inp=l.querySelector('input');inp.disabled=true;
-  if(q.a.includes(oi))l.classList.add('ok');else if(inp.checked)l.classList.add('bad')})}
-
-/* ===================== QUIZ ===================== */
-$('qMod').innerHTML=modOpts;
-let qz={list:[],i:0,ok:0};
-function startQuiz(mode){
-  let ids=Q.map((q,i)=>i);
-  if(mode==='weak'){ids=ids.filter(i=>mem.stats[i]&&mem.stats[i].last===false);
-    if(!ids.length){$('quizBox').innerHTML='<div class="card">Keine Schwachstellen – super! Starte ein Modul-Quiz oder die Simulation.</div>';return}}
-  else if(mode!=='all')ids=ids.filter(i=>Q[i].m==mode);
-  qz={list:shuffle(ids),i:0,ok:0};showQ();
-}
-function showQ(){
-  if(qz.i>=qz.list.length){const p=Math.round(qz.ok/qz.list.length*100);
-    $('quizBox').innerHTML=`<div class="card"><div class="big">${p} %</div><p>${qz.ok} von ${qz.list.length} richtig.</p><div class="row"><button class="btn" onclick="startQuiz('weak')">Fehler wiederholen</button><button class="btn sec" onclick="go('start')">Zum Lernstand</button></div></div>`;return}
-  const id=qz.list[qz.i],q=Q[id];
-  $('quizBox').innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">Frage ${qz.i+1} von ${qz.list.length}</span><span class="muted">${qz.ok} richtig</span></div>
-  <div class="bar" style="margin:6px 0 10px"><i style="width:${qz.i/qz.list.length*100}%"></i></div>
-  <div id="qq">${qHTML(q,'qz',shuffle(q.o.map((_,i)=>i)))}</div>
-  <div id="qfb"></div><div class="row" style="margin-top:12px"><button class="btn" id="qBtn">Prüfen</button></div></div>`;
-  $('qBtn').onclick=()=>{
-    const sel=readSel($('qq'));if(!sel.length)return;
-    const ok=isOk(q,sel);rec(id,ok);if(ok)qz.ok++;markOpts($('qq'),q);
-    $('qfb').innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b>${ok?'Richtig!':'Leider falsch.'}</b> Richtig: ${q.a.map(a=>q.o[a]).join(' · ')}<br><span class="muted">${q.e}</span></div>`;
-    $('qBtn').textContent='Weiter ›';$('qBtn').onclick=()=>{qz.i++;showQ()};
-  };
-}
-
-/* ===================== RECHENTRAINER ===================== */
 const ZS=[2.8,3.1,3.4,3.6,3.8,4.0,4.2];
 const BL=[["Bayern",3.5],["Sachsen",5.5],["Berlin",6.0],["Hamburg",5.5],["Nordrhein-Westfalen",6.5],["Hessen",6.0],["Baden-Württemberg",5.0],["Niedersachsen",5.0]];
 const CALC={
@@ -1155,89 +1038,506 @@ const CALC={
  hh:{n:"Haushaltsrechnung",g(){const N=rnd(2800,6500,100),kg=pick([0,259,518]),L=rnd(1200,2400,50),NK=rnd(200,450,10),V=rnd(150,400,10),A=rnd(0,600,50);const f=N+kg-L-NK-V-A;
    return{t:`Nettoeinkommen ${eur(N,0)}${kg?', Kindergeld '+eur(kg,0):''}. Ausgaben: Lebenshaltung ${eur(L,0)}, Nebenkosten Immobilie ${eur(NK,0)}, Versicherungen ${eur(V,0)}, Auto ${eur(A,0)}. Wie hoch ist der <b>freie Betrag</b>?`,a:f,s:`${eur(N+kg,0)} − ${eur(L+NK+V+A,0)} = <b>${eur(f,0)}</b> – die Rate sollte mit Puffer darunter liegen.`}}}
 };
-$('rType').innerHTML='<option value="mix">Gemischt</option>'+Object.entries(CALC).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
-let cur=null,cStat={r:0,n:0};
-function newCalc(){
-  const k=$('rType').value==='mix'?pick(Object.keys(CALC)):$('rType').value;cur=CALC[k].g();cur.k=k;
-  $('calcBox').innerHTML=`<div class="card"><span class="tag">${CALC[k].n}</span><span class="tag">${cStat.r}/${cStat.n} richtig</span><p>${cur.t}</p>
-  <div class="row"><input type="text" inputmode="decimal" id="cIn" placeholder="Ergebnis in ${cur.u||'€'}" style="width:200px"><button class="btn" id="cBtn">Prüfen</button><button class="btn sec" onclick="showSol()">Lösung</button></div><div id="cFb"></div></div>`;
-  $('cIn').onkeydown=e=>{if(e.key==='Enter')$('cBtn').click()};
-  $('cBtn').onclick=()=>{const v=parseFloat($('cIn').value.replace(/\./g,'').replace(',','.').replace(/[^\d.\-]/g,''));if(isNaN(v))return;
-    const ok=Math.abs(v-cur.a)<=Math.max(Math.abs(cur.a)*0.01,1);cStat.n++;if(ok)cStat.r++;
-    $('cFb').innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b>${ok?'Richtig!':'Nicht ganz.'}</b><br>${cur.s}</div><div class="row" style="margin-top:10px"><button class="btn" onclick="newCalc()">Nächste Aufgabe ›</button></div>`;
-    $('cBtn').disabled=true};
-  $('cIn').focus();
-}
-function showSol(){$('cFb').innerHTML=`<div class="fb ok">${cur.s}</div><div class="row" style="margin-top:10px"><button class="btn" onclick="newCalc()">Nächste Aufgabe ›</button></div>`}
-
-/* ===================== SIMULATION ===================== */
-let sim=null,simT=null;
-function startSim(){
-  const [n,min]=$('simLen').value.split('|').map(Number);
-  const nCalc=Math.round(n*0.2),nQ=Math.min(n-nCalc,Q.length);
-  const items=shuffle(Q.map((q,i)=>i)).slice(0,nQ).map(i=>({type:'q',id:i,order:shuffle(Q[i].o.map((_,j)=>j)),sel:[]}));
-  for(let i=0;i<n-nQ;i++){const k=pick(Object.keys(CALC));const c=CALC[k].g();items.push({type:'c',c,k,val:''})}
-  sim={items:shuffle(items),i:0,end:Date.now()+min*60000,done:false};
-  $('simSetup').style.display='none';clearInterval(simT);simT=setInterval(tick,1000);renderSim();
-}
-function tick(){if(!sim||sim.done)return clearInterval(simT);const r=Math.max(0,sim.end-Date.now());
-  const el=$('simTime');if(el)el.textContent=`${String(Math.floor(r/60000)).padStart(2,'0')}:${String(Math.floor(r/1000)%60).padStart(2,'0')}`;
-  if(r<=0){alert('Zeit abgelaufen – Auswertung folgt.');finishSim()}}
-function saveSim(){const it=sim.items[sim.i];if(sim.done)return;
-  if(it.type==='q')it.sel=readSel($('simQ'));else it.val=$('simIn').value}
-function renderSim(){
-  const it=sim.items[sim.i];let body;
-  if(it.type==='q'){const q=Q[it.id];body=`<div id="simQ">${qHTML(q,'sim',it.order)}</div>`}
-  else body=`<span class="tag">Rechenaufgabe</span><p>${it.c.t}</p><input type="text" inputmode="decimal" id="simIn" placeholder="Ergebnis in ${it.c.u||'€'}" style="width:220px" value="${it.val}">`;
-  $('simBox').innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">Aufgabe ${sim.i+1} von ${sim.items.length}</span>${sim.done?'':'<span>⏱ <span class="timer" id="simTime"></span></span>'}</div>
-  <div class="qnav">${sim.items.map((x,i)=>{let c='';if(sim.done)c=x.ok?'ok':'bad';else if((x.type==='q'&&x.sel.length)||(x.type==='c'&&x.val))c='done';return `<button class="${c} ${i===sim.i?'cur':''}" onclick="simJump(${i})">${i+1}</button>`}).join('')}</div>
-  ${body}<div id="simFb"></div>
-  <div class="row" style="margin-top:12px;justify-content:space-between"><button class="btn sec" onclick="simJump(${sim.i-1})" ${sim.i?'':'disabled'}>‹ Zurück</button>
-  ${sim.done?'<button class="btn sec" onclick="resetSim()">Neue Simulation</button>':'<button class="btn sec" onclick="if(confirm(\'Prüfung jetzt abgeben?\'))finishSim()">Abgeben</button>'}
-  <button class="btn" onclick="simJump(${sim.i+1})" ${sim.i<sim.items.length-1?'':'disabled'}>Weiter ›</button></div></div>`;
-  if(it.type==='q')it.sel.forEach(v=>{const x=$('simQ').querySelector(`input[value="${v}"]`);if(x)x.checked=true});
-  if(sim.done){
-    if(it.type==='q'){const q=Q[it.id];markOpts($('simQ'),q);$('simFb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${q.e}</div>`}
-    else{$('simIn').disabled=true;$('simFb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${it.c.s}</div>`}
-  }
-  tick();
-}
-function simJump(i){if(i<0||i>=sim.items.length)return;saveSim();sim.i=i;renderSim()}
-function finishSim(){saveSim();sim.done=true;clearInterval(simT);let ok=0;
-  sim.items.forEach(it=>{if(it.type==='q'){it.ok=isOk(Q[it.id],it.sel);rec(it.id,it.ok)}else{const v=parseFloat(String(it.val).replace(/\./g,'').replace(',','.'));it.ok=!isNaN(v)&&Math.abs(v-it.c.a)<=Math.max(Math.abs(it.c.a)*0.01,1)}if(it.ok)ok++});
-  const p=Math.round(ok/sim.items.length*100);
-  const byM={};sim.items.forEach(it=>{const k=it.type==='q'?'Modul '+Q[it.id].m:'Rechnen';byM[k]=byM[k]||[0,0];byM[k][1]++;if(it.ok)byM[k][0]++});
-  $('simBox').insertAdjacentHTML('beforebegin','');
-  sim.i=0;renderSim();
-  $('simBox').insertAdjacentHTML('afterbegin',`<div class="card"><div class="big">${p} %</div><p>${ok} von ${sim.items.length} Aufgaben richtig. ${p>=70?'Gute Basis – weiter so!':'Noch Lücken: Schwachstellen gezielt üben.'}</p>
-  ${Object.entries(byM).sort().map(([k,[a,b]])=>`<div class="stat"><span>${k}</span><span>${a}/${b}</span></div>`).join('')}
-  <p class="muted" style="margin-bottom:0">Unten kannst du jede Aufgabe mit Lösung durchgehen (grün = richtig, rot = falsch).</p></div>`);
-}
-function resetSim(){sim=null;$('simBox').innerHTML='';$('simSetup').style.display=''}
-
-/* ===================== PRAXIS ===================== */
 const CHK=["Begrüßung, Vorstellung, Erstinformation (Status, Registernummer, Vergütung)","Gesprächsziel und Zeitrahmen vereinbart","Anlass und Ziele erfragt (Kauf/Bau/Anschluss, Selbstnutzung/Vermietung)","Persönliche Situation: Familie, Beruf, Beschäftigungsart, Alter","Zukunftsplanung: Kinder, Elternzeit, Jobwechsel, Rente","Finanzierungsbedarf inkl. Nebenkosten berechnet","Eigenkapital und Herkunft geklärt","Haushaltsrechnung mit freiem Betrag","Lösungsvorschlag begründet (Darlehensart, Zinsbindung, Tilgung)","Sondertilgung / Tilgungssatzwechsel angesprochen","Förderprogramme (KfW, Land, Riester, WoP) geprüft","Zinsänderungsrisiko und Restschuld erklärt","Absicherung: Risikoleben, BU, Gebäudeversicherung","Einwände ruhig und kundenorientiert behandelt","Verständliche Sprache, Rückfragen beim Kunden","Zusammenfassung, Unterlagenliste, nächster Termin"];
-function renderChecklist(){$('checklist').innerHTML=CHK.map((c,i)=>`<label class="chk"><input type="checkbox" ${mem.chk[i]?'checked':''} onchange="mem.chk[${i}]=this.checked;save()"><span>${c}</span></label>`).join('')+`<div class="row" style="margin-top:8px"><button class="btn sec" onclick="mem.chk={};save();renderChecklist()">Häkchen zurücksetzen</button></div>`}
-renderChecklist();
-
 const NAMES=["Familie Becker","Herr und Frau Yilmaz","Frau Schneider","Herr Wagner","Familie Hoffmann","Herr Lehmann","Frau Krüger"];
 const OBJ=[["Eigentumswohnung","selbst nutzen",280000,420000],["Reihenhaus","selbst nutzen",350000,520000],["freistehendes Einfamilienhaus","selbst nutzen",420000,650000],["vermietete Eigentumswohnung","als Kapitalanlage",180000,320000]];
 const TW=["Ein Kind ist in zwei Jahren geplant, dann ein Jahr Elternzeit.","Ein Partner ist noch in der Probezeit.","Der Kunde ist seit 4 Jahren selbstständig.","Die Zinsbindung der bestehenden Finanzierung endet in 3 Jahren – Anschluss gleich mitdenken.","Der Kunde ist 52 und möchte bis zur Rente schuldenfrei sein.","Ein Bausparvertrag mit 30.000 € Guthaben ist zuteilungsreif.","Der Kunde möchte zusätzlich 40.000 € energetisch modernisieren."];
-let curCase=null;
+/* ===================== HILFEN ===================== */
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const eur=(n,d=2)=>fmt(n,d)+' €';
+const rnd=(a,b,s=1)=>Math.round((a+Math.random()*(b-a))/s)*s;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LET='ABCDEFGH';
+const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const IC={
+ flame:'<svg width="15" height="15" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-4 2-5 0 2 1 3 2 3 0-4 1-6 1-8z"/></svg>',
+ star:'<svg width="15" height="15" viewBox="0 0 24 24" fill="#e2c784"><path d="m12 2 3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21l1.5-7L2 9.3l7-.8z"/></svg>',
+ bolt:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+ brain:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4a3 3 0 0 0-6 1 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1zM12 4a3 3 0 0 1 6 1 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1z"/></svg>',
+ redo:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+ grid:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>',
+ case:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>',
+ cards:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="14" height="18" rx="2"/><path d="M3 6v13a2 2 0 0 0 2 2"/></svg>',
+ trophy:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>',
+ lock:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+ flag:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>'
+};
+
+/* ===================== ZUSTAND ===================== */
+const KEY='bankshop34i_v2';
+let S={v:2,name:'',exam:'',goal:20,sound:true,xp:0,q:{},days:{},best:{combo:0,blitz:0},tot:{ans:0,ok:0,calc:0,cards:0,blitz:0},badges:{},sims:[],fc:{},chk:{},onboard:false};
+function load(){
+  try{const s=localStorage.getItem(KEY);if(s){S=Object.assign(S,JSON.parse(s));return}}catch(e){}
+  try{const o=JSON.parse(localStorage.getItem('lerntool34i')||'null');
+    if(o&&o.stats){for(const id in o.stats){const st=o.stats[id];S.q[id]={b:st.last?2:1,r:st.r||0,w:st.w||0,t:Date.now()}}S.fc=o.fc||{};S.chk=o.chk||{}}}catch(e){}
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+load();
+
+/* Ampel je Frage (Leitner-Prinzip) */
+const box=id=>(S.q[id]&&S.q[id].b)||0;
+const st=id=>{const b=box(id);return b===0?'n':b===1?'r':b<4?'y':'g'};
+const ST_LABEL={n:'Neu',r:'Rot – wiederholen',y:'Gelb – fast sicher',g:'Grün – sicher'};
+function answerQ(id,ok){
+  const s=S.q[id]||{b:0,r:0,w:0,t:0};const before=st(id);
+  if(ok){s.b=s.b===0?2:Math.min(5,s.b+1);s.r++}else{s.b=1;s.w++}
+  s.t=Date.now();S.q[id]=s;
+  S.tot.ans++;if(ok)S.tot.ok++;
+  const k=dayKey();S.days[k]=(S.days[k]||0)+1;
+  save();return {before,after:st(id)};
+}
+function ampelCount(ids){const c={g:0,y:0,r:0,n:0};ids.forEach(i=>c[st(i)]++);return c}
+const allIds=()=>Q.map((_,i)=>i);
+const modIds=m=>allIds().filter(i=>Q[i].m==m);
+function readiness(ids=allIds()){const c=ampelCount(ids);return Math.round((c.g+c.y*.5)/ids.length*100)}
+
+/* XP & Level */
+const LEVELS=[[0,'Einsteiger'],[150,'Starter'],[400,'Lernprofi'],[800,'Kreditkenner'],[1400,'Finanzierungsprofi'],[2200,'Baufi-Experte'],[3300,'Prüfungskandidat'],[4800,'Prüfungsreif'],[6800,'Fachmann/-frau IHK'],[9500,'Bankshop-Champion']];
+function lvl(xp=S.xp){let i=0;while(i<LEVELS.length-1&&xp>=LEVELS[i+1][0])i++;const cur=LEVELS[i][0],nx=i<LEVELS.length-1?LEVELS[i+1][0]:cur+5000;return{n:i+1,name:LEVELS[i][1],cur,nx,p:Math.min(1,(xp-cur)/(nx-cur))}}
+function addXP(n,label){
+  if(n<=0)return;const before=lvl().n;S.xp+=n;save();
+  if(label&&n>1)toast('+'+n+' XP'+(label===true?'':' · '+label),'gold');
+  const after=lvl();if(after.n>before)setTimeout(()=>levelUp(after),500);
+  header();
+}
+function streak(){
+  let n=0;const d=new Date();if(!S.days[dayKey(d)])d.setDate(d.getDate()-1);
+  while(S.days[dayKey(d)]){n++;d.setDate(d.getDate()-1)}return n;
+}
+const today=()=>S.days[dayKey()]||0;
+
+/* Abzeichen */
+const BADGES=[
+ ['first','Erster Schritt','1. Frage beantwortet',()=>S.tot.ans>=1],
+ ['q100','Fleißig','100 Fragen beantwortet',()=>S.tot.ans>=100],
+ ['q500','Marathon','500 Fragen beantwortet',()=>S.tot.ans>=500],
+ ['c10','Lauf','10 richtige in Folge',()=>S.best.combo>=10],
+ ['c25','Unaufhaltsam','25 richtige in Folge',()=>S.best.combo>=25],
+ ['goal','Tagesziel','Tagesziel erreicht',()=>today()>=S.goal],
+ ['s3','Dranbleiber','3 Lerntage in Folge',()=>streak()>=3],
+ ['s7','Wochenserie','7 Lerntage in Folge',()=>streak()>=7],
+ ['mod','Modul grün','Ein Modul komplett grün',()=>Object.keys(MODS).some(m=>ampelCount(modIds(m)).g===modIds(m).length)],
+ ['g100','Grüner Daumen','100 Fragen auf Grün',()=>ampelCount(allIds()).g>=100],
+ ['all','Rundum','In allen Modulen geübt',()=>Object.keys(MODS).every(m=>modIds(m).some(i=>box(i)>0))],
+ ['calc','Rechenkünstler','10 Rechenaufgaben gelöst',()=>S.tot.calc>=10],
+ ['blitz','Blitzmerker','15 Punkte in der Blitzrunde',()=>S.best.blitz>=15],
+ ['cards','Kartenkönig','50 Karteikarten gewusst',()=>S.tot.cards>=50],
+ ['exam','Simulation','Prüfungssimulation ≥ 70 %',()=>S.sims.some(x=>x.p>=70)],
+ ['ready','Prüfungsreif','Prüfungsreife ≥ 80 %',()=>readiness()>=80]
+];
+function checkBadges(){
+  BADGES.forEach(([id,name])=>{if(!S.badges[id]&&BADGES.find(b=>b[0]===id)[3]()){S.badges[id]=Date.now();save();setTimeout(()=>{toast('Abzeichen: '+name,'gold');confetti(90);sfx('lvl')},700)}});
+}
+
+/* ===================== EFFEKTE ===================== */
+function toast(t,cls=''){const box=$('toasts');while(box.children.length>=3)box.firstChild.remove();const d=document.createElement('div');d.className='toast '+cls;d.innerHTML=t;$('toasts').appendChild(d);setTimeout(()=>d.remove(),2400)}
+let AC=null;
+function sfx(type){
+  if(!S.sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+  const seq={ok:[[660,.07],[880,.1]],bad:[[220,.16]],lvl:[[523,.1],[659,.1],[784,.1],[1047,.22]],tick:[[1200,.03]]}[type]||[];
+  let t=AC.currentTime;seq.forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=type==='bad'?'sawtooth':'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(type==='bad'?.05:.12,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(AC.destination);o.start(t);o.stop(t+d+.02);t+=d*.9})}catch(e){}
+}
+function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}}
+function confetti(n=120){
+  const c=$('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+  const cols=['#e2c784','#b8933a','#16a34a','#1c3d6b','#f2c94c','#ffffff'];
+  const P=Array.from({length:n},()=>({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*13-4,s:Math.random()*7+4,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:pick(cols)}));
+  let f=0;(function step(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.38;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});if(++f<110)requestAnimationFrame(step);else x.clearRect(0,0,c.width,c.height)})();
+}
+function modal(html){$('modalBox').innerHTML=html;$('modal').classList.add('on')}
+function closeModal(){$('modal').classList.remove('on')}
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+function levelUp(L){sfx('lvl');confetti(160);modal(`<div class="lvup"><div class="crest">${L.n}</div><h1>Level ${L.n} erreicht!</h1><p class="muted">Du bist jetzt <b>${L.name}</b>. Weiter so – jede Frage bringt dich näher an die Prüfung.</p><button class="btn gold big" onclick="closeModal()">Weiterlernen</button></div>`)}
+function ring(p,size=110,stroke=10,col='#e2c784',bg='rgba(255,255,255,.18)'){const r=(size-stroke)/2,c=2*Math.PI*r;return `<svg width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${bg}" stroke-width="${stroke}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-Math.max(0,Math.min(1,p)))}" style="transition:stroke-dashoffset .8s"/></svg>`}
+function ampBar(c,tot){const w=k=>(c[k]/tot*100)+'%';return `<div class="amp"><i class="g" style="width:${w('g')}"></i><i class="y" style="width:${w('y')}"></i><i class="r" style="width:${w('r')}"></i></div>`}
+
+/* ===================== NAVIGATION ===================== */
+let curView='start';
+function go(v){
+  if(exam&&!exam.done&&v!=='exam'&&!confirm('Die laufende Prüfungssimulation wird unterbrochen. Trotzdem wechseln?'))return;
+  if(v!=='exam'&&exam&&!exam.done){clearInterval(exam.tm);exam=null}
+  if(blitz&&v!=='train'){clearInterval(blitz.tm);blitz=null}
+  curView=v;document.querySelectorAll('main section').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  ({start:renderStart,train:renderTrain,exam:renderExamSetup,calc:renderCalc,know:renderKnow})[v]();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+function header(){
+  const L=lvl();$('hStreak').innerHTML=IC.flame+streak();$('hLevel').innerHTML=IC.star+'Lv '+L.n;
+}
+let exam=null,blitz=null,qs=null;
+
+/* ===================== START ===================== */
+function renderStart(){
+  const L=lvl(),ids=allIds(),c=ampelCount(ids),rd=readiness(),sk=streak(),td=today();
+  const hour=new Date().getHours(),gr=hour<11?'Guten Morgen':hour<18?'Hallo':'Guten Abend';
+  let cd='';
+  if(S.exam){const days=Math.ceil((new Date(S.exam)-new Date(dayKey()))/864e5);
+    if(days>=0){const open=c.n+c.r+c.y;const per=days>0?Math.ceil(open*2/days):open;cd=`<div class="card" style="display:flex;gap:14px;align-items:center"><div class="mi gold" style="width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:1.3rem;background:var(--goldsoft);color:var(--gold2)">${days}</div><div><b>${days===0?'Heute ist Prüfungstag – viel Erfolg!':days===1?'Noch 1 Tag bis zur Prüfung':'Noch '+days+' Tage bis zur Prüfung'}</b><div class="small muted">Empfehlung: etwa ${Math.max(10,per)} Fragen pro Tag, damit alles grün wird.</div></div></div>`}}
+  const week=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return [dayKey(d),'SMDMDFS'[d.getDay()]]});
+  const mx=Math.max(S.goal,...week.map(w=>S.days[w[0]]||0));
+  $('v-start').innerHTML=`
+  <h1>${gr}${S.name?', '+esc(S.name):''}!</h1>
+  <p class="muted" style="margin:0 0 14px">${sk>1?'Du lernst seit '+sk+' Tagen am Stück – halte die Serie!':'Jeden Tag ein paar Fragen – so wird alles grün.'}</p>
+  <div class="hero">
+    <div class="hrow">
+      <div class="ring">${ring(rd/100,118,11)}<div class="rv"><div><b>${rd}%</b><br><small>Prüfungsreife</small></div></div></div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.78rem;opacity:.8">Level ${L.n}</div>
+        <div style="font-size:1.25rem;font-weight:800">${L.name}</div>
+        <div class="xpbar"><i style="width:${L.p*100}%"></i></div>
+        <div style="font-size:.74rem;opacity:.75;margin-top:4px">${S.xp} XP · noch ${Math.max(0,L.nx-S.xp)} bis Level ${L.n+1}</div>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>${IC.flame} ${sk}</b><span>Tage-Serie</span></div>
+      <div class="kpi"><b>${td}/${S.goal}</b><span>Tagesziel</span></div>
+      <div class="kpi"><b>${c.g}</b><span>Fragen grün</span></div>
+    </div>
+  </div>
+  <div style="margin:14px 0"><button class="btn gold big" onclick="startSmart()">${IC.brain} Smart-Training starten</button>
+  <div class="small muted" style="text-align:center;margin-top:6px">12 Fragen, die du jetzt am dringendsten brauchst – rote zuerst.</div></div>
+  ${cd}
+  <div class="card">
+    <div class="row" style="justify-content:space-between"><b>Deine Ampel</b><span class="small muted">${ids.length} Fragen</span></div>
+    <div style="margin-top:10px">${ampBar(c,ids.length)}</div>
+    <div class="legend"><span><i class="dot g"></i>${c.g} sicher</span><span><i class="dot y"></i>${c.y} fast</span><span><i class="dot r"></i>${c.r} wiederholen</span><span><i class="dot n"></i>${c.n} neu</span></div>
+    <div style="margin-top:12px">${Object.keys(MODS).map(m=>{const mi=modIds(m),mc=ampelCount(mi),p=readiness(mi);return `<div class="modrow" onclick="startModule(${m})"><div class="modnum">${m}</div><div><div class="t">${MODS[m]}</div>${ampBar(mc,mi.length)}</div><div class="p" style="color:${p>=70?'var(--g)':p>=40?'var(--y)':'var(--muted)'}">${p}%</div></div>`}).join('')}</div>
+    <div class="small muted" style="margin-top:6px">Tippe auf ein Modul, um es gezielt zu üben. Grün = 3× in Folge richtig.</div>
+  </div>
+  <div class="card"><b>Deine Woche</b><div class="spark">${week.map(([k,l],i)=>{const v=S.days[k]||0;return `<div><i class="${i===6?'today':''}" style="height:${Math.max(3,v/mx*58)}px" title="${v} Fragen"></i><span>${l}</span></div>`}).join('')}</div></div>
+  <h2>Abzeichen <span class="small muted">${Object.keys(S.badges).length}/${BADGES.length}</span></h2>
+  <div class="badges">${BADGES.map(([id,n,d])=>`<div class="badge ${S.badges[id]?'on':''}"><div class="bi">${S.badges[id]?IC.trophy:IC.lock}</div><b>${n}</b><span>${d}</span></div>`).join('')}</div>`;
+}
+
+/* ===================== TRAINING ===================== */
+function renderTrain(){
+  if(qs&&!qs.done){renderQ();return}
+  const c=ampelCount(allIds()),fall=allIds().filter(i=>/^Fall:/.test(Q[i].q)).length;
+  $('v-train').innerHTML=`<h1>Training</h1><p class="muted" style="margin:0 0 14px">Wähle deinen Modus. Jede richtige Antwort bringt XP und schiebt die Frage Richtung Grün.</p>
+  <div class="grid">
+    <button class="mode" onclick="startSmart()"><div class="mi gold">${IC.brain}</div><div><b>Smart-Training</b><span>12 Fragen nach deinem Lernstand: rote zuerst, dann gelbe und neue.</span></div></button>
+    <button class="mode" onclick="startRed()"><div class="mi red">${IC.redo}</div><div><b>Rote Fragen wiederholen</b><span>${c.r} Fragen warten auf eine zweite Chance.</span></div></button>
+    <button class="mode" onclick="startBlitz()"><div class="mi yel">${IC.bolt}</div><div><b>Blitzrunde · 60 Sekunden</b><span>So viele Treffer wie möglich. Rekord: ${S.best.blitz}</span></div></button>
+    <button class="mode" onclick="startCases()"><div class="mi navy">${IC.case}</div><div><b>Fallfragen</b><span>${fall} Praxisfälle wie in der Prüfung.</span></div></button>
+    <button class="mode" onclick="go('know');setTimeout(()=>knowTab('cards'),0)"><div class="mi green">${IC.cards}</div><div><b>Karteikarten</b><span>${FC.length} Karten zum Wischen – schnell Begriffe festigen.</span></div></button>
+  </div>
+  <h2>Nach Modul üben</h2>
+  <div class="card">${Object.keys(MODS).map(m=>{const mi=modIds(m),mc=ampelCount(mi);return `<div class="modrow" onclick="startModule(${m})"><div class="modnum">${m}</div><div><div class="t">${MODS[m]}</div>${ampBar(mc,mi.length)}</div><div class="p small muted">${mc.g}/${mi.length}</div></div>`}).join('')}</div>`;
+}
+function pickSmart(n=12){
+  const by=k=>shuffle(allIds().filter(i=>st(i)===k));
+  const oldFirst=a=>a.sort((x,y)=>(S.q[x]?.t||0)-(S.q[y]?.t||0));
+  let r=by('r').slice(0,5),y=oldFirst(by('y')).slice(0,4),nw=by('n'),g=oldFirst(by('g')).filter(i=>Date.now()-(S.q[i].t||0)>2*864e5);
+  let out=[...r,...y];out.push(...nw.slice(0,n-out.length));if(out.length<n)out.push(...g.slice(0,n-out.length));
+  if(out.length<n)out.push(...shuffle(allIds().filter(i=>!out.includes(i))).slice(0,n-out.length));
+  return shuffle(out);
+}
+function startSmart(){startSession(pickSmart(),'Smart-Training')}
+function startRed(){const r=shuffle(allIds().filter(i=>st(i)==='r'));if(!r.length){toast('Keine roten Fragen – stark!','gold');return}startSession(r.slice(0,15),'Rote Fragen')}
+function startModule(m){const ids=modIds(+m);const pri=[...shuffle(ids.filter(i=>st(i)==='r')),...shuffle(ids.filter(i=>st(i)==='n')),...shuffle(ids.filter(i=>st(i)==='y')),...shuffle(ids.filter(i=>st(i)==='g'))];startSession(shuffle(pri.slice(0,12)),'Modul '+m+' · '+MODS[m])}
+function startCases(){startSession(shuffle(allIds().filter(i=>/^Fall:/.test(Q[i].q))).slice(0,10),'Fallfragen')}
+function startSession(ids,title){
+  qs={ids,title,i:0,res:[],combo:0,xp:0,up:0,down:0,sel:[],checked:false,order:null,done:false};
+  if(curView!=='train'){curView='train';document.querySelectorAll('main section').forEach(s=>s.classList.toggle('on',s.id==='v-train'));document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v==='train'))}
+  renderQ();window.scrollTo({top:0});
+}
+function renderQ(){
+  if(qs.i>=qs.ids.length)return endSession();
+  const id=qs.ids[qs.i],q=Q[id],multi=q.a.length>1,s=st(id);
+  if(!qs.order)qs.order=shuffle(q.o.map((_,j)=>j));
+  $('v-train').innerHTML=`
+  <div class="qtop"><button class="iconbtn" style="background:var(--card2);color:var(--ink);border:1px solid var(--line)" onclick="quitSession()" aria-label="Beenden">✕</button>
+    <div class="segs">${qs.ids.map((_,k)=>`<i class="${k<qs.res.length?(qs.res[k]?'ok':'bad'):k===qs.i?'cur':''}"></i>`).join('')}</div>
+    <div class="combo" id="combo">${qs.combo>1?IC.flame+'×'+qs.combo:''}</div></div>
+  <div class="qcard" id="qcard">
+    <div class="qmeta"><span class="tag">${esc(qs.title)}</span><span class="tag">Modul ${q.m}</span><span class="tag st-${s}">${ST_LABEL[s]}</span>${multi?'<span class="tag multi">Mehrere Antworten richtig</span>':''}</div>
+    <div class="qtext">${esc(q.q)}</div>
+    <div class="opts" id="opts">${qs.order.map((oi,k)=>`<button class="opt ${multi?'multi':''}" data-oi="${oi}" onclick="toggleOpt(${oi},${multi})"><span class="lt">${LET[k]}</span><span>${esc(q.o[oi])}<span class="why"></span></span></button>`).join('')}</div>
+    <div id="fb"></div>
+    <div class="qactions"><button class="btn big" id="qBtn" onclick="checkQ()" disabled>Antwort prüfen</button></div>
+    <div class="kbd">Tasten 1–${q.o.length} wählen · Enter prüfen/weiter</div>
+  </div>`;
+  qs.sel=[];qs.checked=false;
+}
+function toggleOpt(oi,multi){
+  if(qs.checked)return;
+  if(multi){qs.sel=qs.sel.includes(oi)?qs.sel.filter(x=>x!==oi):[...qs.sel,oi]}else qs.sel=[oi];
+  document.querySelectorAll('#opts .opt').forEach(b=>b.classList.toggle('sel',qs.sel.includes(+b.dataset.oi)));
+  $('qBtn').disabled=!qs.sel.length;sfx('tick');
+}
+function markOpts(container,q,sel){
+  container.querySelectorAll('.opt').forEach(b=>{const oi=+b.dataset.oi,isA=q.a.includes(oi),isS=sel.includes(oi);
+    b.classList.remove('sel');b.disabled=true;const w=b.querySelector('.why');
+    if(isA&&isS){b.classList.add('c-ok');w.textContent='Richtig angekreuzt'}
+    else if(!isA&&isS){b.classList.add('c-bad');w.textContent='Falsch – gehört nicht dazu'}
+    else if(isA&&!isS){b.classList.add('c-miss');w.textContent='Hätte angekreuzt werden müssen'}
+    else b.classList.add('c-dim')});
+}
+function checkQ(){
+  if(qs.checked){qs.i++;qs.order=null;renderQ();window.scrollTo({top:0,behavior:'smooth'});return}
+  if(!qs.sel.length)return;
+  const id=qs.ids[qs.i],q=Q[id],sel=qs.sel.slice().sort(),a=q.a.slice().sort();
+  const ok=a.length===sel.length&&a.every((v,k)=>v===sel[k]);
+  const hits=sel.filter(x=>q.a.includes(x)).length;
+  qs.checked=true;qs.res.push(ok);markOpts($('opts'),q,sel);
+  const {before,after}=answerQ(id,ok);
+  if(after==='g'&&before!=='g')qs.up++;if(before==='g'&&after!=='g')qs.down++;
+  let xp=0;
+  if(ok){qs.combo++;S.best.combo=Math.max(S.best.combo,qs.combo);xp=10+(q.a.length>1?5:0)+Math.min(qs.combo-1,10);sfx('ok');
+    if(qs.combo%5===0){confetti(70);toast(IC.flame+' '+qs.combo+' richtige in Folge!','gold')}}
+  else{qs.combo=0;xp=1;sfx('bad');buzz(60)}
+  qs.xp+=xp;addXP(xp,ok&&before!=='g'&&after==='g'?'Frage jetzt grün':true);
+  const part=!ok&&hits>0&&q.a.length>1;
+  $('fb').innerHTML=`<div class="fb ${ok?'ok':part?'part':'bad'}"><b class="h">${ok?pick(['Richtig!','Stark!','Genau so!','Sitzt!']):part?'Fast – '+hits+' von '+q.a.length+' richtig':'Leider falsch'}</b>${!ok&&part?'In der Prüfung zählt nur vollständig richtig angekreuzt. ':''}${esc(q.e)}<div class="small" style="margin-top:6px;font-weight:700">Ampel: ${ST_LABEL[before]} → ${ST_LABEL[after]}</div></div>`;
+  $('qBtn').textContent=qs.i+1<qs.ids.length?'Nächste Frage':'Auswertung';$('qBtn').disabled=false;
+  const cb=$('combo');cb.innerHTML=qs.combo>1?IC.flame+'×'+qs.combo:'';cb.classList.remove('hot');void cb.offsetWidth;if(ok)cb.classList.add('hot');
+  document.querySelector('.segs i.cur')?.classList.replace('cur',ok?'ok':'bad');
+  $('qcard').classList.add(ok?'flash-ok':'flash-bad');
+  checkBadges();
+}
+function quitSession(){if(qs.res.length&&!confirm('Runde beenden? Deine Antworten sind gespeichert.'))return;qs.done=true;qs=null;renderTrain()}
+function endSession(){
+  const n=qs.res.length,ok=qs.res.filter(Boolean).length,p=n?Math.round(ok/n*100):0;qs.done=true;
+  const bonus=p===100&&n>=5?25:0;if(bonus)addXP(bonus,'Perfekte Runde');
+  if(p>=80){confetti(p===100?200:100);sfx('lvl')}
+  const wrong=qs.ids.filter((_,k)=>!qs.res[k]);
+  const col=p>=80?'var(--g)':p>=50?'var(--y)':'var(--r)';
+  $('v-train').innerHTML=`<div class="card res">
+    <h1>${p===100?'Perfekte Runde!':p>=80?'Sehr stark!':p>=50?'Gut dabei!':'Dranbleiben!'}</h1>
+    <div class="ring bigring" style="width:150px">${ring(p/100,150,14,col,'var(--nbg)')}<div class="rv"><div><b style="font-size:2rem">${p}%</b><br><small class="muted">${ok}/${n} richtig</small></div></div></div>
+    <div class="stat3"><div><b>+${qs.xp+bonus}</b><span>XP</span></div><div><b style="color:var(--g)">+${qs.up}</b><span>neu auf Grün</span></div><div><b>${S.best.combo}</b><span>beste Serie</span></div></div>
+    <div class="row" style="justify-content:center">
+      ${wrong.length?`<button class="btn" onclick='startSession(${JSON.stringify(wrong)},"Fehler wiederholen")'>${wrong.length} Fehler wiederholen</button>`:''}
+      <button class="btn gold" onclick="startSmart()">Nächste Runde</button>
+      <button class="btn ghost" onclick="qs=null;go('start')">Zum Lernstand</button>
+    </div></div>`;
+  qs=null;checkBadges();
+}
+
+/* ===================== BLITZRUNDE ===================== */
+function startBlitz(){
+  const pool=shuffle(allIds().filter(i=>Q[i].a.length===1&&Q[i].o.length<=5));
+  blitz={pool,i:0,pts:0,wrong:0,end:Date.now()+60000,lock:false,tm:null};
+  if(curView!=='train')go('train');
+  blitz.tm=setInterval(()=>{if(!blitz)return;const r=blitz.end-Date.now();const b=$('bbar');if(b)b.style.transform=`scaleX(${Math.max(0,r/60000)})`;const t=$('btime');if(t)t.textContent=Math.max(0,Math.ceil(r/1000));if(r<=0)endBlitz()},100);
+  renderBlitz();
+}
+function renderBlitz(){
+  const id=blitz.pool[blitz.i%blitz.pool.length],q=Q[id];blitz.order=shuffle(q.o.map((_,j)=>j));
+  $('v-train').innerHTML=`<div class="row" style="justify-content:space-between;margin-bottom:8px"><b style="font-size:1.1rem">${IC.bolt} Blitzrunde</b><span class="pill" style="background:var(--goldsoft);color:var(--gold2)">Punkte: <b id="bpts">${blitz.pts}</b></span><span class="timer" id="btime">60</span></div>
+  <div class="tbar"><i id="bbar"></i></div>
+  <div class="qcard" id="qcard"><div class="qmeta"><span class="tag">Modul ${q.m}</span></div><div class="qtext">${esc(q.q)}</div>
+  <div class="opts" id="opts">${blitz.order.map((oi,k)=>`<button class="opt" data-oi="${oi}" onclick="blitzAns(${oi})"><span class="lt">${LET[k]}</span><span>${esc(q.o[oi])}<span class="why"></span></span></button>`).join('')}</div>
+  <div class="kbd">Tasten 1–${q.o.length} antworten</div></div>`;
+}
+function blitzAns(oi){
+  if(!blitz||blitz.lock)return;blitz.lock=true;
+  const id=blitz.pool[blitz.i%blitz.pool.length],q=Q[id],ok=q.a[0]===oi;
+  markOpts($('opts'),q,[oi]);answerQ(id,ok);
+  if(ok){blitz.pts++;sfx('ok')}else{blitz.wrong++;sfx('bad');buzz(50)}
+  $('bpts').textContent=blitz.pts;$('qcard').classList.add(ok?'flash-ok':'flash-bad');
+  setTimeout(()=>{if(!blitz)return;blitz.i++;blitz.lock=false;if(Date.now()<blitz.end)renderBlitz()},ok?450:1100);
+}
+function endBlitz(){
+  clearInterval(blitz.tm);const b=blitz;blitz=null;
+  const rec=b.pts>S.best.blitz;if(rec)S.best.blitz=b.pts;S.tot.blitz++;save();
+  addXP(b.pts*5,'Blitzrunde');if(rec&&b.pts>0){confetti(150);sfx('lvl')}
+  $('v-train').innerHTML=`<div class="card res"><div class="mi yel" style="width:64px;height:64px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:var(--ybg);color:var(--y)">${IC.bolt}</div>
+  <h1>${rec&&b.pts>0?'Neuer Rekord!':'Zeit abgelaufen!'}</h1>
+  <div class="stat3"><div><b>${b.pts}</b><span>Treffer</span></div><div><b>${b.wrong}</b><span>Fehler</span></div><div><b>${S.best.blitz}</b><span>Rekord</span></div></div>
+  <div class="row" style="justify-content:center"><button class="btn gold" onclick="startBlitz()">Nochmal!</button><button class="btn ghost" onclick="renderTrain()">Zum Training</button></div></div>`;
+  checkBadges();header();
+}
+
+/* Tastatur */
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,select,textarea'))return;
+  const n=parseInt(e.key,10);
+  if(curView==='train'&&blitz&&n>=1&&n<=9){const b=document.querySelectorAll('#opts .opt')[n-1];if(b)b.click();return}
+  if(curView==='train'&&qs&&!qs.done){
+    if(n>=1&&n<=9){const b=document.querySelectorAll('#opts .opt')[n-1];if(b&&!qs.checked)b.click()}
+    if(e.key==='Enter'){e.preventDefault();const b=$('qBtn');if(b&&!b.disabled)b.click()}
+  }
+  if(curView==='exam'&&exam&&!exam.done){
+    if(n>=1&&n<=9){const b=document.querySelectorAll('#opts .opt')[n-1];if(b)b.click()}
+    if(e.key==='ArrowRight')exJump(exam.i+1);if(e.key==='ArrowLeft')exJump(exam.i-1);
+  }
+  if(curView==='know'&&knowSub==='cards'){if(e.key===' '){e.preventDefault();$('fc')?.classList.toggle('flip')}if(e.key==='ArrowRight')fcKnow(true);if(e.key==='ArrowLeft')fcKnow(false)}
+});
+/* ===================== PRÜFUNG ===================== */
+const PARTS={
+ t1:{n:'Teil 1 · Vermittlung & Beratung',mods:[1,2,6,7,8],q:40,c:0,min:60},
+ t2:{n:'Teil 2 · Finanzierung & Kreditprodukte',mods:[3,4,5,9,10],q:48,c:12,min:90},
+ kurz:{n:'Kurztest · gemischt',mods:[1,2,3,4,5,6,7,8,9,10],q:16,c:4,min:30}
+};
+function renderExamSetup(){
+  if(exam){renderExam();return}
+  const hist=S.sims.slice(-10);
+  $('v-exam').innerHTML=`<h1>Prüfungssimulation</h1><p class="muted" style="margin:0 0 14px">Wie bei der IHK: Fragen am Stück, Zeitlimit, Ergebnis erst am Ende. Markiere unsichere Fragen und springe zurück.</p>
+  <div class="grid">${Object.entries(PARTS).map(([k,p])=>`<button class="mode" onclick="startExam('${k}')"><div class="mi ${k==='t1'?'navy':k==='t2'?'gold':'green'}">${IC.trophy}</div><div><b>${p.n}</b><span>${p.q+p.c} Aufgaben · ${p.min} Minuten${p.c?' · inkl. '+p.c+' Rechenaufgaben':''}</span></div></button>`).join('')}</div>
+  <div class="card" style="margin-top:14px"><b>Deine Ergebnisse</b>${hist.length?simChart(hist):'<div class="empty">Noch keine Simulation – starte mit dem Kurztest.</div>'}
+  <div class="small muted">Zielmarke im Tool: 70 %. Die genauen Bestehensregeln nennt dir deine IHK.</div></div>
+  <div class="card"><b>So läuft die echte Prüfung</b><div class="tbl"><table><tr><th>Teil</th><th>Aufgaben</th><th>Dauer</th></tr><tr><td>Schriftlich 1</td><td>40</td><td>60 Min.</td></tr><tr><td>Schriftlich 2</td><td>60</td><td>90 Min.</td></tr><tr><td>Praktisch</td><td>Rollenspiel</td><td>20 + 20 Min.</td></tr></table></div><div class="small muted">Multiple Choice zählt nur vollständig richtig. Hilfsmittel: nicht programmierbarer Taschenrechner.</div></div>`;
+}
+function simChart(h){
+  const w=320,ht=120,pad=22,step=(w-pad*2)/Math.max(1,h.length-1);
+  const pts=h.map((s,i)=>[pad+i*step,ht-pad-(s.p/100)*(ht-pad*2)]);
+  const y70=ht-pad-.7*(ht-pad*2);
+  return `<svg viewBox="0 0 ${w} ${ht}" style="width:100%;height:auto;margin-top:8px"><line x1="${pad}" x2="${w-pad}" y1="${y70}" y2="${y70}" stroke="var(--g)" stroke-dasharray="4 4" opacity=".7"/><text x="${w-pad}" y="${y70-4}" text-anchor="end" font-size="9" fill="var(--g)">70 %</text>
+  <polyline fill="none" stroke="var(--navy2)" stroke-width="2.5" points="${pts.map(p=>p.join(',')).join(' ')}"/>
+  ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${h[i].p>=70?'var(--g)':h[i].p>=50?'var(--y)':'var(--r)'}"/><text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="9" fill="var(--muted)">${h[i].p}</text>`).join('')}</svg>`;
+}
+function startExam(k){
+  const P=PARTS[k];const pool=allIds().filter(i=>P.mods.includes(Q[i].m));
+  const items=shuffle(pool).slice(0,P.q).map(id=>({t:'q',id,order:shuffle(Q[id].o.map((_,j)=>j)),sel:[],flag:false}));
+  for(let i=0;i<P.c;i++){const ck=pick(Object.keys(CALC));items.push({t:'c',c:CALC[ck].g(),k:ck,val:'',flag:false})}
+  exam={k,P,items:shuffle(items),i:0,end:Date.now()+P.min*60000,done:false};
+  exam.tm=setInterval(exTick,1000);renderExam();
+}
+function exTick(){if(!exam||exam.done)return;const r=Math.max(0,exam.end-Date.now()),el=$('extime');
+  if(el){el.textContent=String(Math.floor(r/60000)).padStart(2,'0')+':'+String(Math.floor(r/1000)%60).padStart(2,'0');el.classList.toggle('warn',r<5*60000)}
+  if(r<=0){toast('Zeit abgelaufen – Auswertung','gold');finishExam()}}
+function exSave(){if(!exam||exam.done)return;const it=exam.items[exam.i];if(it.t==='c'){const v=$('exIn');if(v)it.val=v.value}}
+function renderExam(){
+  const it=exam.items[exam.i],done=exam.done;let body;
+  if(it.t==='q'){const q=Q[it.id],multi=q.a.length>1;
+    body=`<div class="qmeta"><span class="tag">Modul ${q.m}</span>${multi?'<span class="tag multi">Mehrere Antworten richtig</span>':''}</div><div class="qtext">${esc(q.q)}</div>
+    <div class="opts" id="opts">${it.order.map((oi,k)=>`<button class="opt ${multi?'multi':''} ${it.sel.includes(oi)?'sel':''}" data-oi="${oi}" onclick="exToggle(${oi},${multi})"><span class="lt">${LET[k]}</span><span>${esc(q.o[oi])}<span class="why"></span></span></button>`).join('')}</div>`}
+  else body=`<div class="qmeta"><span class="tag">Rechenaufgabe</span></div><div class="qtext" style="font-weight:600">${it.c.t}</div><input type="text" inputmode="decimal" id="exIn" placeholder="Ergebnis in ${it.c.u||'€'}" value="${esc(it.val)}" ${done?'disabled':''}>`;
+  $('v-exam').innerHTML=`${done?'':`<div class="exbar"><b class="small">${exam.P.n}</b><span class="timer" id="extime">--:--</span><button class="btn ghost" style="padding:8px 12px" onclick="if(confirm('Prüfung jetzt abgeben?'))finishExam()">Abgeben</button></div>`}
+  <div class="qnav">${exam.items.map((x,k)=>{let c='';if(done)c=x.ok?'ok':'bad';else if((x.t==='q'&&x.sel.length)||(x.t==='c'&&x.val))c='done';return `<button class="${c} ${k===exam.i?'cur':''} ${x.flag?'flag':''}" onclick="exJump(${k})">${k+1}</button>`}).join('')}</div>
+  <div class="qcard"><div class="row" style="justify-content:space-between;margin-bottom:6px"><span class="small muted">Aufgabe ${exam.i+1} von ${exam.items.length}</span>${done?'':`<button class="chip ${it.flag?'on':''}" onclick="exFlag()">${IC.flag} ${it.flag?'Markiert':'Markieren'}</button>`}</div>${body}<div id="exfb"></div>
+  <div class="qactions"><button class="btn ghost" onclick="exJump(${exam.i-1})" ${exam.i?'':'disabled'}>‹ Zurück</button><button class="btn" onclick="exJump(${exam.i+1})" ${exam.i<exam.items.length-1?'':'disabled'}>Weiter ›</button></div></div>
+  ${done?'<div class="row" style="justify-content:center;margin-top:12px"><button class="btn gold" onclick="exam=null;renderExamSetup()">Neue Simulation</button></div>':''}`;
+  if(done){if(it.t==='q'){markOpts($('opts'),Q[it.id],it.sel);$('exfb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${esc(Q[it.id].e)}</div>`}else $('exfb').innerHTML=`<div class="fb ${it.ok?'ok':'bad'}">${it.c.s}</div>`}
+  exTick();
+}
+function exToggle(oi,multi){if(exam.done)return;const it=exam.items[exam.i];it.sel=multi?(it.sel.includes(oi)?it.sel.filter(x=>x!==oi):[...it.sel,oi]):[oi];
+  document.querySelectorAll('#opts .opt').forEach(b=>b.classList.toggle('sel',it.sel.includes(+b.dataset.oi)));
+  const nb=document.querySelectorAll('.qnav button')[exam.i];if(nb)nb.classList.toggle('done',it.sel.length>0);sfx('tick')}
+function exFlag(){const it=exam.items[exam.i];exSave();it.flag=!it.flag;renderExam()}
+function exJump(k){if(!exam||k<0||k>=exam.items.length)return;exSave();exam.i=k;renderExam();window.scrollTo({top:0,behavior:'smooth'})}
+const parseNum=v=>parseFloat(String(v).replace(/\s/g,'').replace(/\.(?=\d{3}(\D|$))/g,'').replace(',','.').replace(/[^\d.\-]/g,''));
+const calcOk=(v,a)=>!isNaN(v)&&Math.abs(v-a)<=Math.max(Math.abs(a)*.01,1);
+function finishExam(){
+  exSave();exam.done=true;clearInterval(exam.tm);let ok=0;const byM={};
+  exam.items.forEach(it=>{if(it.t==='q'){const q=Q[it.id],s=it.sel.slice().sort(),a=q.a.slice().sort();it.ok=s.length===a.length&&a.every((v,k)=>v===s[k]);answerQ(it.id,it.ok);var key='Modul '+q.m}else{it.ok=calcOk(parseNum(it.val),it.c.a);if(it.ok)S.tot.calc++;var key='Rechnen'}
+    if(it.ok)ok++;byM[key]=byM[key]||[0,0];byM[key][1]++;if(it.ok)byM[key][0]++});
+  const p=Math.round(ok/exam.items.length*100);S.sims.push({ts:Date.now(),p,k:exam.k});save();
+  addXP(ok*5,'Simulation');if(p>=70){confetti(200);sfx('lvl')}else sfx(p>=50?'ok':'bad');
+  const col=p>=70?'var(--g)':p>=50?'var(--y)':'var(--r)';exam.i=0;
+  renderExam();
+  $('v-exam').insertAdjacentHTML('afterbegin',`<div class="card res"><h1>${p>=70?'Geschafft – Zielmarke erreicht!':p>=50?'Knapp – da geht noch mehr':'Noch nicht prüfungsreif'}</h1>
+  <div class="ring bigring" style="width:150px">${ring(p/100,150,14,col,'var(--nbg)')}<div class="rv"><div><b style="font-size:2rem">${p}%</b><br><small class="muted">${ok}/${exam.items.length}</small></div></div></div>
+  <div style="text-align:left">${Object.entries(byM).sort((a,b)=>a[0].localeCompare(b[0],'de',{numeric:true})).map(([k,[a,b]])=>{const pp=Math.round(a/b*100);return `<div class="stat"><span>${k}${k.startsWith('Modul')?' · <span class="muted small">'+MODS[k.split(' ')[1]]+'</span>':''}</span><b style="color:${pp>=70?'var(--g)':pp>=50?'var(--y)':'var(--r)'}">${a}/${b}</b></div>`}).join('')}</div>
+  <p class="small muted">Unten kannst du jede Aufgabe mit Lösung durchgehen. Falsche Fragen stehen jetzt auf Rot und kommen im Smart-Training wieder.</p></div>`);
+  checkBadges();header();
+}
+
+/* ===================== RECHNEN ===================== */
+let cur=null,cStreak=0,cType='mix';
+function renderCalc(){
+  $('v-calc').innerHTML=`<h1>Rechentrainer</h1><p class="muted" style="margin:0 0 12px">Jede Aufgabe wird neu erzeugt – unbegrenzt üben. Toleranz ±1 %.</p>
+  <div class="subtabs" id="ctypes"><button class="chip ${cType==='mix'?'on':''}" onclick="cType='mix';renderCalc()">Gemischt</button>${Object.entries(CALC).map(([k,v])=>`<button class="chip ${cType===k?'on':''}" onclick="cType='${k}';renderCalc()">${v.n}</button>`).join('')}</div>
+  <div id="calcBox"></div>
+  <details><summary>Formelsammlung</summary><div class="in">
+  <div class="formula">Jahresrate = Darlehen × (Sollzins + anfängliche Tilgung)</div><div class="formula">Zinsanteil Monat = Restschuld × Sollzins ÷ 12</div><div class="formula">Tilgungsanteil = Monatsrate − Zinsanteil</div><div class="formula">Max. Darlehen = Monatsrate × 12 ÷ (Sollzins + Tilgung)</div><div class="formula">Tilgungssatz = Monatsrate × 12 ÷ Darlehen − Sollzins</div><div class="formula">Beleihungsauslauf = Darlehen ÷ Beleihungswert × 100</div><div class="formula">Auszahlung = Darlehen × (1 − Disagio)</div><div class="formula">Bereitstellungszins = Betrag × Satz p. M. × Monate</div><div class="formula">Restschuld = K·qⁿ − R·(qⁿ − 1) ÷ i (i = Zins÷12, q = 1+i)</div><div class="formula">Ertragswert = (Rohertrag − Bewirtschaftung − Bodenwert×LZ) × Vervielfältiger + Bodenwert</div><div class="formula">Bruttomietrendite = Jahresnettokaltmiete ÷ Kaufpreis × 100</div></div></details>`;
+  newCalc();
+}
+function newCalc(){
+  const k=cType==='mix'?pick(Object.keys(CALC)):cType;cur=CALC[k].g();cur.k=k;
+  $('calcBox').innerHTML=`<div class="qcard"><div class="qmeta"><span class="tag">${CALC[k].n}</span>${cStreak>1?`<span class="tag st-g">${IC.flame} ${cStreak} in Folge</span>`:''}<span class="tag">${S.tot.calc} gelöst</span></div>
+  <div class="qtext" style="font-weight:600">${cur.t}</div>
+  <input type="text" inputmode="decimal" id="cIn" placeholder="Ergebnis in ${cur.u||'€'}" autocomplete="off">
+  <div id="cFb"></div>
+  <div class="qactions"><button class="btn ghost" onclick="calcSol()">Lösung zeigen</button><button class="btn" id="cBtn" onclick="calcCheck()">Prüfen</button></div></div>`;
+  $('cIn').onkeydown=e=>{if(e.key==='Enter')$('cBtn').click()};
+}
+function calcCheck(){
+  if(cur.done){newCalc();$('cIn').focus();return}
+  const v=parseNum($('cIn').value);if(isNaN(v))return;const ok=calcOk(v,cur.a);cur.done=true;
+  if(ok){cStreak++;S.tot.calc++;save();sfx('ok');addXP(15,true);if(cStreak%5===0){confetti(80);toast(IC.flame+' '+cStreak+' Rechnungen in Folge!','gold')}}else{cStreak=0;sfx('bad');buzz(60)}
+  const k=dayKey();S.days[k]=(S.days[k]||0)+1;save();
+  $('cFb').innerHTML=`<div class="fb ${ok?'ok':'bad'}"><b class="h">${ok?'Richtig gerechnet!':'Nicht ganz.'}</b>${cur.s}</div>`;
+  $('cBtn').textContent='Nächste Aufgabe';$('cIn').disabled=true;checkBadges();header();
+}
+function calcSol(){cur.done=true;cStreak=0;$('cFb').innerHTML=`<div class="fb part">${cur.s}</div>`;$('cBtn').textContent='Nächste Aufgabe';$('cIn').disabled=true}
+
+/* ===================== WISSEN ===================== */
+let knowSub='stoff';
+function renderKnow(){knowTab(knowSub)}
+function knowTab(t){
+  knowSub=t;
+  $('v-know').innerHTML=`<h1>Wissen</h1><div class="subtabs" style="margin-top:10px">${[['stoff','Lernstoff'],['cards','Karteikarten'],['praxis','Praxisteil']].map(([k,n])=>`<button class="chip ${t===k?'on':''}" onclick="knowTab('${k}')">${n}</button>`).join('')}</div><div id="kb"></div>`;
+  ({stoff:renderStoff,cards:renderCards,praxis:renderPraxis})[t]();
+}
+function renderStoff(){
+  $('kb').innerHTML=Object.keys(MODS).map(m=>{const p=readiness(modIds(m));return `<details><summary><span class="modnum">${m}</span><span style="flex:1">${MODS[m]}</span><span class="small" style="color:${p>=70?'var(--g)':p>=40?'var(--y)':'var(--muted)'}">${p}%</span></summary><div class="in">${STOFF[m]}<button class="btn gold" style="margin-top:10px" onclick="startModule(${m})">Modul ${m} üben</button></div></details>`}).join('');
+}
+let fcL=[],fcI=0,fcMod='all';
+function renderCards(){
+  $('kb').innerHTML=`<select id="fcSel" onchange="fcMod=this.value;fcBuild()"><option value="all">Alle Module</option>${Object.keys(MODS).map(m=>`<option value="${m}" ${fcMod==m?'selected':''}>${m} · ${MODS[m]}</option>`).join('')}</select>
+  <div class="fcwrap"><div class="fc" id="fc" onclick="this.classList.toggle('flip')"><div class="face front"><div id="fcF"></div><span class="hint">Tippen zum Umdrehen · wischen: links nochmal, rechts gewusst</span></div><div class="face back"><div id="fcB"></div></div></div></div>
+  <div class="row" style="justify-content:space-between"><button class="btn ghost" style="flex:1;color:var(--r)" onclick="fcKnow(false)">✕ Nochmal</button><span class="muted small" id="fcPos" style="min-width:60px;text-align:center"></span><button class="btn" style="flex:1;background:var(--g)" onclick="fcKnow(true)">✓ Gewusst</button></div>`;
+  let x0=null;const el=$('fc');
+  el.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+  el.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>70){fcKnow(dx>0)}});
+  fcBuild();
+}
+function fcBuild(){fcL=FC.map((_,i)=>i).filter(i=>fcMod==='all'||FC[i][0]==fcMod);fcL=shuffle(fcL).sort((a,b)=>(S.fc[a]||0)-(S.fc[b]||0));fcI=0;fcShow()}
+function fcShow(){const c=FC[fcL[fcI]],el=$('fc');if(!el)return;el.className='fc';$('fcF').innerHTML=`<span class="tag" style="margin-bottom:10px">Modul ${c[0]}</span>${esc(c[1])}`;$('fcB').textContent=c[2];$('fcPos').textContent=(fcI+1)+' / '+fcL.length}
+function fcKnow(ok){const el=$('fc');if(!el)return;const id=fcL[fcI];S.fc[id]=(S.fc[id]||0)+(ok?1:-1);if(ok){S.tot.cards++;addXP(2)}save();
+  if(!ok)fcL.splice(Math.min(fcI+4,fcL.length),0,id);sfx(ok?'ok':'tick');el.classList.add(ok?'out-r':'out-l');
+  setTimeout(()=>{fcI=(fcI+1)%fcL.length;fcShow();checkBadges()},280)}
+function renderPraxis(){
+  $('kb').innerHTML=`<div class="card"><b>Checkliste für das Rollenspiel</b><p class="small muted" style="margin:4px 0 8px">Beim Üben abhaken – der Prüfer achtet auf Struktur und Kundenorientierung.</p>
+  <div class="amp" style="margin-bottom:6px"><i class="g" style="width:${Object.values(S.chk).filter(Boolean).length/CHK.length*100}%"></i></div>
+  ${CHK.map((c,i)=>`<label class="chk"><input type="checkbox" ${S.chk[i]?'checked':''} onchange="S.chk[${i}]=this.checked;save();renderPraxis()"><span>${c}</span></label>`).join('')}
+  <button class="btn ghost" style="margin-top:8px" onclick="S.chk={};save();renderPraxis()">Häkchen zurücksetzen</button></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><b>Übungsfall</b><button class="btn ghost" onclick="newCase()">Neuer Fall</button></div><div id="caseBox"></div></div>
+  <div class="card"><b>Mini-Finanzierungsrechner</b><div class="grid2" style="margin-top:10px">
+  ${[['fKP','Kaufpreis €',320000,1000],['fGE','Grunderwerbst. %',5.5,.5],['fNO','Notar/Grundbuch %',2,.1],['fMA','Makler %',3.57,.01],['fEK','Eigenkapital €',50000,1000],['fZI','Sollzins %',3.7,.05],['fTI','Tilgung %',2,.1],['fEI','Netto inkl. Kindergeld €',5000,50],['fAU','Ausgaben €',2900,50]].map(([id,l,v,s])=>`<label class="fld">${l}<input type="number" id="${id}" value="${v}" step="${s}"></label>`).join('')}</div><div id="fOut" style="margin-top:12px"></div></div>`;
+  ['fKP','fGE','fNO','fMA','fEK','fZI','fTI','fEI','fAU'].forEach(id=>$(id).addEventListener('input',calcF));newCase();
+}
 function newCase(){
   const n=pick(NAMES),[o,u,a,b]=pick(OBJ),P=rnd(a,b,5000),[bl,g]=pick(BL),ek=rnd(P*0.08,P*0.3,5000),ein=rnd(3200,7000,100),aus=Math.round(ein*rnd(0.45,0.6,0.01)/50)*50,tw=pick(TW);
-  curCase={P,g,ek,ein,aus};
-  $('caseBox').innerHTML=`<p><b>${n}</b> möchte ein(e) <b>${o}</b> in ${bl} für <b>${eur(P,0)}</b> kaufen und ${u}. Eigenkapital: <b>${eur(ek,0)}</b>. Haushaltsnetto inkl. Kindergeld: <b>${eur(ein,0)}</b>, laufende Ausgaben ohne Miete: <b>${eur(aus,0)}</b>. Makler 3,57 %. ${tw}</p>
-  <p class="muted">Aufgabe: 20 Minuten vorbereiten, dann 20 Minuten Beratungsgespräch führen. Mini-Rechner unten ist vorbefüllt.</p>
-  <details><summary>Lösungsskizze anzeigen</summary><div class="in" id="caseSol"></div></details>`;
-  $('fKP').value=P;$('fGE').value=g;$('fEK').value=ek;$('fEI').value=ein;$('fAU').value=aus;calcF();
   const nk=P*(g+2+3.57)/100,d=P+nk-ek,r=d*(3.7+2)/100/12,f=ein-aus;
-  $('caseSol').innerHTML=`<ul><li>Nebenkosten (GrESt ${fmt(g,1)} %, Notar/GB 2 %, Makler 3,57 %): ${eur(nk,0)}</li><li>Darlehensbedarf: ${eur(P,0)} + ${eur(nk,0)} − ${eur(ek,0)} = <b>${eur(d,0)}</b></li><li>Eigenkapitalquote am Gesamtaufwand: ${fmt(ek/(P+nk)*100,1)} % ${ek<nk?'– deckt nicht einmal die Nebenkosten: offen ansprechen!':''}</li><li>Rate bei 3,7 % + 2 %: ${eur(r,0)} / Monat · freier Betrag ${eur(f,0)} → ${r<f*0.85?'tragfähig mit Puffer':'zu knapp – Alternativen (mehr EK, günstigeres Objekt, längere Laufzeit, Förderung) besprechen'}</li><li>Besonderheit des Falls: „${tw}“ – im Gespräch gezielt aufgreifen</li><li>Risiken, Absicherung, Unterlagen und nächste Schritte nicht vergessen</li></ul>`;
+  $('caseBox').innerHTML=`<p><b>${n}</b> möchte ein(e) <b>${o}</b> in ${bl} für <b>${eur(P,0)}</b> kaufen und ${u}. Eigenkapital <b>${eur(ek,0)}</b>, Haushaltsnetto inkl. Kindergeld <b>${eur(ein,0)}</b>, laufende Ausgaben ohne Miete <b>${eur(aus,0)}</b>. Makler 3,57 %. ${tw}</p>
+  <p class="small muted">20 Minuten vorbereiten, dann 20 Minuten Beratungsgespräch führen.</p>
+  <details style="box-shadow:none"><summary>Lösungsskizze</summary><div class="in"><ul><li>Nebenkosten: ${eur(nk,0)}</li><li>Darlehensbedarf: <b>${eur(d,0)}</b></li><li>Eigenkapitalquote: ${fmt(ek/(P+nk)*100,1)} % ${ek<nk?'– deckt nicht einmal die Nebenkosten: offen ansprechen!':''}</li><li>Rate bei 3,7 % + 2 %: ${eur(r,0)} · freier Betrag ${eur(f,0)} → ${r<f*0.85?'tragfähig mit Puffer':'zu knapp – Alternativen besprechen'}</li><li>Besonderheit gezielt aufgreifen: „${tw}“</li><li>Risiken, Absicherung, Unterlagen, nächste Schritte</li></ul></div></details>`;
+  $('fKP').value=P;$('fGE').value=g;$('fEK').value=ek;$('fEI').value=ein;$('fAU').value=aus;calcF();
 }
-['fKP','fGE','fNO','fMA','fEK','fZI','fTI','fEI','fAU'].forEach(id=>$(id).addEventListener('input',calcF));
 function calcF(){const v=id=>parseFloat($(id).value)||0;const P=v('fKP'),nk=P*(v('fGE')+v('fNO')+v('fMA'))/100,d=Math.max(0,P+nk-v('fEK')),r=d*(v('fZI')+v('fTI'))/100/12,f=v('fEI')-v('fAU');
-  $('fOut').innerHTML=`<div class="stat"><span>Kaufnebenkosten</span><b>${eur(nk,0)}</b></div><div class="stat"><span>Gesamtkosten</span><b>${eur(P+nk,0)}</b></div><div class="stat"><span>Darlehensbedarf</span><b>${eur(d,0)}</b></div><div class="stat"><span>Monatsrate</span><b>${eur(r,0)}</b></div><div class="stat"><span>Freier Betrag</span><b>${eur(f,0)}</b></div><div class="stat"><span>Puffer nach Rate</span><b style="color:${f-r>=0?'var(--ok)':'var(--bad)'}">${eur(f-r,0)}</b></div>`}
-calcF();newCase();dash();
+  $('fOut').innerHTML=[['Kaufnebenkosten',nk],['Gesamtkosten',P+nk],['Darlehensbedarf',d],['Monatsrate',r],['Freier Betrag',f]].map(([l,x])=>`<div class="stat"><span>${l}</span><b>${eur(x,0)}</b></div>`).join('')+`<div class="stat"><span>Puffer nach Rate</span><b style="color:${f-r>=0?'var(--g)':'var(--r)'}">${eur(f-r,0)}</b></div>`}
+
+/* ===================== EINSTELLUNGEN ===================== */
+function openSettings(first){
+  modal(`<h1>${first?'Willkommen in der Bankshop Akademie':'Einstellungen'}</h1>${first?'<p class="muted">Kurz einrichten – dann geht’s los. Alles bleibt nur auf diesem Gerät gespeichert.</p>':''}
+  <div style="display:grid;gap:12px;margin:14px 0">
+  <label class="fld">Dein Vorname<input type="text" id="sName" value="${esc(S.name)}" placeholder="z. B. Steffen"></label>
+  <label class="fld">Prüfungstermin (optional)<input type="date" id="sExam" value="${S.exam}"></label>
+  <label class="fld">Tagesziel<select id="sGoal">${[10,20,30,50].map(g=>`<option ${S.goal==g?'selected':''} value="${g}">${g} Fragen pro Tag</option>`).join('')}</select></label>
+  <label class="chk" style="border:0"><input type="checkbox" id="sSound" ${S.sound?'checked':''}><span>Töne und Effekte</span></label>
+  </div>
+  <button class="btn gold big" onclick="saveSettings()">${first?'Los geht’s':'Speichern'}</button>
+  ${first?'':`<h3>Lernstand</h3><div class="row"><button class="btn ghost" onclick="exportData()">Sichern (Datei)</button><label class="btn ghost" style="cursor:pointer">Laden<input type="file" accept=".json" style="display:none" onchange="importData(this)"></label><button class="btn ghost" style="color:var(--r)" onclick="resetAll()">Zurücksetzen</button></div>
+  <p class="small muted">Mit „Sichern“ nimmst du deinen Lernstand auf ein anderes Gerät mit.</p>
+  <h3>Darstellung</h3><div class="row">${['auto','light','dark'].map(t=>`<button class="chip ${(document.documentElement.dataset.theme||'auto')===t?'on':''}" onclick="setTheme('${t}')">${{auto:'Automatisch',light:'Hell',dark:'Dunkel'}[t]}</button>`).join('')}</div>`}`);
+}
+function saveSettings(){S.name=$('sName').value.trim().slice(0,30);S.exam=$('sExam').value;S.goal=+$('sGoal').value;S.sound=$('sSound').checked;S.onboard=true;save();closeModal();if(curView==='start')renderStart()}
+function setTheme(t){if(t==='auto')delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t;try{localStorage.setItem(KEY+'_theme',t)}catch(e){}openSettings()}
+try{const t=localStorage.getItem(KEY+'_theme');if(t&&t!=='auto')document.documentElement.dataset.theme=t}catch(e){}
+function exportData(){const b=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='lernstand-34i-'+dayKey()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function importData(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d||d.v!==2||typeof d.q!=='object')throw 0;S=Object.assign(S,d);save();closeModal();toast('Lernstand geladen','gold');go('start')}catch(e){alert('Die Datei ist kein gültiger Lernstand.')}};r.readAsText(f)}
+function resetAll(){if(!confirm('Wirklich den gesamten Lernstand löschen? Das kann nicht rückgängig gemacht werden.'))return;const keep={name:S.name,exam:S.exam,goal:S.goal,sound:S.sound};S={v:2,xp:0,q:{},days:{},best:{combo:0,blitz:0},tot:{ans:0,ok:0,calc:0,cards:0,blitz:0},badges:{},sims:[],fc:{},chk:{},onboard:true,...keep};save();closeModal();go('start')}
+
+/* ===================== START ===================== */
+header();renderStart();
+if(!S.onboard)setTimeout(()=>openSettings(true),400);
 </script>
-</body>
-</html>
+</body></html>
